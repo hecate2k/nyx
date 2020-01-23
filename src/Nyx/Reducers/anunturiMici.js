@@ -1,17 +1,17 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
-    email: '',
-    password: '',
-    errors:{
-        email: false,
-        password: false,
+    titlu: '',
+    brand: '',
+    descriere:'',
+    imagini:{
+        img1: false,
+        img2: false,
     },
-    isLoading: false,
-    islogged: false,
+    isOpen: false,
 }
 
-const loginReducer = (state = INITIAL_STATE, action) => {
+const anunturiMiciReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case actionType.SET_LOGIN_STATUS_LOADING:
             return{
@@ -55,4 +55,4 @@ const loginReducer = (state = INITIAL_STATE, action) => {
     }
 }
 
-export default loginReducer
+export default anunturiMiciReducer

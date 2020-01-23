@@ -8,7 +8,8 @@ export const selectLoginData = createSelector(
         return{
             email:userData.email,
             password:userData.password,
-            isLoading:userData.isLoading
+            isLoading:userData.isLoading,
+            isLogged:userData.isLogged
         }
     }
 )

@@ -5,7 +5,6 @@ export default function loginMiddleware({dispatch,getState}){
         return function(action){
             //verificari care se fac inainte sa ajunga comanda la store
             if(action.type === actionType.TRY_LOGIN){
-
                 let error = false
                 const email = getState().login.email
                 const password = getState().login.password
@@ -30,7 +29,6 @@ export default function loginMiddleware({dispatch,getState}){
             }
             
             next(action)
-            
             //verificari dupa ce sa trimis la store
         }
     }
