@@ -169,13 +169,14 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        
       },
       paper: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        height: 'calc(100% - 30px)',  
+        minHeight: 'calc(100% - 30px)',  
         width: 'calc(100% - 30px)',
         backgroundColor: 'white',
         border: '2px solid #000',
@@ -350,7 +351,8 @@ const useClasses = makeStyles(theme =>({
           height: '300px',
           fontSize: '9.5pt',
           width: '100%',
-      }
+      },
+      
 }))
 
 export default useClasses

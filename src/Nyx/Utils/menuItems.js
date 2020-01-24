@@ -63,4 +63,41 @@ const menuItems = [
     },
 ]
 
-export default menuItems
+const profilListItems = [
+    {
+        label:   'Nume',
+        icon:   icons.userIcon,
+        text:   'Lee',
+    },
+    {
+        label:   'Prenume',
+        icon:   icons.userIcon,
+        text:   'Aurora',
+    },
+    {
+        label:   'Adresa',
+        icon:   icons.userIcon,
+        text:   'Strada livezii nr 3 apt 13 sc C bloc 22',
+    },
+    {
+        label:   'Telefon',
+        icon:   icons.phoneIcon,
+        text:   '0760539654',
+    },
+    {
+        label:   'Email',
+        icon:   icons.emailIcon,
+        text:   'auaroraLee@gmail.com',
+    },
+    {
+        label:   'Parola',
+        icon:   icons.passwordIcon,
+        text:   '••••••••••••••••',
+    },
+]
+
+
+export {
+    menuItems,
+    profilListItems,
+}

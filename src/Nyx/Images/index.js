@@ -21,3 +21,13 @@ export const modaIcon = require('./Icons/modaIcon.svg')
 export const muncaIcon = require('./Icons/muncaIcon.svg')
 export const serviciiIcon = require('./Icons/serviciiIcon.svg')
 export const sportIcon = require('./Icons/sportIcon.svg')
+export const userIcon = require('./Icons/userIcon.svg')
+export const passwordIcon = require('./Icons/passwordIcon.svg')
+export const cameraIcon = require('./Icons/cameraIcon.svg')
+export const profileBackIcon = require('./Icons/profileBackIcon.svg')
+export const phoneIcon = require('./Icons/phoneIcon.svg')
+export const emailIcon = require('./Icons/emailIcon.svg')
+export const editIcon = require('./Icons/editIcon.svg')
+
+//illustrations
+export const loginIllustration = require('./Illustrations/login.svg')

@@ -13,7 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import {menuItems} from '../../Utils'
 
-function Login(props){
+function Header(props){
     const classes = useClasses()
     const {isLogged} = props
     const toggleDrawer = (side, open) => event => {
@@ -82,4 +82,4 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
     updateLoginValue,
 },dispatch))
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default connect(mapStateToProps,mapDispatchToProps)(Header)
