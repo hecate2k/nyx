@@ -11,7 +11,7 @@ function Profil(props){
             <ProfilHeader />
             <ProfilTitle title={"Profil si date personale"} />
             <ProfilList />
-            <Button variant="contained" className={classes.logOutButton}>LOG OUT</Button>
+            <Button variant="contained" className={classes.logOutButton} disableElevation>LOG OUT</Button>
         </Box>
     )  
 }

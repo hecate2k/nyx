@@ -8,8 +8,8 @@ import { updateLoginValue, doLogin } from '../../Actions'
 
 function Login(props){
     const classes = useClasses()
-
-    const { email, password, isLoading } = props.data
+    // const { email, password, isLoading } = props.data
+    const {isLoading} = props.data
     const { errors,updateLoginValue,doLogin } = props
 
     return(
@@ -24,7 +24,7 @@ function Login(props){
             {
                 errors.password && <span>INVALID PASSWORD</span>
             }
-            <input type="text" onChange={e => updateLoginValue({email:e.target.value})} disabled={isLoading}/>
+            <input className={classes.inputType} type="text" onChange={e => updateLoginValue({email:e.target.value})} disabled={isLoading}/>
             <input type="password" onChange={e => updateLoginValue({password:e.target.value})} disabled={isLoading}/>
             <input type="button" value="LOGIN" onClick={() => !isLoading ? doLogin() : null} />
         </Box>

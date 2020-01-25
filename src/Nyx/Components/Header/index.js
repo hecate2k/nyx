@@ -1,2 +1,6 @@
 import Header from './Header'
-export default Header
+import HeaderFals from './HeaderFals'
+export {
+    Header,
+    HeaderFals
+}

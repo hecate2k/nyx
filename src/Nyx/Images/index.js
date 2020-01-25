@@ -28,6 +28,7 @@ export const profileBackIcon = require('./Icons/profileBackIcon.svg')
 export const phoneIcon = require('./Icons/phoneIcon.svg')
 export const emailIcon = require('./Icons/emailIcon.svg')
 export const editIcon = require('./Icons/editIcon.svg')
+export const searchIcon = require('./Icons/seachIcon.svg')
 
 //illustrations
 export const loginIllustration = require('./Illustrations/login.svg')

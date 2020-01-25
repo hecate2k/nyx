@@ -12,7 +12,7 @@ function ContinutModalAnunt(props){
         <>
         <div className={classes.modalHeader}>
             <div className={classes.modalAvatarInfo}>
-                <img src={testImage} />
+                <img alt="imagine testare" src={testImage} />
                 <Box className={classes.modalInfoText}>
                     <p className={classes.modalInfoNume}>
                         {"Aurora"}{" Lee"}
@@ -22,7 +22,7 @@ function ContinutModalAnunt(props){
                     </p>
                 </Box>
             </div>
-            <img onClick={props.handleClose} src={xIcon}/>
+            <img onClick={props.handleClose} src={xIcon} alt="close icon"/>
         </div>
         <Box className={classes.priceCategory}>
             <div className={classes.modalPret}>
@@ -55,9 +55,9 @@ function ContinutModalAnunt(props){
         </p>
         <Box className={classes.modalImages}>
             <div className={classes.modalImagesBadge}>{"+1"}</div>
-            <img src={testImage} />
-            <img src={testImage} />
-            <img src={testImage} />
+            <img alt="imagine testare" src={testImage} />
+            <img alt="imagine testare" src={testImage} />
+            <img alt="imagine testare" src={testImage} />
         </Box>
         <p className={classes.modalTitluDescriere}>
             {"Descriere produs"}

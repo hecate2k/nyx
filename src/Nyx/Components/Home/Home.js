@@ -2,13 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './homeCss'
-import {Box, Modal, Backdrop, Fade, Badge} from '@material-ui/core'
+import {Box, Modal, Backdrop, Fade} from '@material-ui/core'
 import { selectLoginData, selectLoginErrors } from '../../Selectors'
 import { updateLoginValue, doLogin } from '../../Actions'
-import {bannerHome, xIcon, testImage} from '../../Images'
-import Header from '../Header'
+import {bannerHome} from '../../Images'
+import {Header} from '../Header'
 import AnuntMic from '../AnuntMic'
-import Scrollbar from "react-scrollbars-custom";
 import {ContinutModalAnunt, ContinutModalLogin} from '../ContinutModale'
 
 

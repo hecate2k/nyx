@@ -5,16 +5,20 @@ import useClasses from '../profilCss'
 import {Box} from '@material-ui/core'
 import ProfilListElement from './ProfilListElement'
 import {profilListItems} from '../../../Utils'
+
+const renderListaProfil = ()  =>  (
+    profilListItems.map(({text,icon,label}, index) => (
+        <ProfilListElement text={text} icon={icon} label={label} key={index}/>
+      ))
+)
+
 function ProfilList(props){
     const classes = useClasses()
     return(
         <Box className={classes.profileList}>
             {
-                profilListItems.map(({text,icon,label}, index) => (
-                    <ProfilListElement text={text} icon={icon} label={label} />
-                  ))
+                renderListaProfil()
             }
-            
         </Box>
     )  
 }

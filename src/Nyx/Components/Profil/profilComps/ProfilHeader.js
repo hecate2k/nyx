@@ -2,9 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../profilCss'
-import {xIcon,loginIllustration, userIcon, passwordIcon, testImage,cameraIcon, profileBackIcon} from '../../../Images'
-import {Box, TextField,InputAdornment,Button, Avatar} from '@material-ui/core'
-import Scrollbar from "react-scrollbars-custom"
+import {testImage,cameraIcon, profileBackIcon} from '../../../Images'
+import {Box, Button} from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating';
 
 function ProfilHeader(props){

@@ -43,8 +43,6 @@ const useClasses = makeStyles(theme =>({
         width:'100%',
         fontSize: '10pt',
         fontWeight: 800,
-        display: 'flex',
-        // marginLeft: '15px',
         '& $butonFilledRosu':{
             marginLeft: '15px',
         }
@@ -67,15 +65,11 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         flexGrow: 'unset',
         flexDirection: 'row',
-        /* min-width: 100%, */
-        /* width: auto, */
         overflowX: 'scroll',
-        /* overflow-y: hidden, */
         width: '100%',
     },
     homeCard:{
         flex: '0 0 auto',
-        // marginRight: '15px',
         width: '133px',
         height: '187px',
         borderRadius: '4px',
@@ -90,19 +84,6 @@ const useClasses = makeStyles(theme =>({
         }
         
     },
-    //aici se poate ca trebuie homecardtitlu inauntru homeCard :{
-    //     padding:'5px',
-    //     width: '100%',
-    //     fontSize: '11pt',
-    //     textAlign: 'left',
-    //     fontWeight: '700',
-    //     overflow: 'hidden',
-    //     height: '59px',
-    //     lineHeight: '1.2',
-    //     display: '-webkit-box',
-    //     // -webkit-line-clamp: 3,
-    //     // -webkit-box-orient: vertical,
-    // },
     homeCardTitlu:{
         padding:'5px',
         width: '100%',

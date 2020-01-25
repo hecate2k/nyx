@@ -97,7 +97,114 @@ const profilListItems = [
 ]
 
 
+const listaAnunturi = [
+    {
+        promovat: true,
+        titlu: 'Vw Passat CC',
+        image: icons.testImage,
+        avatar: icons.testImage,
+        nume:'Lee',
+        prenume:'Aurora',
+        judet: 'Alba',
+        oras: 'Alba Iulia',
+        pret: '7800 €',
+        telefon: '0760547654',
+        views: '0',
+        rating: 4,
+    },
+    {
+        promovat: true,
+        titlu: 'Vw Passat CC',
+        image: icons.testImage,
+        avatar: icons.testImage,
+        nume:'Lee',
+        prenume:'Aurora',
+        judet: 'Alba',
+        oras: 'Alba Iulia',
+        pret: '7800 €',
+        telefon: '0760547654',
+        views: '0',
+        rating: 4,
+    },
+    {
+        promovat: true,
+        titlu: 'Vw Passat CC',
+        image: icons.testImage,
+        avatar: icons.testImage,
+        nume:'Lee',
+        prenume:'Aurora',
+        judet: 'Alba',
+        oras: 'Alba Iulia',
+        pret: '7800 €',
+        telefon: '0760547654',
+        views: '0',
+        rating: 4,
+    },
+    {
+        promovat: true,
+        titlu: 'Vw Passat CC',
+        image: icons.testImage,
+        avatar: icons.testImage,
+        nume:'Lee',
+        prenume:'Aurora',
+        judet: 'Alba',
+        oras: 'Alba Iulia',
+        pret: '7800 €',
+        telefon: '0760547654',
+        views: '0',
+        rating: 4,
+    },
+    {
+        promovat: true,
+        titlu: 'Vw Passat CC',
+        image: icons.testImage,
+        avatar: icons.testImage,
+        nume:'Lee',
+        prenume:'Aurora',
+        judet: 'Alba',
+        oras: 'Alba Iulia',
+        pret: '7800 €',
+        telefon: '0760547654',
+        views: '0',
+        rating: 4,
+    },
+]
+
+
+const listaJudete = [
+    {
+        nume: 'Alba'
+    },
+    {
+        nume: 'Sibiu'
+    },
+    {
+        nume: 'Mehedinti'
+    },
+    {
+        nume: 'Timisoara'
+    },
+    {
+        nume: 'Cluj',
+        selected:true
+    },
+    {
+        nume: 'Constanta'
+    },
+    {
+        nume: 'Bucuresti'
+    },
+    {
+        nume: 'Botosani'
+    },
+    {
+        nume: 'Caras Severin'
+    },
+]
+
 export {
     menuItems,
     profilListItems,
+    listaAnunturi,
+    listaJudete
 }

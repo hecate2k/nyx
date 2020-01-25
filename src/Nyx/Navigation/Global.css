@@ -43,3 +43,13 @@ html,body,#root{
 .MuiRating-root{
     color:#f35 !important;
 }
+
+.react-modal-body-close{
+    display: none;
+}
+.animate-modal-overlay-enter-done{
+    pointer-events: none;
+}
+.MuiInput-underline::after{
+    border-bottom-color: #f35 !important;
+}

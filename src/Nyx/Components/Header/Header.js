@@ -10,12 +10,18 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import {menuItems} from '../../Utils'
+import BlackBar from '../BlackBar'
+import HeaderFals from './HeaderFals';
+
 
 function Header(props){
     const classes = useClasses()
     const {isLogged} = props
+
+    
+
+
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;       
@@ -37,35 +43,46 @@ function Header(props){
                     <img src={icon}/>
                 </ListItemIcon>
 
-                <ListItemText primary={text} />
+                <p className={classes.menuItemText} >{text}</p>
               </ListItem>
             ))}
           </List>
           <Divider />
         </div>
-      );
+      )
+
+
     const [state, setState] = React.useState({
         left: false,
       });
     return(
-        <Box>
+        <>
+        <Box className={classes.headerContainer}>
             <div className={classes.header}>
-            <Button className={classes.butonMeniu} onClick={toggleDrawer('left', true)}><img src={menuIcon}/></Button>
-            <Drawer open={state.left} onClose={toggleDrawer('left', false)} >
-                {sideList('left')}
-            </Drawer>
+                <Button className={classes.butonMeniu} onClick={toggleDrawer('left', true)}><img src={menuIcon}/></Button>
+                <Drawer open={state.left} onClose={toggleDrawer('left', false)} >
+                    <Box className={classes.categoriiText}>
+                        Categorii
+                    </Box>
+                    {sideList('left')}
+                </Drawer>
                 <div className={classes.butoaneHeaderDreapta}>
                     {
                         !isLogged &&
                         <>
-                        <Button className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
-                        <Button className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
+                            <Button className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
+                            <Button className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
+                        
                         </>
-                    }
+                    }ss
                     
                 </div>
             </div>
+            <BlackBar />
         </Box>
+        <HeaderFals/>
+        
+        </>
     )  
 }
 

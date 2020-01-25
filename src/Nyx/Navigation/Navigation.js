@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import useClasses from './navigationCss'
 import { isMobileOnly } from 'react-device-detect'
 import history from './history'
-import { Login , Home, Profil} from '../Components'
+import { Login , Home, Profil, CategorieAnunturi} from '../Components'
 import './Global.css'
 
 function Navigation(props){
@@ -21,7 +21,7 @@ function Navigation(props){
     return(
         <Router history={history}>
             <Switch>
-                <Route path="/" component={Profil}/>
+                <Route path="/" component={CategorieAnunturi}/>
             </Switch>
         </Router>
     )
