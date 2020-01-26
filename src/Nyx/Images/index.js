@@ -5,6 +5,8 @@ export const xIcon = require('./x.svg')
 export const testImage = require('./test.jpg')
 export const heartIcon = require('./heart.svg')
 export const shareIcon = require('./share.svg')
+export const nixxLogo = require('./nixxLogo.svg')
+export const nixxRedLogo = require('./nixxRedLogo.svg')
 
 
 //icons
@@ -29,6 +31,9 @@ export const phoneIcon = require('./Icons/phoneIcon.svg')
 export const emailIcon = require('./Icons/emailIcon.svg')
 export const editIcon = require('./Icons/editIcon.svg')
 export const searchIcon = require('./Icons/seachIcon.svg')
-
+export const aboutUser = require('./aboutUser.svg')
 //illustrations
 export const loginIllustration = require('./Illustrations/login.svg')
+export const error404 = require('./Illustrations/error404.svg')
+export const contactIllustration = require('./Illustrations/contactIllustration.svg')
+export const signupIllustration = require('./Illustrations/signupIllustration.svg')

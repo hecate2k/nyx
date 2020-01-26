@@ -173,31 +173,38 @@ const listaAnunturi = [
 
 const listaJudete = [
     {
+        id:1,
         nume: 'Alba'
     },
     {
+        id:1,
         nume: 'Sibiu'
     },
     {
+        id:1,
         nume: 'Mehedinti'
     },
     {
+        id:1,
         nume: 'Timisoara'
     },
     {
+        id:1,
         nume: 'Cluj',
-        selected:true
     },
     {
+        id:1,
         nume: 'Constanta'
     },
     {
+        id:1,
         nume: 'Bucuresti'
     },
     {
         nume: 'Botosani'
     },
     {
+        id:1,
         nume: 'Caras Severin'
     },
 ]

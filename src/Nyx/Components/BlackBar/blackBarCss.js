@@ -129,6 +129,8 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         flexDirection: 'column',
         width:'100%',
+        padding : '0px',
+        overflowX: 'auto',
     },
     selectListElement:{
         display: 'flex',

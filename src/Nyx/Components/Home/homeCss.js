@@ -2,31 +2,27 @@
 import {makeStyles} from '@material-ui/core/styles'
 
 const useClasses = makeStyles(theme =>({
-    subHeaderLogo:{
+    homeWindow:{
+        height: '100%',
         width: '100%',
-        height: '46px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: '22px',
-        fontWeight: '900',
-        fontStyle: 'italic',
-        backgroundColor: 'white',
     },
-    blackMenuBar:{
-        height: '35px',
-        backgroundColor: '#262626',
-        borderRadius: '8px',
-        /* width: 100%, */
-        margin:'15px 15px 0px 15px',
+    continutHome:{
+        minHeight: 'calc(100% - 200px)',
     },
     bannerHome: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        overflow: 'hidden',
+        borderRadius: '8px',
         marginTop: '15px',
-        width: '100%',
+        width: 'calc(100% - 30px)',
+        height: '105px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
         '& img':{
-            width: '100%',
+            width: '114%',
+            height: '100%',
             /* display: none, */
-            objectFit: 'contain',
+            objectFit: 'cover',
         }
         
     },
@@ -150,6 +146,8 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        width: '100%',
+        height: '100%',
         
       },
       paper: {
@@ -159,6 +157,7 @@ const useClasses = makeStyles(theme =>({
         justifyContent: 'flex-start',
         minHeight: 'calc(100% - 30px)',  
         width: 'calc(100% - 30px)',
+        height: 'calc(100% - 30px)',
         backgroundColor: 'white',
         border: '2px solid #000',
         border:'0px',
@@ -271,7 +270,7 @@ const useClasses = makeStyles(theme =>({
       modalImages:{
           '& img':{
             // height: '100%',
-            width: '252px',
+            width: '170px',
             objectFit: 'cover',
             marginRight: '15px',
             borderRadius: '4px',
@@ -281,7 +280,7 @@ const useClasses = makeStyles(theme =>({
           overflowX: 'auto',
           marginTop: '15px',
           width: '100%',
-          minHeight: '142px',
+          minHeight: '100px',
           position: 'relative',
       },
       modalImagesBadge:{

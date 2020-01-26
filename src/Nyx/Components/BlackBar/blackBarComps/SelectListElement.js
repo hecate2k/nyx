@@ -2,16 +2,18 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../blackBarCss'
-import {Box, TextField} from '@material-ui/core'
+import {Box, TextField, ListItem} from '@material-ui/core'
 
 
 function SelectListElement(props){
     const classes = useClasses()
-    const {nume,selected} = props
+    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const {nume,id} = props
+    console.log(id+','+selectedIndex);
     return(
-        <Box className={selected?classes.selectListElementSelected:classes.selectListElement}>
-            {nume}
-        </Box>
+        <ListItem className={classes.selectListElement} button selected={selectedIndex === {id}} onClick={() => setSelectedIndex(id)}>
+          {nume}
+        </ListItem>
     )  
 }
 

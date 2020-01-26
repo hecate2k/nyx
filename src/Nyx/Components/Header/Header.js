@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import useClasses from './headerCss'
 import { Box, Drawer, Button, SwipeableDrawer } from '@material-ui/core';
 import { selectLoginData, selectLoginErrors } from '../../Selectors'
 import { updateLoginValue, doLogin } from '../../Actions'
-import { menuIcon } from '../../Images'
+import { menuIcon, nixxRedLogo } from '../../Images'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,9 +19,6 @@ import HeaderFals from './HeaderFals';
 function Header(props){
     const classes = useClasses()
     const {isLogged} = props
-
-    
-
 
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -38,6 +36,7 @@ function Header(props){
         >
           <List>
             {menuItems.map(({text,icon,path}, index) => (
+                <Link to="/anunturi">
               <ListItem button key={text}>
                 <ListItemIcon>
                     <img src={icon}/>
@@ -45,6 +44,7 @@ function Header(props){
 
                 <p className={classes.menuItemText} >{text}</p>
               </ListItem>
+              </Link>
             ))}
           </List>
           <Divider />
@@ -74,12 +74,17 @@ function Header(props){
                             <Button className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         
                         </>
-                    }ss
+                    }
                     
                 </div>
             </div>
-            <BlackBar />
+            <Box className={classes.headerLogoSection}>
+                <img src={nixxRedLogo}/>
+            </Box>
+            <BlackBar style={{marginTop: '0px'}}/>
+            
         </Box>
+        
         <HeaderFals/>
         
         </>

@@ -4,6 +4,9 @@ import AnuntMic from './AnuntMic'
 import Profil from './Profil'
 import CategorieAnunturi from './Anunturi'
 import BlackBar from './BlackBar'
+import Footer from './Footer'
+import Error404 from './Error404'
+import About from './About'
 
 export {
     Login,
@@ -12,4 +15,7 @@ export {
     Profil,
     CategorieAnunturi,
     BlackBar,
+    Footer,
+    Error404,
+    About,
 }

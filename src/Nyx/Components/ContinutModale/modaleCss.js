@@ -17,7 +17,7 @@ const useClasses = makeStyles(theme =>({
     },
     inputLogin:{
         '& label':{
-            paddingLeft: '55px',
+            // paddingLeft: '55px',
             fontWeight: 800,
         },
         '& input':{
@@ -34,7 +34,7 @@ const useClasses = makeStyles(theme =>({
             borderBottomColor: '#f35',
           },
         margin:'0 auto',
-        width: '80%',
+        width: 'calc(100% - 30px)',
         fontWeight: 800,
         marginTop: '15px',
         // backgroundColor: '#efefef',
@@ -56,12 +56,13 @@ const useClasses = makeStyles(theme =>({
         marginTop: '15px',
         backgroundColor: '#f35 !important',
         color:'white',
-        fontSize: '11pt',
-        fontWeight: 700,
-        width: '80%',
+        fontSize: '8.5pt',
+        fontWeight: 900,
+        width: 'calc(100% - 30px)',
         padding: '5px',
-        height: '45px',
+        height: '35px',
         margin:'0 auto',
+        marginTop: '25px',
     },
     bottomInfo:{
         margin: '0 auto',

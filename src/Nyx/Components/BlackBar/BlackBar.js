@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './blackBarCss'
-import {Box,Button,Modal,Backdrop,Fade, Select, MenuItem, FormControl, InputLabel, TextField} from '@material-ui/core'
+import {Box,Button,Modal,Fade, TextField} from '@material-ui/core'
 import { searchIcon } from '../../Images'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { SelectList } from './blackBarComps'
@@ -11,7 +11,7 @@ import { SelectList } from './blackBarComps'
 function BlackBar(props){
     const classes = useClasses()
     const [inputStatus, setInputStatus] = React.useState(false)
-    const [modalStatus, setModalStatus] = React.useState(true)
+    const [modalStatus, setModalStatus] = React.useState(false)
 
     return(
         <>
@@ -30,30 +30,18 @@ function BlackBar(props){
            <Button className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
            
         </Box>
-        <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    className={classes.modal}
-                    open={modalStatus}
-                    onClose={() => setModalStatus(false)}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                    timeout: 500,
-                    }}
-                >
-                    <Fade in={modalStatus}>
-                        <div className={classes.paper}>
-                            <TextField className={classes.selectListInput} placeholder="Cauta judet"/>
-                            <SelectList></SelectList>
-                            <Box className={classes.selectListButtons}>
-                                <Button disableElevation className={classes.listButton} variant="contained">IESI </Button>
-                                <Button disableElevation className={classes.listButton} variant="contained">SALVEAZA</Button>
-                            </Box>
-                            
-                        </div>
-                    </Fade>
-                </Modal>
+        <Modal className={classes.modal} open={modalStatus} onClose={() => setModalStatus(false)} >
+            <Fade in={modalStatus}>
+                <div className={classes.paper}>
+                    <TextField className={classes.selectListInput} placeholder="Cauta judet"/>
+                    <SelectList></SelectList>
+                    <Box className={classes.selectListButtons}>
+                        <Button disableElevation className={classes.listButton} variant="contained">IESI </Button>
+                        <Button disableElevation className={classes.listButton} variant="contained">SALVEAZA</Button>
+                    </Box>
+                </div>
+            </Fade>
+        </Modal>
         </>
     )  
 }

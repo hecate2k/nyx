@@ -8,7 +8,7 @@ const useClasses = makeStyles(theme =>({
         flexDirection: 'column',
         width: '100%',
         backgroundColor: '#f5f5f5',
-        height: '123px'
+        height: '178px'
     },
     header : {
         display: 'flex',
@@ -19,6 +19,17 @@ const useClasses = makeStyles(theme =>({
         alignItems: 'center',
         padding: '0px 15px 0px 15px',
         
+    },
+    headerLogoSection:{
+        '& img':{
+            width: '21%',
+            marginTop: '15px',
+        },
+        height: '55px',
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     butoaneHeaderDreapta :{
         // marginRight: '15px',
@@ -54,7 +65,7 @@ const useClasses = makeStyles(theme =>({
     },
     headerFals:{
         width: '100%',
-        minHeight: '108px',
+        minHeight: '163px',
         backgroundColor: '#f5f5f5',
         marginBottom: '15px',
     },

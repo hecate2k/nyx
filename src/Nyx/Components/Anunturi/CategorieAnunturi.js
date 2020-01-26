@@ -6,6 +6,8 @@ import {Box,Button} from '@material-ui/core'
 import { ListaAnunturi } from './anunturiComps'
 import {Header , HeaderFals} from '../Header'
 import BlackBar from '../BlackBar'
+import FiltreBar from '../FiltreBar'
+import BlackSearch from '../BlackSearch'
 
 function CategorieAnunturi(props){
     const classes = useClasses()
@@ -13,6 +15,8 @@ function CategorieAnunturi(props){
         <Box className={classes.anunturiWindow}>
             <Header />
             {/* <BlackBar /> */}
+            <FiltreBar />
+            <BlackSearch />
             <ListaAnunturi />
         </Box>
     )  
