@@ -1,12 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import useClasses from '../Home/homeCss'
+import useClasses from './modaleCss'
 import {testImage, xIcon} from '../../Images'
 import {Box} from '@material-ui/core'
-import Scrollbar from "react-scrollbars-custom";
+import Scrollbar from "react-scrollbars-custom"
+import Badge from '@material-ui/core/Badge'
 
-function ContinutModalAnunt(props){
+
+function AnuntModal(props){
     const classes = useClasses()
     return(
         <>
@@ -53,12 +55,17 @@ function ContinutModalAnunt(props){
         <p className={classes.modalTitluAnunt}>
             {"Integet neque felis, vegicula non tempor"}
         </p>
-        <Box className={classes.modalImages}>
-            <div className={classes.modalImagesBadge}>{"+1"}</div>
-            <img alt="imagine testare" src={testImage} />
-            <img alt="imagine testare" src={testImage} />
-            <img alt="imagine testare" src={testImage} />
-        </Box>
+        <Badge classes={{
+            badge:classes.anuntModalBadges
+        }} badgeContent={"+4"} color="primary">
+            <Box className={classes.modalImagesContainer}>
+                <Box className={classes.modalImages}>
+                    <img alt="imagine testare" src={testImage} />
+                    <img alt="imagine testare" src={testImage} />
+                    <img alt="imagine testare" src={testImage} />
+                </Box>
+            </Box>
+        </Badge>
         <p className={classes.modalTitluDescriere}>
             {"Descriere produs"}
         </p>
@@ -84,4 +91,4 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
 },dispatch))
 
-export default connect(mapStateToProps,mapDispatchToProps)(ContinutModalAnunt)
+export default connect(mapStateToProps,mapDispatchToProps)(AnuntModal)

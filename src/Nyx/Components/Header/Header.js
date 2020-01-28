@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import useClasses from './headerCss'
-import { Box, Drawer, Button, SwipeableDrawer } from '@material-ui/core';
+import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade } from '@material-ui/core';
 import { selectLoginData, selectLoginErrors } from '../../Selectors'
 import { updateLoginValue, doLogin } from '../../Actions'
 import { menuIcon, nixxRedLogo } from '../../Images'
@@ -14,11 +14,22 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import {menuItems} from '../../Utils'
 import BlackBar from '../BlackBar'
 import HeaderFals from './HeaderFals';
-
+import {ContinutModalLogin, SignupModal} from '../ContinutModale'
+import Rodal from 'rodal'
+import 'rodal/lib/rodal.css'
+import ProfileBadge from './headerComps'
 
 function Header(props){
     const classes = useClasses()
     const {isLogged} = props
+
+    const [values, setValue] = React.useState({
+        modal: '',
+        open: false,
+    })
+    
+    var modalWidth  = window.innerWidth - 30
+    var modalHeight  = window.innerHeight - 30
 
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -36,8 +47,8 @@ function Header(props){
         >
           <List>
             {menuItems.map(({text,icon,path}, index) => (
-                <Link to="/anunturi">
-              <ListItem button key={text}>
+            <Link to="/anunturi" key={index}>
+              <ListItem button >
                 <ListItemIcon>
                     <img src={icon}/>
                 </ListItemIcon>
@@ -70,21 +81,28 @@ function Header(props){
                     {
                         !isLogged &&
                         <>
-                            <Button className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
-                            <Button className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
-                        
+                            <Button onClick={() => setValue({...values,open:true,modal:'login'})} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
+                            <Button onClick={() => setValue({...values,open:true,modal:'signup'})} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
                     }
                     
                 </div>
             </div>
             <Box className={classes.headerLogoSection}>
-                <img src={nixxRedLogo}/>
+                <ProfileBadge></ProfileBadge>
+                {/* <Link className={classes.linkToHome} to="/">
+                    <img className={classes.headerLogoImg} src={nixxRedLogo}/>
+                </Link> */}
             </Box>
             <BlackBar style={{marginTop: '0px'}}/>
             
         </Box>
-        
+        <Rodal  width={modalWidth}  height={modalHeight} visible={values.open} onClose={() => setValue({...values,open:false})}>
+            {
+                values.modal === 'login' ? <ContinutModalLogin handleClose={() => setValue({...values,open:false})}/>
+                : values.modal === 'signup' && <SignupModal  handleClose={() => setValue({...values,open:false})}/>
+            }
+        </Rodal>
         <HeaderFals/>
         
         </>

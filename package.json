@@ -11,7 +11,8 @@
     "react-animated-modal": "^1.1.1",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "react-scrollbars-custom": "^4.0.21"
+    "react-scrollbars-custom": "^4.0.21",
+    "rodal": "^1.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

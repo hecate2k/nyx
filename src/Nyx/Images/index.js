@@ -32,6 +32,10 @@ export const emailIcon = require('./Icons/emailIcon.svg')
 export const editIcon = require('./Icons/editIcon.svg')
 export const searchIcon = require('./Icons/seachIcon.svg')
 export const aboutUser = require('./aboutUser.svg')
+export const badgeMenuIcon = require('./Icons/profileBadgeMenuIcon.svg')
+export const profileIcon = require('./Icons/profileIcon.svg')
+export const anunturiIcon = require('./Icons/anunturiIcon.svg')
+
 //illustrations
 export const loginIllustration = require('./Illustrations/login.svg')
 export const error404 = require('./Illustrations/error404.svg')

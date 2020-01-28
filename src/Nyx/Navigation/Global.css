@@ -24,7 +24,11 @@ body{
 }
 html,body,#root{
     height: 100%;
+    /* overflow: hidden; */
 }
+
+
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -56,9 +60,45 @@ html,body,#root{
     .MuiListItem-button:hover {
     background-color: #f35 !important;
     color: white !important;
+    border-radius: 4px;
 }
 }
 
 .MuiLink-underlineHover:hover{
     text-decoration: none !important;
+}
+.rodal-dialog, .rodal-zoom-leave{
+    z-index: 10000;
+    overflow: auto;
+    touch-action: none;
+}
+.rodal{
+    z-index: 9999;
+    touch-action: none;
+}
+.rodal-dialog{
+    display: flex;
+    flex-direction: column;
+    touch-action: none;
+    border-radius: 8px;
+}
+
+.rodal-dialog body, .rodal-zoom-leave body, .rodal body{
+    position: fixed;
+}
+
+.rodal-mask{
+    z-index: -1;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+}
+
+.modal-open{
+    overflow: hidden !important;
 }

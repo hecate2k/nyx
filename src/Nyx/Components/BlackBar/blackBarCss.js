@@ -110,7 +110,7 @@ const useClasses = makeStyles(theme =>({
         justifyContent: 'center',
         
       },
-      paper: {
+    paper: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
@@ -118,19 +118,36 @@ const useClasses = makeStyles(theme =>({
         // minHeight: 'calc(100% - 30px)', 
         maxHeight: '345px', 
         width: 'calc(100% - 30px)',
+        height: '100%',
         // backgroundColor: 'white',
         border: '2px solid #000',
         border:'0px',
         borderRadius: '8px',
         boxShadow: theme.shadows[5],
         // padding: '15px',
-      },
+    },
+    selectJudeteContainer:{
+        touchAction:'none',
+    },
+    backdropModal:{
+        zIndex: '-1',
+        position: 'fixed',
+        right: '0px',
+        bottom: '0px',
+        top: '0px',
+        left: '0px',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        WebkitTapHighlightColor: 'transparent',
+        touchAction: 'none',
+    },
+
     selectList:{
         display: 'flex',
         flexDirection: 'column',
         width:'100%',
         padding : '0px',
         overflowX: 'auto',
+        marginTop: '25px',
     },
     selectListElement:{
         display: 'flex',
@@ -152,18 +169,22 @@ const useClasses = makeStyles(theme =>({
         width: '100%',
     },
     selectListInput:{
+        position: 'absolute',
+            top: 0,
+            left: 0,
         width: '100%',
-        borderTopRightRadius: '8px',
-        borderTopLeftRadius: '8px',
+        // borderTopRightRadius: '8px',
+        // borderTopLeftRadius: '8px',
         '& input ':{
-            borderTopRightRadius: '8px',
-            borderTopLeftRadius: '8px',
+            // borderTopRightRadius: '8px',
+            // borderTopLeftRadius: '8px',
             paddingLeft: '20px',
             backgroundColor: '#262626',
             padding: '10px',
             color: 'white',
             width: '100%',
-            fontWeight: 500
+            fontWeight: 500,
+            textAlign: 'center',
         },
     },
     selectListElementSelected:{
@@ -177,7 +198,8 @@ const useClasses = makeStyles(theme =>({
         borderBottom: '1px solid rgba(42,42,42,.1)',
         fontStyle: 'italic',
         color:'white',
-        backgroundColor: '#f35'
+        backgroundColor: '#f35',
+        borderRadius: '4px',
     },
     selectListButtons:{
         width: '100%',

@@ -6,12 +6,22 @@ import {Box,Button,Modal,Fade, TextField} from '@material-ui/core'
 import { searchIcon } from '../../Images'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { SelectList } from './blackBarComps'
-
+import Rodal from 'rodal'
+import 'rodal/lib/rodal.css'
 
 function BlackBar(props){
     const classes = useClasses()
     const [inputStatus, setInputStatus] = React.useState(false)
     const [modalStatus, setModalStatus] = React.useState(false)
+    var x  = window.innerWidth - 30
+    const openModal = (event) => {
+        document.body.classList.add('modal-open')
+        setModalStatus(true)
+      }
+      const hideModal = (event) => {
+        document.body.classList.remove('modal-open')
+        setModalStatus(false)
+      }
 
     return(
         <>
@@ -23,25 +33,21 @@ function BlackBar(props){
                 </Box>
             </ClickAwayListener>
             <Box className={classes.selectContainer}>
-                <Box onClick={() => setModalStatus(true)} className={classes.selectItem}>Judet</Box>
+                <Box onClick={openModal} className={classes.selectItem}>Judet</Box>
                 <Box className={classes.selectItem}>Oras</Box>
             </Box>
             
            <Button className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
            
         </Box>
-        <Modal className={classes.modal} open={modalStatus} onClose={() => setModalStatus(false)} >
-            <Fade in={modalStatus}>
-                <div className={classes.paper}>
-                    <TextField className={classes.selectListInput} placeholder="Cauta judet"/>
-                    <SelectList></SelectList>
-                    <Box className={classes.selectListButtons}>
-                        <Button disableElevation className={classes.listButton} variant="contained">IESI </Button>
-                        <Button disableElevation className={classes.listButton} variant="contained">SALVEAZA</Button>
-                    </Box>
-                </div>
-            </Fade>
-        </Modal>
+        <Rodal showCloseButton={false} visible={modalStatus} width={x} height={345} onClose={hideModal}>
+            <TextField className={classes.selectListInput} placeholder="Cauta judet"/>
+            <SelectList/>
+            <Box className={classes.selectListButtons}>
+                <Button disableElevation className={classes.listButton} variant="contained">IESI </Button>
+                <Button disableElevation className={classes.listButton} variant="contained">SALVEAZA</Button>
+            </Box>
+        </Rodal>
         </>
     )  
 }

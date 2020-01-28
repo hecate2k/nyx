@@ -1,7 +1,8 @@
-import ContinutModalAnunt from './ContinutModalAnunt'
+import AnuntModal from './AnuntModal'
 import ContinutModalLogin from './ContinutModalLogin'
-
+import SignupModal from './SignupModal'
 export {
-    ContinutModalAnunt,
+    AnuntModal,
     ContinutModalLogin,
+    SignupModal,
 }

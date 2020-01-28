@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
 import {xIcon,loginIllustration, userIcon, passwordIcon} from '../../Images'
 import {Box, TextField,InputAdornment,Button} from '@material-ui/core'
-import Scrollbar from "react-scrollbars-custom";
 
 function ContinutModalLogin(props){
     const classes = useClasses()

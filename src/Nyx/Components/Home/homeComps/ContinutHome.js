@@ -2,19 +2,29 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../homeCss'
-import {Box, Modal, Backdrop, Fade} from '@material-ui/core'
+import {Box, Modal, Fade} from '@material-ui/core'
 import { selectLoginData, selectLoginErrors } from '../../../Selectors'
 import { updateLoginValue, doLogin } from '../../../Actions'
-import {bannerHome} from '../../../Images'
-import {Header} from '../../Header'
 import AnuntMic from '../../AnuntMic'
-import {ContinutModalAnunt, ContinutModalLogin} from '../../ContinutModale'
-import SignupModal from '../../ContinutModale/SignupModal'
+import {AnuntModal} from '../../ContinutModale'
+import Rodal from 'rodal'
+import 'rodal/lib/rodal.css'
 
 
 function Login(props){
     const classes = useClasses()
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
+    var modalWidth  = window.innerWidth - 30
+    var modalHeight  = window.innerHeight - 30
+    const openModal = (event) => {
+        document.body.classList.add('modal-open')
+        setOpen(true)
+      }
+    const hideModal = (event) => {
+        document.body.classList.remove('modal-open')
+        setOpen(false)
+    }
+
 
     return(
         <Box className={classes.continutHome}>
@@ -24,20 +34,14 @@ function Login(props){
                             <div className={classes.butonFilledRosu}>ARATALE PE TOATE</div>
                         </div>
                         <div className={classes.anunturiCards}>
-                                <button className={classes.butonModal} onClick={() => setOpen(true)}>
-                                    <AnuntMic/>
-                                </button>
+                                {/* <button className={classes.butonModal} onClick={openModal}> */}
+                                    <AnuntMic onClick={openModal}/>
+                                {/* </button> */}
                         </div>
-                        <Modal className={classes.modal} open={open} onClose={() => setOpen(false)}>
-                            <Fade in={open}>
-                                <div className={classes.paper}>
-                                <SignupModal handleClose={() => setOpen(false)}/>
-                                    {/* <ContinutModalAnunt handleClose={() => setOpen(false)}/> */}
-                                    {/* <ContinutModalLogin /> */}
-                                </div>
-                            </Fade>
-                        </Modal>
                     </div>
+                    <Rodal width={modalWidth}  height={modalHeight} visible={open} onClose={hideModal}>
+                        <AnuntModal/>
+                    </Rodal>
             </Box>
     )  
 }

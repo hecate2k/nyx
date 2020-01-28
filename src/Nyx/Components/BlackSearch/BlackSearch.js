@@ -2,19 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './blackSearchCss'
-import {Box,Button,Modal,Fade, TextField, Select, MenuItem} from '@material-ui/core'
-import { searchIcon } from '../../Images'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import AppsIcon from '@material-ui/icons/Apps';
+import {Box, TextField,} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 
 
 function BlackSearch(props){
     const classes = useClasses()
-    const [age, setAge] = React.useState('Noi');
-    const [open, setOpen] = React.useState(false);
-    const [adNr, setAdNr] = React.useState('10');
-    const [openAdNr, setOpenAdNr] = React.useState(false);
     return(
         <>
         <Box className={classes.filtreBarFals}>

@@ -7,8 +7,6 @@ import { selectLoginData, selectLoginErrors } from '../../Selectors'
 import { updateLoginValue, doLogin } from '../../Actions'
 import {bannerHome} from '../../Images'
 import {Header} from '../Header'
-import AnuntMic from '../AnuntMic'
-import {ContinutModalAnunt, ContinutModalLogin} from '../ContinutModale'
 import Footer from '../Footer'
 import ContinutHome from './homeComps'
 

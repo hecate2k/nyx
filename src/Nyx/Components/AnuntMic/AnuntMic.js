@@ -7,7 +7,7 @@ import {testImage , shareIcon, heartIcon} from '../../Images'
 function AnuntMic(props){
     const classes = useClasses()
     return(
-        <div className={classes.homeCard}>
+        <div onClick={props.onClick} className={classes.homeCard}>
             <img src={testImage} alt="" />
             <div className={classes.homeCardTitlu}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque lectus ligula, ac pulvinar ipsum consequat a. 
             </div>
