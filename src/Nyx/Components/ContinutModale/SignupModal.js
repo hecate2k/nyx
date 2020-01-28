@@ -2,12 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
-import {xIcon,loginIllustration, userIcon, passwordIcon, signupIllustration} from '../../Images'
+import {userIcon, passwordIcon, signupIllustration} from '../../Images'
 import {Box, TextField,InputAdornment,Button} from '@material-ui/core'
-import Scrollbar from "react-scrollbars-custom";
+import {doSignupClean,updateSignupValue} from '../../Actions'
 
 function ContinutModalLogin(props){
     const classes = useClasses()
+    const {doSignupClean,updateSignupValue} = props
     return(
         // <Box className={classes.modalContainer}>
         <>
@@ -15,28 +16,28 @@ function ContinutModalLogin(props){
             <p className={classes.modalTitle}>
                 SIGN<span>UP</span>
             </p>
-            <TextField
+            <TextField onChange={e => updateSignupValue({email:e.target.value})}
                 className={classes.inputLogin} label="Email" InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
                         <img src={userIcon} />
                     </InputAdornment>
                 ),}} />
-            <TextField className={classes.inputLogin} label="Password" type="password" InputProps={{
+            <TextField onChange={e => updateSignupValue({password:e.target.value})} className={classes.inputLogin} label="Password" type="password" InputProps={{
             startAdornment: (
                 <InputAdornment position="start">
                     <img src={passwordIcon} />
                 </InputAdornment>
                 ),
                 }} />
-            <TextField className={classes.inputLogin} label="Repeat password" type="password" InputProps={{
+            <TextField onChange={e => updateSignupValue({repeatPassword:e.target.value})} className={classes.inputLogin} label="Repeat password" type="password" InputProps={{
             startAdornment: (
                 <InputAdornment position="start">
                     <img src={passwordIcon} />
                 </InputAdornment>
                 ),
                 }} />
-            <Button className={classes.loginButton} variant="contained" disableElevation>CREAZA CONT</Button>
+            <Button onClick={() => doSignupClean()} className={classes.loginButton} variant="contained" disableElevation>CREAZA CONT</Button>
             <div className={classes.bottomInfo}>
                 <p>Ai deja cont? <span> LOG IN </span></p>
             </div>
@@ -54,6 +55,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
+    doSignupClean,
+    updateSignupValue
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(ContinutModalLogin)

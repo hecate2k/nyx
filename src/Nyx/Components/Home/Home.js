@@ -23,7 +23,7 @@ function Login(props){
             </div>
             <ContinutHome />
             
-            <Footer></Footer>
+            <Footer/>
         </Box>
     )  
 }

@@ -4,9 +4,14 @@ import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
 import {xIcon,loginIllustration, userIcon, passwordIcon} from '../../Images'
 import {Box, TextField,InputAdornment,Button} from '@material-ui/core'
+import {updateLoginValue, doLogin } from '../../Actions'
+import {selectLoginData} from '../../Selectors'
 
 function ContinutModalLogin(props){
     const classes = useClasses()
+
+    const { updateLoginValue,doLogin } = props
+
     return(
         // <Box className={classes.modalContainer}>
         <>
@@ -16,8 +21,8 @@ function ContinutModalLogin(props){
             </p>
             <TextField
                 className={classes.inputLogin}
-                id="input-with-icon-textfield"
                 label="Email"
+                onChange={e => updateLoginValue({email:e.target.value})}
                 InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
@@ -28,9 +33,9 @@ function ContinutModalLogin(props){
             />
             <TextField
             className={classes.inputLogin}
-            id="input-with-icon-textfield"
             label="Password"
             type="password"
+            onChange={e => updateLoginValue({password:e.target.value})}
             InputProps={{
             startAdornment: (
                 <InputAdornment position="start">
@@ -39,7 +44,8 @@ function ContinutModalLogin(props){
                 ),
                 }}
             />
-            <Button className={classes.loginButton} variant="contained" disableElevation>LOG IN</Button>
+            
+            <Button className={classes.loginButton} variant="contained" disableElevation >LOG IN</Button>
             <div className={classes.bottomInfo}>
                 <p>Ai uitat parola ?</p>
                 <p>Nu ai cont? <span> SIGN UP </span></p>
@@ -50,13 +56,16 @@ function ContinutModalLogin(props){
 }
 
 const mapStateToProps = (state) =>{
-
+    const data = selectLoginData(state)
     return{
+        ...data
     }
 }
 
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
+    updateLoginValue,
+    doLogin,
     //actions
 },dispatch))
 

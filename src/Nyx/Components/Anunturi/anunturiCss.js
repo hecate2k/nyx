@@ -3,6 +3,7 @@ import {makeStyles} from '@material-ui/core/styles'
 const useClasses = makeStyles(theme =>({
     listaAnunturi:{
         width: 'calc(100% - 30px)',
+        height: '100%',
         margin:'0 auto',
         // background:'white',
         // boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
@@ -155,6 +156,14 @@ const useClasses = makeStyles(theme =>({
         marginTop: '10px',
         boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
         color:'white',
+    },
+    loadingCircleBox:{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '-15px',
     }
 }))
 

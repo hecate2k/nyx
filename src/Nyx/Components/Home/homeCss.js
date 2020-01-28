@@ -71,6 +71,7 @@ const useClasses = makeStyles(theme =>({
         borderRadius: '4px',
         overflow: 'hidden',
         boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        marginRight: '15px',
         '& img':{
             width: '100%',
             height: '91px',
@@ -103,7 +104,6 @@ const useClasses = makeStyles(theme =>({
         paddingTop: '3px',
     },
     pretCard:{
-        
         height: '20px',
         backgroundColor: '#f35',
         width: '61px',
@@ -130,8 +130,7 @@ const useClasses = makeStyles(theme =>({
             height: '100%',
             maxWidth: '17px',
             marginLeft: '10px',
-        }
-        
+        },
     },
     shareCard :{
         '& img':{
@@ -139,44 +138,29 @@ const useClasses = makeStyles(theme =>({
             height: '100%',
             maxWidth: '17px',
             marginLeft: '10px',
-        }
-        
+        },
     },
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
-        
-      },
-      paper: {
+    homeStatsBox:{
+        width:'100%',
+    },
+    homeNrAnunturi:{
+        fontWeight: 700,
+        padding: '20px',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        minHeight: 'calc(100% - 30px)',  
-        width: 'calc(100% - 30px)',
-        height: 'calc(100% - 30px)',
-        backgroundColor: 'white',
-        border: '2px solid #000',
-        border:'0px',
-        borderRadius: '8px',
-        boxShadow: theme.shadows[5],
-        padding: '15px',
-      },
-      butonModal:{
-          marginRight: '15px',
-          backgroundColor: 'transparent',
-      },
-      rodalContainer:{
-          '& rodal-dialog':{
-            width: 'calc(100% - 30px',
-            height: 'calc(100% - 30px',
-          }
-          
-
-      }
+        justifyContent: 'center',
+        alignItems: 'center',
+        '& span':{
+            color:'#f35',
+            fontSize: '24pt',
+            fontWeight: 900,
+        }
+    },
+    butonModal:{
+        marginRight: '15px',
+        backgroundColor: 'transparent',
+    },
+    
 }))
 
 export default useClasses

@@ -3,29 +3,20 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../homeCss'
 import {Box, Modal, Fade} from '@material-ui/core'
-import { selectLoginData, selectLoginErrors } from '../../../Selectors'
-import { updateLoginValue, doLogin } from '../../../Actions'
+import { selectModalStatus } from '../../../Selectors'
+import { changeModalStatus } from '../../../Actions'
 import AnuntMic from '../../AnuntMic'
 import {AnuntModal} from '../../ContinutModale'
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
-
+import uuid from 'react-uuid'
 
 function Login(props){
     const classes = useClasses()
-    const [open, setOpen] = React.useState(false);
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
-    const openModal = (event) => {
-        document.body.classList.add('modal-open')
-        setOpen(true)
-      }
-    const hideModal = (event) => {
-        document.body.classList.remove('modal-open')
-        setOpen(false)
-    }
-
-
+    const {modalStatus, modal, changeModalStatus} =props
+    
     return(
         <Box className={classes.continutHome}>
                     <div className={classes.homeAnunturi}>
@@ -34,12 +25,26 @@ function Login(props){
                             <div className={classes.butonFilledRosu}>ARATALE PE TOATE</div>
                         </div>
                         <div className={classes.anunturiCards}>
-                                {/* <button className={classes.butonModal} onClick={openModal}> */}
-                                    <AnuntMic onClick={openModal}/>
-                                {/* </button> */}
+                            {
+                                Array(~~(10)).fill(0).map( ()=> <AnuntMic key={uuid()} onClick={() => changeModalStatus(true,'anunt')}/>)
+                            }
                         </div>
                     </div>
-                    <Rodal width={modalWidth}  height={modalHeight} visible={open} onClose={hideModal}>
+                    <div className={classes.homeAnunturi}>
+                        <div className={classes.anunturiHeader}>
+                            Cele mai cautate
+                            <div className={classes.butonFilledRosu}>ARATALE PE TOATE</div>
+                        </div>
+                        <div className={classes.anunturiCards}>
+                            {
+                                Array(~~(10)).fill(0).map( ()=> <AnuntMic key={uuid()} onClick={() => changeModalStatus(true,'anunt')}/>)
+                            }
+                        </div>
+                    </div>
+                    <Box className={classes.homeStatsBox}>
+                        <p className={classes.homeNrAnunturi}><span>124</span> anunturi postate in total</p>
+                    </Box>
+                    <Rodal width={modalWidth}  height={modalHeight} visible={modalStatus && modal === 'anunt'} onClose={() => changeModalStatus(false,'')}>
                         <AnuntModal/>
                     </Rodal>
             </Box>
@@ -47,18 +52,16 @@ function Login(props){
 }
 
 const mapStateToProps = (state) =>{
-
+    const dateModal = selectModalStatus(state)
     return{
-        data: selectLoginData(state),
-        errors: selectLoginErrors(state),
+        ...dateModal
     }
 }
 
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
-    updateLoginValue,
-    doLogin,
+    changeModalStatus,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Login)

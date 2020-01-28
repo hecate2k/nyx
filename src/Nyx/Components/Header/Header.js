@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import useClasses from './headerCss'
 import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade } from '@material-ui/core';
-import { selectLoginData, selectLoginErrors } from '../../Selectors'
-import { updateLoginValue, doLogin } from '../../Actions'
+import { selectModalStatus } from '../../Selectors'
+import { changeModalStatus } from '../../Actions'
 import { menuIcon, nixxRedLogo } from '../../Images'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -21,12 +21,8 @@ import ProfileBadge from './headerComps'
 
 function Header(props){
     const classes = useClasses()
-    const {isLogged} = props
 
-    const [values, setValue] = React.useState({
-        modal: '',
-        open: false,
-    })
+    const {modalStatus, modal, changeModalStatus} = props
     
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
@@ -79,10 +75,10 @@ function Header(props){
                 </Drawer>
                 <div className={classes.butoaneHeaderDreapta}>
                     {
-                        !isLogged &&
+                        // !isLogged &&
                         <>
-                            <Button onClick={() => setValue({...values,open:true,modal:'login'})} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
-                            <Button onClick={() => setValue({...values,open:true,modal:'signup'})} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
+                            <Button onClick={() => changeModalStatus(true,'login')} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
+                            <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
                     }
                     
@@ -97,10 +93,10 @@ function Header(props){
             <BlackBar style={{marginTop: '0px'}}/>
             
         </Box>
-        <Rodal  width={modalWidth}  height={modalHeight} visible={values.open} onClose={() => setValue({...values,open:false})}>
+        <Rodal  width={modalWidth}  height={modalHeight} visible={modalStatus && (modal === 'login' || modal === 'signup')} onClose={() => changeModalStatus(false,'')}>
             {
-                values.modal === 'login' ? <ContinutModalLogin handleClose={() => setValue({...values,open:false})}/>
-                : values.modal === 'signup' && <SignupModal  handleClose={() => setValue({...values,open:false})}/>
+                modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
+              : modal === 'signup' && <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
             }
         </Rodal>
         <HeaderFals/>
@@ -110,16 +106,16 @@ function Header(props){
 }
 
 const mapStateToProps = (state) =>{
-
+    const dateModal = selectModalStatus(state)
     return{
-        data: selectLoginData(state),
+        ...dateModal
     }
 }
 
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
-    updateLoginValue,
+    changeModalStatus,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Header)
