@@ -10,6 +10,9 @@ import Badge from '@material-ui/core/Badge'
 
 function AnuntModal(props){
     const classes = useClasses()
+
+    const {promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
+
     return(
         <>
         <div className={classes.modalHeader}>
@@ -53,7 +56,8 @@ function AnuntModal(props){
             </div>
         </div>
         <p className={classes.modalTitluAnunt}>
-            {"Integet neque felis, vegicula non tempor"}
+            {/* {"Integet neque felis, vegicula non tempor"} */}
+            {titlu}
         </p>
         <Badge classes={{
             badge:classes.anuntModalBadges

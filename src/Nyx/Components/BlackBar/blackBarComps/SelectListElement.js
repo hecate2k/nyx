@@ -9,7 +9,6 @@ function SelectListElement(props){
     const classes = useClasses()
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const {nume,id} = props
-    console.log(id+','+selectedIndex);
     return(
         <ListItem className={classes.selectListElement} button selected={selectedIndex === {id}} onClick={() => setSelectedIndex(id)}>
           {nume}

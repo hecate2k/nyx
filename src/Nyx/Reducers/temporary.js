@@ -1,8 +1,8 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
-    modalStatus:true,
-    modal:'signup',
+    modalStatus:false,
+    modal:'',
 }
 
 const temporaryReducer = (state = INITIAL_STATE, action) => {

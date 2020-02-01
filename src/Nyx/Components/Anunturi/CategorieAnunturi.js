@@ -4,8 +4,7 @@ import {bindActionCreators} from 'redux'
 import useClasses from './anunturiCss'
 import {Box,Button} from '@material-ui/core'
 import { ListaAnunturi } from './anunturiComps'
-import {Header , HeaderFals} from '../Header'
-import BlackBar from '../BlackBar'
+import {Header} from '../Header'
 import FiltreBar from '../FiltreBar'
 import BlackSearch from '../BlackSearch'
 
@@ -14,7 +13,6 @@ function CategorieAnunturi(props){
     return(
         <Box className={classes.anunturiWindow}>
             <Header />
-            {/* <BlackBar /> */}
             <FiltreBar />
             <BlackSearch />
             <ListaAnunturi />

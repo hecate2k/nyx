@@ -4,10 +4,9 @@ import {bindActionCreators} from 'redux'
 import useClasses from '../anunturiCss'
 import {Box, Button} from '@material-ui/core'
 import Anunt from './Anunt'
-import {listaAnunturi} from '../../../Utils'
 import useBeforeFirstRender from '../../../Utils/useBeforeFirstRender'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
+import {getAnunturi} from '../../../Actions'
 
 const renderListaAnunturi = (anunturi)  =>  {
     if(!anunturi.length)
@@ -22,7 +21,7 @@ function ListaAnunturi(props){
     const classes = useClasses()
     const {getAnunturi, anunturi, isLoading} = props
     useBeforeFirstRender(() => {
-        getAnunturi()
+        getAnunturi(10,0)
     })
 
     return(
@@ -50,7 +49,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
-    getAnunturi : (page) =>({type:'GET_ANUNTURI',page})
+    getAnunturi,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(ListaAnunturi)

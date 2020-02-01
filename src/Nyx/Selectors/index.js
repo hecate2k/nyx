@@ -40,3 +40,12 @@ export const selectModalStatus = createSelector(
         }
     }
 )
+
+export const selectAnunturi = createSelector(
+    state => state.anunturi,
+    anunturi =>{
+        return{
+            anunturi:anunturi.anunturi,
+        }
+    }
+)
