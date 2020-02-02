@@ -134,6 +134,7 @@ const useClasses = makeStyles(theme =>({
             borderRadius: '50%',
             border: '2px solid #efefef',
             boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+            objectFit: 'cover',
     },
     profileBadgeNume:{
         color: 'white',

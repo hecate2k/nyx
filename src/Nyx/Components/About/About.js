@@ -1,7 +1,7 @@
 import React from 'react'
 import useClasses from './aboutCss'
-import {Box, Link, Button, ExpansionPanelSummary, ExpansionPanelDetails, ExpansionPanel} from '@material-ui/core'
-import {error404, contactIllustration,nixxRedLogo, aboutUser} from '../../Images'
+import {Box, ExpansionPanelSummary, ExpansionPanelDetails, ExpansionPanel} from '@material-ui/core'
+import {contactIllustration,nixxRedLogo, aboutUser} from '../../Images'
 import {Header} from '../Header'
 import Footer from '../Footer'
 function About(props){
@@ -15,17 +15,17 @@ function About(props){
         <Box className={classes.error404Window}>
             <Header />
             <Box className={classes.error404}>
-                <img src={contactIllustration}/>
+                <img alt="" src={contactIllustration}/>
             </Box>
             <Box className={classes.contactLogoContainer}>
-                <img className={classes.logo} src={nixxRedLogo} />
+                <img alt="" className={classes.logo} src={nixxRedLogo} />
                 <p className={classes.contactLocationText}> ALBA IULIA, ROMANIA </p>
             </Box>
             <Box className={classes.aboutSiteInfo}>
                 <span>NIXX</span> este un site ce ofera posibilitatea postarii anunturilor gratuit.
             </Box>
             <Box className={classes.aboutDeveloperInfo}>
-                <img className={classes.aboutIconita} src={aboutUser}/>
+                <img alt="" className={classes.aboutIconita} src={aboutUser}/>
                 <p className={classes.aboutProiectRealizat}>Proiect realizat de</p>
                 <p className={classes.aboutNumeDeveloper}>MOGA AMADEUS</p>
                 <p>amadeusmoga@gmail.com</p>

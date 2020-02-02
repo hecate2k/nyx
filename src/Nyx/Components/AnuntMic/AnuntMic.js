@@ -6,13 +6,17 @@ import {testImage , shareIcon, heartIcon} from '../../Images'
 
 function AnuntMic(props){
     const classes = useClasses()
+
+    const {promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
+
     return(
         <div onClick={props.onClick} className={classes.homeCard}>
-            <img src={testImage} alt="" />
-            <div className={classes.homeCardTitlu}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean scelerisque lectus ligula, ac pulvinar ipsum consequat a. 
+            <img src={"http://localhost/nixx/pozeAnunturi/"+imagini[0].nume_poza} alt="" />
+            <div className={classes.homeCardTitlu}>
+                {titlu}
             </div>
             <div className={classes.footerCard}>
-                <div className={classes.pretCard}>300 lei</div>
+                <div className={classes.pretCard}>{pret}</div>
                 <div className={classes.favoriteCard}>
                     <img src={heartIcon} alt="" />
                 </div>

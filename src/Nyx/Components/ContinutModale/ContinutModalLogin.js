@@ -10,7 +10,7 @@ import {selectLoginData} from '../../Selectors'
 function ContinutModalLogin(props){
     const classes = useClasses()
 
-    const { updateLoginValue,doLogin } = props
+    const {isLoading, updateLoginValue,doLogin } = props
 
     return(
         // <Box className={classes.modalContainer}>
@@ -45,7 +45,7 @@ function ContinutModalLogin(props){
                 }}
             />
             
-            <Button className={classes.loginButton} variant="contained" disableElevation >LOG IN</Button>
+            <Button onClick={() => !isLoading ? doLogin() : null} className={classes.loginButton} variant="contained" disableElevation >LOG IN</Button>
             <div className={classes.bottomInfo}>
                 <p>Ai uitat parola ?</p>
                 <p>Nu ai cont? <span> SIGN UP </span></p>

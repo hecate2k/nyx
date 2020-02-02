@@ -4,8 +4,7 @@ import {bindActionCreators} from 'redux'
 import useClasses from '../headerCss'
 import {Link} from 'react-router-dom'
 import {Box, ClickAwayListener, Collapse, Button} from '@material-ui/core'
-import { selectLoginData, selectLoginErrors } from '../../../Selectors'
-import { updateLoginValue, doLogin } from '../../../Actions'
+import { selectLoginData } from '../../../Selectors'
 import { testImage, badgeMenuIcon, profileIcon, anunturiIcon} from '../../../Images'
 
 
@@ -13,19 +12,20 @@ function ProfileBadge(props){
     const classes = useClasses()
 
     const [open, setOpen] = React.useState(false)
-
 	const onClickAway = () => {
 		open && setOpen(false)
-	}
-
+    }
+    
+    const {loginData} = props
+    
     return(
         <>
         <ClickAwayListener onClickAway={onClickAway}>
 				<Box style={{zIndex: '999',position: 'relative'}}>
 					<Box classes={{root:classes.profileBadge}} variant="contained" onClick={() => setOpen(open => !open)}>
-                        <img className={classes.profileBadgeAvatar} src={testImage} />
+                        <img className={classes.profileBadgeAvatar} src={"http://localhost/nixx/pozeAnunturi/"+loginData.avatar} />
                         <Box className={classes.profileBadgeNume}>
-                            {"Aurora"}<span>{" Lee"}</span>
+                            {loginData.prenume} <span>{loginData.nume}</span>
                         </Box>
                         <img className={classes.profileBadgeMenuIcon} src={badgeMenuIcon}/>
                     </Box>
@@ -60,16 +60,14 @@ function ProfileBadge(props){
 const mapStateToProps = (state) =>{
 
     return{
-        data: selectLoginData(state),
-        errors: selectLoginErrors(state),
+        loginData: selectLoginData(state),
     }
 }
 
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
-    updateLoginValue,
-    doLogin,
+    
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileBadge)

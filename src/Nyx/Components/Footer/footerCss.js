@@ -30,7 +30,6 @@ const useClasses = makeStyles(theme =>({
         fontWeight: 800,
         width: '100%',
         fontSize: '8pt',
-        padding: '10px',
         color:'white',
         // borderTop: '2px solid #f35',
         padding: '15px 20px',

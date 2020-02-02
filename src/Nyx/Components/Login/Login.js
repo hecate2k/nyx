@@ -36,6 +36,7 @@ const mapStateToProps = (state) =>{
     return{
         data: selectLoginData(state),
         errors: selectLoginErrors(state),
+        
     }
 }
 

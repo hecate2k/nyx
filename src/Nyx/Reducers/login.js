@@ -1,50 +1,55 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
-    email: '',
-    password: '',
-    errors:{
-        email: false,
-        password: false,
-    },
-    isLoading: false,
-    islogged: false,
+
+    id:0,
+    nume:'',
+    prenume:'',
+    avatar:'',
+    cover:'',
+    email:'',
+    google:0,
+    facebook:0,
+    anunturi_gratuite:0,
+    telefon:'',
+    adresa:'',
+    oras: '',
+    judet:'',
+    tara:'',
+    rating:0,
+    reported:0,
+    blocked:0,
+    vip:0,
+    nr_anunturi_gratuite:0,
+    last_seen:0,
+    token:'',
+    isLogged: false,
 }
 
 const loginReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
-        case actionType.SET_LOGIN_STATUS_LOADING:
-            return{
-                ...state,
-                isLoading:action.status
-            }
-        case actionType.SET_LOGIN_ERROR:
-            return{
-                ...state,
-                errors:{
-                    ...state.errors,
-                    [action.error]: true, // action.error = cuvantul cheie pt care vreau sa modific state.error.email/pass
-                }
-            }
+        
         case actionType.SET_IS_LOGGED:
             return{
                 ...state,
                 isLogged: true,
             }
-        case actionType.RESET_LOGIN_ERRORS:
+        case actionType.SET_AVATAR:
             return{
                 ...state,
-                errors:{
-                    ...state.errors,
-                    email: false,
-                    password: false,
-                }
+                avatar:action.avatar
             }
-        case actionType.UPDATE_LOGIN_DATA:
+        case actionType.SET_COVER:
             return{
                 ...state,
-                ...action.data
+                cover:action.cover
             }
+        case actionType.SET_LOGIN_DATA:
+            return{
+                ...state,
+                ...action.value
+            }
+        
         case actionType.RESET_LOGIN_REDUCER:
             return{
                 ...state,

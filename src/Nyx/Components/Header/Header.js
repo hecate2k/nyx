@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import useClasses from './headerCss'
 import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade } from '@material-ui/core';
-import { selectModalStatus } from '../../Selectors'
+import { selectModalStatus, selectIsLogged } from '../../Selectors'
 import { changeModalStatus } from '../../Actions'
-import { menuIcon, nixxRedLogo } from '../../Images'
+import { menuIcon, nixxRedLogo,nixxLogo } from '../../Images'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -22,11 +22,11 @@ import ProfileBadge from './headerComps'
 function Header(props){
     const classes = useClasses()
 
-    const {modalStatus, modal, changeModalStatus} = props
+    const {isLogged,modalStatus, modal, changeModalStatus} = props
     
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
-
+    
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;       
@@ -75,17 +75,23 @@ function Header(props){
                 </Drawer>
                 <div className={classes.butoaneHeaderDreapta}>
                     {
-                        // !isLogged &&
+                        !isLogged ?
                         <>
                             <Button onClick={() => changeModalStatus(true,'login')} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
                             <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
+                        :<img alt={"logo"} src={nixxLogo}/>
                     }
                     
                 </div>
             </div>
             <Box className={classes.headerLogoSection}>
-                <ProfileBadge></ProfileBadge>
+                {
+                    !isLogged ?
+                    <img alt={"logo"} src={nixxRedLogo}/>
+                    :<ProfileBadge/>
+                }
+                
                 {/* <Link className={classes.linkToHome} to="/">
                     <img className={classes.headerLogoImg} src={nixxRedLogo}/>
                 </Link> */}
@@ -107,7 +113,9 @@ function Header(props){
 
 const mapStateToProps = (state) =>{
     const dateModal = selectModalStatus(state)
+
     return{
+        isLogged: selectIsLogged(state),
         ...dateModal
     }
 }

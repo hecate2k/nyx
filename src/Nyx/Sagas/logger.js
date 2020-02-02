@@ -1,4 +1,4 @@
-import { takeEvery, select, all} from 'redux-saga/effects'
+import { takeEvery, select} from 'redux-saga/effects'
 
 export function* loggerSaga(){
     yield takeEvery('*',function* logger(action){

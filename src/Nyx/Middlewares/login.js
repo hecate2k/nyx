@@ -6,9 +6,9 @@ export default function loginMiddleware({dispatch,getState}){
             //verificari care se fac inainte sa ajunga comanda la store
             if(action.type === actionType.TRY_LOGIN){
                 let error = false
-                const email = getState().login.email
-                const password = getState().login.password
-                const errors = getState().login.errors
+                const email = getState().temporary.email
+                const password = getState().temporary.password
+                const errors = getState().temporary.errors
 
                 if(errors.password || errors.email)
                     dispatch({type:actionType.RESET_LOGIN_ERRORS})

@@ -2,24 +2,24 @@ import { take, call, put, select} from 'redux-saga/effects'
 import { actionType } from '../Utils'
 import axios from 'axios'
 
-export function* loginSaga(){
+export function* signupSaga(){
     while(true){
-        yield take(actionType.TRY_LOGIN)
-        yield call(login)
+        yield take(actionType.TRY_SIGNUP)
+        yield call(signup)
         yield put({type: actionType.CHANGE_MODAL_STATUS, modalStatus: false, modal: ''})
         
     }
 }
 
-function* login(){
-    yield put({type:actionType.SET_LOGIN_STATUS_LOADING,status:true})
+function* signup(){
+    yield put({type:actionType.SET_SIGNUP_STATUS_LOADING,status:true})
     try{
-        const {email, password} = yield select(state => state.temporary)
+        const {email, password} = yield select(state => state.signup)
         const data = new FormData()
 		data.append('email', email)
         data.append('password', password)
         
-        const login = yield axios.post('http://localhost/nixx/login1.php',data)
+        const login = yield axios.post('http://localhost/nixx/signup.php',data)
         
         const value = login.data.result
         console.log("RETURNED OBJ",login.data.result);
@@ -29,9 +29,9 @@ function* login(){
         // return login.data.login
     }
     catch(error){
-        console.log("A INTERVENIT O EROAREa", error.response.data.error)
+        console.log("ERROR",error.response);
     }
     finally{
-        yield put({type:actionType.SET_LOGIN_STATUS_LOADING,status:false})
+        yield put({type:actionType.SET_SIGNUP_STATUS_LOADING,status:false})
     }
 }

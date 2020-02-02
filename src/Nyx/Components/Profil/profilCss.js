@@ -15,6 +15,7 @@ const useClasses = makeStyles(theme =>({
         width: '100%',
             height: '100%',
             objectFit: 'cover',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
     }
     ,
     modalAvatarInfo:{
@@ -26,7 +27,22 @@ const useClasses = makeStyles(theme =>({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        width:'calc(100% - 30px)',
       },
+      avatarBox:{
+        position: 'relative',
+      },
+      modalInfoText:{
+        background: 'rgba(42,42,42,.5)',
+        borderRadius: '8px',
+        padding: '2px 10px',
+        boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
+        marginTop: '5px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
       profilAvatar:{
         margin: '0 auto',
         width: '100px',
@@ -38,10 +54,13 @@ const useClasses = makeStyles(theme =>({
         position: 'relative',
       },
       modalInfoNume:{
+       
         fontWeight: 900,
         fontSize: '17.5pt',
-        marginTop: '5px',
         color:'white'
+      },
+      numeCuloare:{
+        color:'#f35',
       },
       modalInfoLocatie:{
         marginTop: '3.4px',
@@ -74,10 +93,11 @@ const useClasses = makeStyles(theme =>({
             background:'#262626',
             border:'3px solid #efefef',
             padding: '5px',
-            bottom:'71px',
-            right:'18px',
+            bottom:'3px',
+            right:'1px',
     },
     backIcon:{
+        zIndex: '3',
         position: 'absolute',
         left:'15px',
         top:'15px',
@@ -95,10 +115,14 @@ const useClasses = makeStyles(theme =>({
         color: 'white',
         fontWeight: 800,
         fontSize: '8pt',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
+        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        zIndex: '2',
     },
     profileList:{
         width: 'calc(100% - 30px)',
+        maxHeight: 'calc(100% - 330px)',
+        height: '100%',
+        overflowX: 'auto',
         margin:'0 auto',
         background:'white',
         boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
@@ -158,14 +182,24 @@ const useClasses = makeStyles(theme =>({
     logOutButton:{
         backgroundColor: '#f35 !important',
         height: '45px',
-        width: 'calc(100% - 100px)',
-        marginTop: 'auto',
-        marginBottom: '15px',
+        width: 'calc(100%)',
+        // marginTop: 'auto',
+        // marginBottom: '15px',
         marginLeft: 'auto',
         marginRight: 'auto',
         fontWeight: 900,
         fontSize: '10pt',
         color: 'white',
+    },
+    logOutButtonContainer:{
+        display: 'flex',
+        width: 'calc(100% - 100px)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 'auto',
+        marginBottom: '15px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     }
 }))
 

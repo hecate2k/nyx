@@ -13,7 +13,7 @@ const persistConfig = {
     key: 'root',
     storage: storage,
     timeout: null,
-    whitelist:[],
+    whitelist:['login'],
 }
 
 const middleware = applyMiddleware(...middlewares,sagaMiddleware)

@@ -4,11 +4,11 @@ import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
 import {userIcon, passwordIcon, signupIllustration} from '../../Images'
 import {Box, TextField,InputAdornment,Button} from '@material-ui/core'
-import {doSignupClean,updateSignupValue} from '../../Actions'
+import {doSignupClean,updateSignupValue,doSignup} from '../../Actions'
 
 function ContinutModalLogin(props){
     const classes = useClasses()
-    const {doSignupClean,updateSignupValue} = props
+    const {doSignupClean,updateSignupValue,doSignup} = props
     return(
         // <Box className={classes.modalContainer}>
         <>
@@ -37,7 +37,7 @@ function ContinutModalLogin(props){
                 </InputAdornment>
                 ),
                 }} />
-            <Button onClick={() => doSignupClean()} className={classes.loginButton} variant="contained" disableElevation>CREAZA CONT</Button>
+            <Button onClick={() => doSignup()} className={classes.loginButton} variant="contained" disableElevation>CREAZA CONT</Button>
             <div className={classes.bottomInfo}>
                 <p>Ai deja cont? <span> LOG IN </span></p>
             </div>
@@ -56,6 +56,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     doSignupClean,
+    doSignup,
     updateSignupValue
 },dispatch))
 

@@ -11,7 +11,7 @@ function Error404(props){
         <Box className={classes.error404Window}>
             <Header />
             <Box className={classes.error404}>
-                <img src={error404}/>
+                <img alt="Error 404" src={error404}/>
             </Box>
             <Box className={classes.contactBody}>
 

@@ -5,26 +5,17 @@ import useClasses from '../anunturiCss'
 import {heartIcon} from '../../../Images'
 import {Box} from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
-import { selectModalStatus } from '../../../Selectors'
-import { changeModalStatus } from '../../../Actions'
-import AnuntMic from '../../AnuntMic'
-import {AnuntModal} from '../../ContinutModale'
-import Rodal from 'rodal'
-import 'rodal/lib/rodal.css'
 
 
 function Anunt(props){
     const classes = useClasses()
-    var modalWidth  = window.innerWidth - 30
-    var modalHeight  = window.innerHeight - 30
-    const {modalStatus,changeModalStatus,promovat,modal, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
-    const dateAnunt = {promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} 
-    console.log(imagini[0].nume_poza);
+    const {promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
+
     return(
         <>
-            <Box onClick={() => changeModalStatus(true,'anunt')} className={classes.anuntContainer}>
+            <Box onClick={props.onClick} className={classes.anuntContainer}>
                 <Box className={classes.anuntHeader}>
-                    {promovat == 1 &&
+                    {promovat === 1 &&
                         <Box className={classes.anuntPromovat}>
                             promovat
                         </Box> 
@@ -63,25 +54,19 @@ function Anunt(props){
                         {telefon}
                 </Box>
             </Box>
-
-            <Rodal width={modalWidth}  height={modalHeight} visible={modalStatus && modal === 'anunt'} onClose={() => changeModalStatus(false,'')}>
-                <AnuntModal {...dateAnunt}/>
-            </Rodal>
         </>
     )  
 }
 
 const mapStateToProps = (state) =>{
-    const dateModal = selectModalStatus(state)
     return{
-        ...dateModal
+        
     }
 }
 
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
-    changeModalStatus,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Anunt)

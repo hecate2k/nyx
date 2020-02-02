@@ -4,9 +4,13 @@ import axios from 'axios'
 
 export function* anunturiSaga(){
     while(true){
+        // const {modalStatus, modal} = yield take(actionType)
         const { preluate,sarite } = yield take(actionType.GET_ANUNTURI)
         const anunturi = yield  call(getAnunturi,preluate,sarite)
         yield put({type:actionType.SET_ANUNTURI,anunturi})
+        console.log('afasdfa');
+        
+       
     }
 }
 
@@ -17,11 +21,7 @@ function* getAnunturi(preluate,sarite){
 		data.append('preluate', preluate)
 		data.append('sarite', sarite)
 
-		// gresit ... axios returneaza obiect de tipu obiect.data (acolo is datele tale)
-		// plus ca api-u creaza obiectu success in care iti baga rezultatele
-		// deci ramai cu result.data.success
         const result = yield axios.post('http://localhost/nixx/anunturiCristi.php',data)
-        console.log(result);
         
         return result.data.result
 
