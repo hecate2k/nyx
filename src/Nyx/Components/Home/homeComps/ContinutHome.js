@@ -2,23 +2,22 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../homeCss'
-import {Box, Modal, Fade} from '@material-ui/core'
+import {Box, Modal, Fade, Button} from '@material-ui/core'
 import { selectAnuntId,selectAnuntData } from '../../../Selectors'
 import { getAnunturi,setAnuntId } from '../../../Actions'
 import AnuntMic from '../../AnuntMic'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 import {AnuntModal} from '../../ContinutModale'
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
-import uuid from 'react-uuid'
 import useBeforeFirstRender from '../../../Utils/useBeforeFirstRender'
-
 
 function Login(props){
     const classes = useClasses()
 
     const {getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,len} = props
-
 
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
@@ -34,7 +33,6 @@ function Login(props){
             <AnuntMic onClick={() => setAnuntId(date.id)} {...date} key={date.id}/>
           ))
     }
-
 
     return(
         <Box className={classes.continutHome}>

@@ -1,5 +1,34 @@
 import { actionType } from "../Utils";
 
+
+
+export const enqueueSnackbar = (notification) => {
+    const key = notification.options && notification.options.key;
+    console.log("notification:",notification);
+    
+    return {
+        type: actionType.ENQUEUE_SNACKBAR,
+        notification: {
+            ...notification,
+            key: key || new Date().getTime() + Math.random() || [],
+        },
+    };
+};
+
+export const closeSnackbar = key => ({
+    type: actionType.CLOSE_SNACKBAR,
+    dismissAll: !key, // dismiss all if no key has been defined
+    key,
+});
+
+export const removeSnackbar = key => ({
+    type: actionType.REMOVE_SNACKBAR,
+    key,
+});
+
+
+
+
 export const updateLoginValue = data => ({type:actionType.UPDATE_LOGIN_DATA,data})
 export const doLogin = () => ({type:actionType.TRY_LOGIN})
 export const doSignup = () => ({type:actionType.TRY_SIGNUP})

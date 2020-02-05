@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor} from './Nyx/Store'
 // import theme from './Nyx/Themes'
 
+
 const App = () =>(
     <Provider store={store}>
         <PersistGate persistor={persistor}>

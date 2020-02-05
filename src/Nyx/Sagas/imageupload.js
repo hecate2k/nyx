@@ -1,7 +1,7 @@
 import { take, call, put, select} from 'redux-saga/effects'
 import { actionType } from '../Utils'
 import axios from 'axios'
-
+import uuid from 'react-uuid'
 export function* imageuploadSaga(){
     while(true){
         yield take(actionType.TRY_IMAGE_UPLOAD)
@@ -28,16 +28,29 @@ function* imageupload(){
         })
         const imagine = uploadResult.data.result
         if(imageType === 'avatar')
+        {
             yield put({type: actionType.SET_AVATAR, avatar:imagine})
-        else if(imageType === 'cover')
+            yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+                message: 'Avatarul a fot modificat cu success !',
+                key: new Date().getTime() + Math.random(),
+                options: {
+                    variant: 'success'
+                },
+            }})
+        }
+        else if(imageType === 'cover'){
             yield put({type: actionType.SET_COVER, cover:imagine})
-        console.log("RETURNED OBJ",imagine);
-       
-
-        // return login.data.login
+            yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+                message: 'Coverul a fot modificat cu success !',
+                key: new Date().getTime() + Math.random(),
+                options: {
+                    
+                    variant: 'success'
+                },
+            }})
+        }
     }
     catch(error){
-        // console.log("A INTERVENIT O EROAREa", error.response.data.error)
         console.log("ERROR",error.response);
         
     }

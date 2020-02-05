@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "history": "^4.10.1",
     "moment": "^2.24.0",
+    "notistack": "^0.9.7",
     "qs": "^6.9.1",
     "react": "^16.12.0",
     "react-animated-modal": "^1.1.1",

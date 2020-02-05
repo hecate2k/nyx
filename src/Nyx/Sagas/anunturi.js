@@ -21,7 +21,7 @@ function* getAnunturi(preluate,sarite){
 		data.append('preluate', preluate)
 		data.append('sarite', sarite)
 
-        const result = yield axios.post('http://localhost/nixx/anunturiCristi.php',data)
+        const result = yield axios.post('http://localhost/nixx/anunturiBune.php',data)
         
         return result.data.result
 
