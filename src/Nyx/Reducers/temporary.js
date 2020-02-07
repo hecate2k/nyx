@@ -1,12 +1,12 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
-    modalStatus:false,
-    modal:'',
+    modalStatus:true,
+    modal:'upload',
     anuntId: -1,
     email: '',
     password: '',
-    imageType: 's',//daca e imagine de cover sau de profil
+    imageType: '',//daca e imagine de cover sau de profil
     errors:{
         email: false,
         password: false,

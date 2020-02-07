@@ -27,6 +27,8 @@ function* imageupload(){
             }
         })
         const imagine = uploadResult.data.result
+        console.log("imagine ", uploadResult.data);
+        
         if(imageType === 'avatar')
         {
             yield put({type: actionType.SET_AVATAR, avatar:imagine})

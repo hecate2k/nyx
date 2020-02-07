@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../profilCss'
 import {testImage,cameraIcon, profileBackIcon} from '../../../Images'
-import {Box, Button} from '@material-ui/core'
+import {Box, Button, Grow, Zoom} from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating';
 import {selectLoginData} from '../../../Selectors'
 import history from '../../../Navigation/history'
 import {setUploadedFile,uploadImage} from '../../../Actions'
 import useForceUpdate from 'use-force-update';
-
+import LazyLoad from 'react-lazyload';
 
 function ProfilHeader(props){
     const classes = useClasses()
@@ -43,8 +43,12 @@ function ProfilHeader(props){
     return(
         <>
             <Box className={classes.ProfilHeader}>
-                <input type="file" onChange={onChangeCover} ref={inputCover} style={{display: 'none'}}/>
-                <img alt="aa" className={classes.profileCoverImage} src={loginData.cover === 'none'? 'http://localhost/nixx/pozeAnunturi/defaultCover.jpg' :"http://localhost/nixx/pozeAnunturi/"+loginData.cover} />
+                <input  type="file" accept="image/*" onChange={onChangeCover} ref={inputCover} style={{display: 'none'}}/>
+                <LazyLoad>
+                <Zoom in={true} timeout={650}>
+                    <img alt="aa" className={classes.profileCoverImage} src={loginData.cover === 'none'? 'http://localhost/nixx/pozeAnunturi/defaultCover.jpg' :"http://localhost/nixx/pozeAnunturi/"+loginData.cover} />
+                </Zoom>
+                </LazyLoad>
                 <Box className={classes.backIcon} onClick={() => history.goBack()}>
                     <img alt="aa" src={profileBackIcon}/>
                 </Box>
@@ -52,9 +56,15 @@ function ProfilHeader(props){
                     Schimba
                 </Button>
                 <div className={classes.modalAvatarInfo}>
-                    <input type="file" onChange={onChangeAvatar} ref={inputF} style={{display: 'none'}}/>
+                    <input type="file" accept="image/*" onChange={onChangeAvatar} ref={inputF} style={{display: 'none'}}/>
                     <Box onClick={() => inputF.current.click()} className={classes.avatarBox}>
-                        <img alt="aa" className={classes.profilAvatar} src={loginData.avatar === 'none'? 'http://localhost/nixx/pozeAnunturi/defaultAvatar.jpg' :'http://localhost/nixx/pozeAnunturi/'+loginData.avatar} />
+                        
+                        <LazyLoad>
+                        <Grow in={true} timeout={1050}>
+                        <img alt="aa" className={classes.profilAvatar} src={loginData.avatar === 'none'? 'http://localhost/nixx/pozeAnunturi/defaultAvatar.png' :'http://localhost/nixx/pozeAnunturi/'+loginData.avatar} />
+                        </Grow>
+                        </LazyLoad>
+                        
                         <div className={classes.cameraIcon}>
                             <img alt="aa"  src={cameraIcon}/>
                         </div>

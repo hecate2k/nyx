@@ -2,9 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../homeCss'
-import {Box, Modal, Fade, Button} from '@material-ui/core'
+import {Box, Modal, Fade, Button, Grow} from '@material-ui/core'
 import { selectAnuntId,selectAnuntData } from '../../../Selectors'
-import { getAnunturi,setAnuntId } from '../../../Actions'
+import { getAnunturi,setAnuntId ,addImage,removeImage} from '../../../Actions'
 import AnuntMic from '../../AnuntMic'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Snackbar from '@material-ui/core/Snackbar';
@@ -13,14 +13,21 @@ import {AnuntModal} from '../../ContinutModale'
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 import useBeforeFirstRender from '../../../Utils/useBeforeFirstRender'
+import {Select, MenuItem} from '@material-ui/core'
+
 
 function Login(props){
     const classes = useClasses()
 
-    const {getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,len} = props
-
+    const {getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,len,addImage,removeImage} = props
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
+    const inF = React.createRef()
+    const onChangeImage = (e) => {
+        console.log(e.target.files[0],' IMAGINE')
+        addImage(e.target.files[0])
+      }
+
     useBeforeFirstRender(() => {
         getAnunturi(10,0)
     })
@@ -28,9 +35,9 @@ function Login(props){
 
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
-            return <Box>Nu exista anunturi</Box>
+            return <Box className={classes.noAnunturi}>Nu exista anunturi</Box>
         return anunturi.map((date) => (
-            <AnuntMic onClick={() => setAnuntId(date.id)} {...date} key={date.id}/>
+                <AnuntMic onClick={() => setAnuntId(date.id)} {...date}  key={date.id}/>
           ))
     }
 
@@ -46,7 +53,8 @@ function Login(props){
                             isLoading?
                             <Box className={classes.loadingCircleBox}><CircularProgress color="secondary" /></Box>
                             :
-                            renderListaAnunturi(anunturi||[])  
+                            renderListaAnunturi(anunturi||[])
+                            
                         }
                         </div>
                     </div>
@@ -61,6 +69,9 @@ function Login(props){
                             }
                         </div>
                     </div> */}
+                    <input  type="file" accept="image/*" onChange={onChangeImage} ref={inF} style={{display: 'none'}}/>
+                    <Button onClick={() => inF.current.click()} variant="contained">ADAUGA</Button>
+                    <Button onClick={() => removeImage(0)} variant="contained"> STERGE</Button>
                     <Box className={classes.homeStatsBox}>
                         <p className={classes.homeNrAnunturi}><span>{len}</span> anunturi postate in total</p>
                     </Box>
@@ -77,7 +88,8 @@ const mapStateToProps = (state) =>{
         anuntId: selectAnuntId(state),
         isLoading : state.anunturi.isLoading,
         anunturi: state.anunturi.anunturi,
-        len: state.anunturi.anunturi.length
+        len: state.anunturi.anunturi.length,
+        // nrImagini: state.uploadanunt.imagini.length || 0
     }
 }
 
@@ -86,6 +98,8 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     getAnunturi,
     setAnuntId,
+    addImage,
+    removeImage,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Login)

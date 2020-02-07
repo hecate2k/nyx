@@ -42,6 +42,8 @@ const useClasses = makeStyles(theme =>({
         borderRadius: '8px',
         boxShadow: theme.shadows[5],
         padding: '15px',
+        margin: 'auto',
+        marginTop: '15px',
       },
     headerLogoSection:{
         '& a':{

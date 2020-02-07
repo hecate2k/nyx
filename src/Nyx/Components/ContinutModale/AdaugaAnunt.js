@@ -3,34 +3,36 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
 import {testImage, xIcon} from '../../Images'
-import {Box} from '@material-ui/core'
+import {Box, TextField, Input} from '@material-ui/core'
 import Scrollbar from "react-scrollbars-custom";
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 function ContinutModalAnunt(props){
     const classes = useClasses()
+    const [categorie, setCategorie] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+
     return(
         <>
         <div className={classes.modalHeader}>
-            <div className={classes.modalAvatarInfo}>
-                <img alt="imagine testare" src={testImage} />
-                <Box className={classes.modalInfoText}>
-                    <p className={classes.modalInfoNume}>
-                        {"Aurora"}{" Lee"}
-                    </p>
-                    <p className={classes.modalInfoLocatie}>
-                        {"alba"},{"alba iulia"}
-                    </p>
-                </Box>
-            </div>
+            <Box className={classes.titluAdaugaAnunt}>
+                Adaugare anunt
+            </Box>
             <img onClick={props.handleClose} src={xIcon} alt="close icon"/>
         </div>
         <Box className={classes.priceCategory}>
             <div className={classes.modalPret}>
-                {"300"}{"lei"}
+                <Input disableUnderline className={classes.pretInput} placeholder="Pret"/>
             </div>
-            <div className={classes.modalCategorie}>
-                {"Auto Moto"}
-            </div>
+            <Select classes={{selectMenu: classes.zIndexMax, select:classes.zIndexMax, root:classes.zIndexMax}} className={classes.modalCategorie} open={open} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} value={categorie} onChange={e => setCategorie(e.target.value)} >
+                <MenuItem className={classes.zIndexMax} value={"Auto Moto"}>Auto Moto</MenuItem>
+                <MenuItem className={classes.zIndexMax} value={"Matrimoniale"}>Matrimoniale</MenuItem>
+                <MenuItem className={classes.zIndexMax} value={"Timp liber si sport"}>Timp liber si sport</MenuItem>
+            </Select>
         </Box>
         <div className={classes.modalAttributes}>
             <div className={classes.modalAttribute}>

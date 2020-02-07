@@ -236,6 +236,40 @@ const useClasses = makeStyles(theme =>({
           fontSize: '9.5pt',
           width: '100%',
       },
+      titluAdaugaAnunt:{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        //   width: '100%',
+          background: 'white',
+          padding: '6px 15px',
+          color: '#f35',
+          margin: 'auto',
+          border: '2px solid #f35',
+          borderRadius: '8px',
+          fontSize: '10pt',
+          fontWeight: '900',
+          textTransform: 'uppercase',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
+      },
+      pretInput:{
+          width: '75px',
+          height: '100%',
+          '& underline':{
+            border:'none !important',
+        },
+          '& input':{
+            
+            color:'white',
+            textAlign: 'center',
+            fontWeight: '900',
+            fontSize: '12pt',
+            padding: '0px',
+          },
+      },
+      zIndexMax:{
+          zIndex: '999 !important',
+      }
     }))
 
 export default useClasses

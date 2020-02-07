@@ -3,9 +3,9 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../anunturiCss'
 import {heartIcon} from '../../../Images'
-import {Box} from '@material-ui/core'
+import {Box, Grow} from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
-
+import Collapse from '@material-ui/core/Collapse';
 
 function Anunt(props){
     const classes = useClasses()
@@ -13,6 +13,7 @@ function Anunt(props){
 
     return(
         <>
+        <Grow in={true} timeout={650}>
             <Box onClick={props.onClick} className={classes.anuntContainer}>
                 <Box className={classes.anuntHeader}>
                     {promovat === 1 &&
@@ -54,6 +55,7 @@ function Anunt(props){
                         {telefon}
                 </Box>
             </Box>
+            </Grow>
         </>
     )  
 }

@@ -31,6 +31,11 @@ const useClasses = makeStyles(theme =>({
       },
       avatarBox:{
         position: 'relative',
+        borderRadius: '50%',
+        border: '4px solid #dbdbdb',
+        height: '108px',
+        width: '108px',
+        background: '#dbdbdb',
       },
       modalInfoText:{
         background: 'rgba(42,42,42,.5)',
@@ -49,7 +54,7 @@ const useClasses = makeStyles(theme =>({
         height: '100px',
         objectFit: 'cover',
         borderRadius: '50%',
-        border:'4px solid #dbdbdb',
+        // border:'4px solid #dbdbdb',
         boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
         position: 'relative',
       },

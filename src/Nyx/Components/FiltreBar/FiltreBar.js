@@ -2,10 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './filtreBarCss'
-import {Box,Button,Modal,Fade, TextField, Select, MenuItem} from '@material-ui/core'
-import { searchIcon } from '../../Images'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import AppsIcon from '@material-ui/icons/Apps';
+import {Box, Select, MenuItem} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 
 

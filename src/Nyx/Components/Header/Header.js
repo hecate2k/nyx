@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import useClasses from './headerCss'
-import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade } from '@material-ui/core';
+import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade, Grow } from '@material-ui/core';
 import { selectModalStatus, selectIsLogged } from '../../Selectors'
 import { changeModalStatus } from '../../Actions'
 import { menuIcon, nixxRedLogo,nixxLogo } from '../../Images'
@@ -14,10 +14,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import {menuItems} from '../../Utils'
 import BlackBar from '../BlackBar'
 import HeaderFals from './HeaderFals';
-import {ContinutModalLogin, SignupModal} from '../ContinutModale'
+import {ContinutModalLogin, SignupModal, AdaugaAnunt} from '../ContinutModale'
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 import ProfileBadge from './headerComps'
+
 
 function Header(props){
     const classes = useClasses()
@@ -80,7 +81,7 @@ function Header(props){
                             <Button onClick={() => changeModalStatus(true,'login')} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
                             <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
-                        :<img alt={"logo"} src={nixxLogo}/>
+                        :<Link to="/"><img alt={"logo"} src={nixxLogo}/></Link>
                     }
                     
                 </div>
@@ -88,7 +89,7 @@ function Header(props){
             <Box className={classes.headerLogoSection}>
                 {
                     !isLogged ?
-                    <img alt={"logo"} src={nixxRedLogo}/>
+                    <Link to="/"><img alt={"logo"} src={nixxRedLogo}/></Link>
                     :<ProfileBadge/>
                 }
                 
@@ -99,12 +100,30 @@ function Header(props){
             <BlackBar style={{marginTop: '0px'}}/>
             
         </Box>
-        <Rodal  width={modalWidth}  height={modalHeight} visible={modalStatus && (modal === 'login' || modal === 'signup')} onClose={() => changeModalStatus(false,'')}>
+        
+        <Modal  open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} 
+        onClose={() => changeModalStatus(false,'')}
+      >
+          <Grow in={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} timeout={350}>
+          <div className={classes.paper}>
+            {
+                modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
+                : modal === 'signup' ? <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
+                : modal === 'upload' && <AdaugaAnunt/>
+            }
+        </div>
+        </Grow>
+      </Modal>
+      
+        {/* <Rodal  width={modalWidth}  height={modalHeight} visible={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} onClose={() => changeModalStatus(false,'')}>
             {
                 modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
               : modal === 'signup' && <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
             }
-        </Rodal>
+            {
+                modal === 'upload' && <AdaugaAnunt/>
+            }
+        </Rodal> */}
         <HeaderFals/>
         
         </>

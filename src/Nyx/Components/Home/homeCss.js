@@ -160,7 +160,22 @@ const useClasses = makeStyles(theme =>({
         marginRight: '15px',
         backgroundColor: 'transparent',
     },
-    
+    loadingCircleBox:{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '-15px',
+    },
+    noAnunturi:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 800,
+        fontSize: '12pt',
+        width: '100%',
+    }
 }))
 
 export default useClasses

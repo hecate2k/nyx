@@ -1,4 +1,5 @@
 import { actionType } from "../Utils";
+import { act } from "react-dom/test-utils";
 
 
 
@@ -47,3 +48,9 @@ export const setBlobAvatar = () => ({type:actionType.SET_BLOB_AVATAR})
 export const setBlobCover = () => ({type:actionType.SET_BLOB_COVER})
 export const resetBlob = () => ({type:actionType.RESET_BLOB})
 export const resetLoginData = () => ({type:actionType.RESET_LOGIN_REDUCER})
+
+
+//UPLOAD REDUCER
+
+export const addImage = imagine => ({type:actionType.ADD_IMAGE,imagine})
+export const removeImage = index => ({type:actionType.REMOVE_IMAGE,index})
