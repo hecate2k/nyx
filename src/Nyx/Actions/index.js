@@ -54,3 +54,6 @@ export const resetLoginData = () => ({type:actionType.RESET_LOGIN_REDUCER})
 
 export const addImage = imagine => ({type:actionType.ADD_IMAGE,imagine})
 export const removeImage = index => ({type:actionType.REMOVE_IMAGE,index})
+export const setUploadData = value => ({type: actionType.SET_UPLOAD_DATA, value})
+export const openMeniu = meniu => ({type:actionType.OPEN_MENIU,meniu})
+export const closeMeniu = () => ({type:actionType.CLOSE_MENIU})

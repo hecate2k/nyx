@@ -22,11 +22,6 @@ function Login(props){
     const {getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,len,addImage,removeImage} = props
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
-    const inF = React.createRef()
-    const onChangeImage = (e) => {
-        console.log(e.target.files[0],' IMAGINE')
-        addImage(e.target.files[0])
-      }
 
     useBeforeFirstRender(() => {
         getAnunturi(10,0)
@@ -69,9 +64,8 @@ function Login(props){
                             }
                         </div>
                     </div> */}
-                    <input  type="file" accept="image/*" onChange={onChangeImage} ref={inF} style={{display: 'none'}}/>
-                    <Button onClick={() => inF.current.click()} variant="contained">ADAUGA</Button>
-                    <Button onClick={() => removeImage(0)} variant="contained"> STERGE</Button>
+                    
+                    
                     <Box className={classes.homeStatsBox}>
                         <p className={classes.homeNrAnunturi}><span>{len}</span> anunturi postate in total</p>
                     </Box>
@@ -98,8 +92,7 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     getAnunturi,
     setAnuntId,
-    addImage,
-    removeImage,
+    
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Login)

@@ -2,19 +2,57 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
-import {testImage, xIcon} from '../../Images'
-import {Box, TextField, Input} from '@material-ui/core'
+import {noImage, xIcon} from '../../Images'
+import {Box, Input, Button} from '@material-ui/core'
 import Scrollbar from "react-scrollbars-custom";
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import {setUploadData,openMeniu,closeMeniu,addImage,removeImage,enqueueSnackbar} from '../../Actions'
+import Grow from '@material-ui/core/Grow';
+import Modal from '@material-ui/core/Modal';
 
 function ContinutModalAnunt(props){
     const classes = useClasses()
-    const [categorie, setCategorie] = React.useState('');
-    const [open, setOpen] = React.useState(false);
+    // const [categorie, setCategorie] = React.useState('');
+    const [modalStatus, setModalStatus] = React.useState(true);
+    const {descriere,enqueueSnackbar,categorie,setUploadData,openMeniu,closeMeniu,meniu,brand,stare,imagini,addImage,removeImage,clickedIndex} = props
+    console.log(categorie,"cat");
+    
+    const inF = React.createRef()
+    const stergeImagine = (index) => {
+        removeImage(index)
+        enqueueSnackbar({
+            message:'Imaginea a fost stearsa !',
+            key: new Date().getTime() + Math.random(),
+            options:{
+                variant:"success"
+            }
+        })
+    }
+    const onChangeImage = (e) => {
+        console.log(e.target.files[0],' IMAGINE')
+        addImage(e.target.files[0])
+      }
+
+      const selectIndexAndDelete = (index) => {
+        
+      }
+
+    const listaImagini = (imagini)  =>  {
+        if(!imagini.length)
+            return <Box className={classes.noAnunturi}>
+                Apasa <Box className={classes.plusFigureButton}> + </Box> pentru a incarca imagini
+            </Box>
+        return imagini.map((date,index) => (
+            <Grow in={true} key={index}>
+                <Box className={classes.uploadAnuntImagine} >
+                    <img className={classes.imagineUploadAnunt} src={imagini[index] && URL.createObjectURL(imagini[index])|| null}/>
+                    <Button className={classes.uploadAnuntIcon} onClick={() => stergeImagine(index)} variant="contained">x</Button>
+                </Box>
+            </Grow>
+          ))
+    }
+
 
     return(
         <>
@@ -28,45 +66,64 @@ function ContinutModalAnunt(props){
             <div className={classes.modalPret}>
                 <Input disableUnderline className={classes.pretInput} placeholder="Pret"/>
             </div>
-            <Select classes={{selectMenu: classes.zIndexMax, select:classes.zIndexMax, root:classes.zIndexMax}} className={classes.modalCategorie} open={open} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} value={categorie} onChange={e => setCategorie(e.target.value)} >
-                <MenuItem className={classes.zIndexMax} value={"Auto Moto"}>Auto Moto</MenuItem>
-                <MenuItem className={classes.zIndexMax} value={"Matrimoniale"}>Matrimoniale</MenuItem>
-                <MenuItem className={classes.zIndexMax} value={"Timp liber si sport"}>Timp liber si sport</MenuItem>
+            <Select displayEmpty className={classes.modalCategorie} open={meniu === 'categorie'} onClose={() => closeMeniu()} onOpen={() => openMeniu('categorie')} value={categorie} onChange={e => setUploadData({categorie:e.target.value})} >
+            <MenuItem style={{display: 'none'}} value="">Alege categoria</MenuItem>
+                <MenuItem value={"Auto Moto"}>Auto Moto</MenuItem>
+                <MenuItem value={"Matrimoniale"}>Matrimoniale</MenuItem>
+                <MenuItem value={"Timp liber si sport"}>Timp liber si sport</MenuItem>
             </Select>
         </Box>
         <div className={classes.modalAttributes}>
             <div className={classes.modalAttribute}>
                 <div className={classes.modalAttributeTitle} style={{borderTopLeftRadius:'4px',color:'#f35'}}>
-                    {"Brand"}
+                    Brand
                 </div>
                 <div className={classes.modalAttributeTitle} style={{borderBottomLeftRadius:'4px'}}>
-                    {"Stare"}
+                    Stare
                 </div>
             </div>
             <div className={classes.modalAttribute} style={{width: '100%'}}>
-                <div className={classes.modalAttributeText} style={{borderBottom:'1px solid rgba(42,42,42,.15)',color:'#f35'}}>
-                    {"Lectus quis tincidunt"}
-                </div>
-                <div className={classes.modalAttributeText}>
-                    {"Donecc nibh magna"}
-                </div>
+                <Select displayEmpty disableUnderline className={[classes.modalAttributeText,classes.borderBottom].join(' ')} open={meniu === 'brand'} onClose={() => closeMeniu()} onOpen={() => openMeniu('brand')} value={brand} onChange={e => setUploadData({brand:e.target.value})} >
+                    <MenuItem style={{display: 'none'}} value="">Alege brandul</MenuItem>
+                    <MenuItem value={"Audi"}>Audi</MenuItem>
+                    <MenuItem value={"Dacia"}>Dacia</MenuItem>
+                    <MenuItem value={"Opel"}>Opel</MenuItem>
+                </Select>
+                <Select displayEmpty disableUnderline className={classes.modalAttributeText} open={meniu === 'stare'} onClose={() => closeMeniu()} onOpen={() => openMeniu('stare')} value={stare} onChange={e => setUploadData({stare:e.target.value})} >
+                <MenuItem style={{display: 'none'}} value="">Alege starea produsului</MenuItem>
+                    <MenuItem value={"Nou"}>Nou</MenuItem>
+                    <MenuItem value={"Folosit"}>Folosit</MenuItem>
+                </Select>
             </div>
         </div>
-        <p className={classes.modalTitluAnunt}>
-            {"Integet neque felis, vegicula non tempor"}
-        </p>
-        <Box className={classes.modalImages}>
-            <div className={classes.modalImagesBadge}>{"+1"}</div>
-            <img alt="imagine testare" src={testImage} />
-            <img alt="imagine testare" src={testImage} />
-            <img alt="imagine testare" src={testImage} />
+        <Box className={classes.modalTitluAnuntAdaugare}>
+            <Input disableUnderline className={classes.titluInput} placeholder="Scrie aici titlul anuntului"/>
+        </Box>
+        <input  type="file" accept="image/*" onChange={onChangeImage} ref={inF} style={{display: 'none'}}/>
+        <Box className={classes.uploadAnunturiContainer}>
+            <Box className={classes.adaugaImaginiBox}>
+                {listaImagini(imagini||[])}
+            </Box>
+            <Button className={classes.adaugaImagineButton} onClick={() => inF.current.click()} variant="contained">+</Button>
         </Box>
         <p className={classes.modalTitluDescriere}>
-            {"Descriere produs"}
+            Descriere produs
         </p>
-        <Scrollbar className={classes.modalDescriereText}>
-            {"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a dolor non leo mattis porta. Quisque quis risus vestibulum, viverra velit eu, ultricies dolor. Donec sagittis et elit at efficitur. Donec euismod metus et tempor luctus. Integer nunc arcu, eleifend a ornare vel, varius vel sem. Sed volutpat libero arcu, a pharetra mi aliquet a. Nunc ac vulputate lacus, efficitur posuere nulla. Integer lacinia in lorem in imperdiet. In porta vestibulum metus, nec suscipit enim accumsan vitae. Proin a fringilla diam. Quisque elementum, turpis eu semper fermentum, elit nulla pharetra sapien, at ullamcorper metus sapien quis velit."}
-            {"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a dolor non leo mattis porta. Quisque quis risus vestibulum, viverra velit eu, ultricies dolor. Donec sagittis et elit at efficitur. Donec euismod metus et tempor luctus. Integer nunc arcu, eleifend a ornare vel, varius vel sem. Sed volutpat libero arcu, a pharetra mi aliquet a. Nunc ac vulputate lacus, efficitur posuere nulla. Integer lacinia in lorem in imperdiet. In porta vestibulum metus, nec suscipit enim accumsan vitae. Proin a fringilla diam. Quisque elementum, turpis eu semper fermentum, elit nulla pharetra sapien, at ullamcorper metus sapien quis velit."}
+        <Scrollbar classes={{content: classes.paddingDescriere}} className={classes.modalDescriereTextUpload}>
+            {
+                descriere === '' ? <Box onClick={() => setModalStatus(true)} className={classes.noDescriere}>Apasa aici pentru a adauga o descriere a produsului</Box>
+                : {descriere}
+            }
+                        <Modal open={modalStatus} onClose={() => setModalStatus(false)}>
+                            <Grow in={modalStatus}>
+                                <div className={classes.descriereContainer}>
+                                    <h3>Descriere produs: </h3>
+                                <Input autoFocus className={classes.descriereInput} multiline fullWidth disableUnderline placeholder="Scrie aici descrierea produsului..."/>
+                                </div>
+                            </Grow>
+                        </Modal>
+        
+        
         </Scrollbar>
         <Box className={classes.modalNrTelefon}>
             {"0760548262"}
@@ -78,12 +135,25 @@ function ContinutModalAnunt(props){
 const mapStateToProps = (state) =>{
 
     return{
+        categorie: state.upload.categorie,
+        meniu: state.upload.meniu,
+        brand: state.upload.brand,
+        stare: state.upload.stare,
+        imagini: state.upload.imagini,
+        clickedIndex:state.upload.clickedIndex,
+        descriere: state.upload.descriere
     }
 }
 
 
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
+    setUploadData,
+    openMeniu,
+    closeMeniu,
+    addImage,
+    removeImage,
+    enqueueSnackbar,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(ContinutModalAnunt)

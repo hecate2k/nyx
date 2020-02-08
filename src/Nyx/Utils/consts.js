@@ -53,3 +53,6 @@ export const REMOVE_SNACKBAR = 'REMOVE_SNACKBAR';
 
 export const ADD_IMAGE = 'ADD_IMAGE'
 export const REMOVE_IMAGE = 'REMOVE_IMAGE'
+export const SET_UPLOAD_DATA = 'SET_UPLOAD_DATA'
+export const OPEN_MENIU = 'OPEN_MENIU'
+export const CLOSE_MENIU = 'CLOSE_MENIU'

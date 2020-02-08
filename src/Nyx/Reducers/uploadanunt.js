@@ -11,6 +11,9 @@ const INITIAL_STATE = {
     telefon:'',
     moneda:'lei',
     isLoading: false,
+    clickedIndex:-1,
+    meniu:'',
+    isOpen:false,
 }
 
 const uploadAnuntReducer = (state = INITIAL_STATE, action) => {
@@ -29,14 +32,35 @@ const uploadAnuntReducer = (state = INITIAL_STATE, action) => {
                 ]
             }
         }
+        case actionType.SET_UPLOAD_DATA:
+            return{
+                ...state,
+                ...action.value
+            }
         case actionType.REMOVE_IMAGE:{
             return{
                 ...state,
                 imagini:[
                     ...state.imagini.filter((imagine,index) => index != action.index)
-                ]
+                ],
             }
         }
+        case actionType.RESET_INDEX:
+            return{
+                clickedIndex:-1,
+            }
+        case actionType.OPEN_MENIU:
+            return{
+                ...state,
+                meniu:action.meniu,
+                isOpen:true,
+            }
+        case actionType.CLOSE_MENIU:
+            return{
+                ...state,
+                meniu:'',
+                isOpen:false,
+            }
         case actionType.RESET_UPLOAD_REDUCER:
             return{
                 ...state,
