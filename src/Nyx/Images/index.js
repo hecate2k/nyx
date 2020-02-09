@@ -36,7 +36,9 @@ export const badgeMenuIcon = require('./Icons/profileBadgeMenuIcon.svg')
 export const profileIcon = require('./Icons/profileIcon.svg')
 export const anunturiIcon = require('./Icons/anunturiIcon.svg')
 export const noImage = require('./Icons/noImage.svg')
-
+export const description = require('./Icons/description.svg')
+export const addAnunt = require('./Icons/addAnunt.svg')
+export const questionMark = require('./Icons/question.svg')
 
 //illustrations
 export const loginIllustration = require('./Illustrations/login.svg')

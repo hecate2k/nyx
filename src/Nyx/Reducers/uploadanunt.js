@@ -14,6 +14,7 @@ const INITIAL_STATE = {
     clickedIndex:-1,
     meniu:'',
     isOpen:false,
+    temporary: '',
 }
 
 const uploadAnuntReducer = (state = INITIAL_STATE, action) => {

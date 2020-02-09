@@ -44,6 +44,8 @@ const useClasses = makeStyles(theme =>({
         padding: '15px',
         margin: 'auto',
         marginTop: '15px',
+        position: 'fixed',
+        marginLeft: '15px',
       },
     headerLogoSection:{
         '& a':{
@@ -181,7 +183,24 @@ const useClasses = makeStyles(theme =>({
         fontSize: '10pt',
         fontWeight: 900,
         color: '#262626'
-    }
+    },
+    dialogModalMareTitle:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        fontSize: '13.5pt',
+        fontWeight: 900,
+        '& img':{
+            marginRight: '15px',
+        }
+    },
+    iesiButon:{
+        background: '#f35 !important',
+        fontSize: '11pt',
+        color: 'white',
+        fontWeight: 800,
+        padding: '10px 20px 10px 20px',
+    },
     }))
 
 export default useClasses

@@ -6,7 +6,7 @@ import useClasses from './headerCss'
 import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade, Grow } from '@material-ui/core';
 import { selectModalStatus, selectIsLogged } from '../../Selectors'
 import { changeModalStatus } from '../../Actions'
-import { menuIcon, nixxRedLogo,nixxLogo } from '../../Images'
+import { menuIcon, nixxRedLogo,nixxLogo, questionMark } from '../../Images'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,16 +18,25 @@ import {ContinutModalLogin, SignupModal, AdaugaAnunt} from '../ContinutModale'
 import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 import ProfileBadge from './headerComps'
-
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {resetUpload} from '../../Actions'
 
 function Header(props){
     const classes = useClasses()
 
-    const {isLogged,modalStatus, modal, changeModalStatus} = props
-    
+    const {resetUpload,isLogged,modalStatus, modal, changeModalStatus} = props
+    const [dialogModalMare,setDialogModalMare] = React.useState(false)
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
-    
+    const inchideDialogMare = () =>{
+        setDialogModalMare(false)
+        changeModalStatus(false,'')
+        resetUpload()
+    }
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;       
@@ -101,7 +110,7 @@ function Header(props){
             
         </Box>
         
-        <Modal  open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} 
+        <Modal disableBackdropClick={modal === 'upload' ? true : false}  onBackdropClick={() => modal === 'upload' ? setDialogModalMare(true) : changeModalStatus(false,'')} open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} 
         onClose={() => changeModalStatus(false,'')}
       >
           <Grow in={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} timeout={350}>
@@ -109,21 +118,31 @@ function Header(props){
             {
                 modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
                 : modal === 'signup' ? <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
-                : modal === 'upload' && <AdaugaAnunt/>
+                : modal === 'upload' && <AdaugaAnunt inchideModalul={() => setDialogModalMare(true)}/>
             }
         </div>
         </Grow>
       </Modal>
-      
-        {/* <Rodal  width={modalWidth}  height={modalHeight} visible={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} onClose={() => changeModalStatus(false,'')}>
-            {
-                modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
-              : modal === 'signup' && <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
-            }
-            {
-                modal === 'upload' && <AdaugaAnunt/>
-            }
-        </Rodal> */}
+                <Dialog open={dialogModalMare} onClose={() => setDialogModalMare(false)}>
+                    <Grow in={dialogModalMare}>
+                        <Box>
+                        <DialogTitle disableTypography className={classes.dialogModalMareTitle}><img alt="question mark image" src={questionMark}/>{"Esti sigur?"}</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText>
+                            Daca inchizi fereastra, progresul facut va fi pierdut.
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={() => setDialogModalMare(false)}>
+                            Anuleaza
+                        </Button>
+                        <Button variant="contained" className={classes.iesiButon} onClick={() => inchideDialogMare()}>
+                            Inchide
+                        </Button>
+                        </DialogActions>
+                        </Box>
+                    </Grow>
+                </Dialog>
         <HeaderFals/>
         
         </>
@@ -143,6 +162,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     changeModalStatus,
+    resetUpload
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Header)
