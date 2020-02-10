@@ -5,7 +5,8 @@ import useClasses from '../anunturiCss'
 import {heartIcon} from '../../../Images'
 import {Box, Grow} from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
-import Collapse from '@material-ui/core/Collapse';
+import {linkSprePozeAnunturi,linkSprePozeProfil} from '../../../Utils/serverLinks'
+
 
 function Anunt(props){
     const classes = useClasses()
@@ -27,11 +28,11 @@ function Anunt(props){
                 </Box>
                 <Box className={classes.anuntBody}>
                     <Box className={classes.anuntImagine}>
-                        <img src={"http://localhost/nixx/pozeAnunturi/"+imagini[0].nume_poza}/>
+                        <img src={linkSprePozeAnunturi+imagini[0].nume_poza}/>
                     </Box>
                     <Box className={classes.anuntInfos}>
                         <Box className={classes.sellerInfo}>
-                            <img className={classes.sellerAvatar} src={"http://localhost/nixx/pozeAnunturi/"+avatar} />
+                            <img className={classes.sellerAvatar} src={linkSprePozeProfil+avatar} />
                             <Box className={classes.sellerBio}>
                                 <p className={classes.anuntNumePrenume}>{prenume} {nume}</p>
                                 <p className={classes.judetOras}>{judet}, {oras}</p>

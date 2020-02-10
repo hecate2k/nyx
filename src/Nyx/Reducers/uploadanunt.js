@@ -42,12 +42,13 @@ const uploadAnuntReducer = (state = INITIAL_STATE, action) => {
             return{
                 ...state,
                 imagini:[
-                    ...state.imagini.filter((imagine,index) => index != action.index)
+                    ...state.imagini.filter((imagine,index) => index !== action.index)
                 ],
             }
         }
         case actionType.RESET_INDEX:
             return{
+                ...state,
                 clickedIndex:-1,
             }
         case actionType.OPEN_MENIU:

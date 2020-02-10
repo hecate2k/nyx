@@ -110,7 +110,7 @@ function Header(props){
             
         </Box>
         
-        <Modal disableBackdropClick={modal === 'upload' ? true : false}  onBackdropClick={() => modal === 'upload' ? setDialogModalMare(true) : changeModalStatus(false,'')} open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} 
+        <Modal disableBackdropClick={modal === 'upload' ? true : false}  onBackdropClick={() => modal === 'upload' ? setDialogModalMare(true) : changeModalStatus(false,'')} open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload') ? true : false} 
         onClose={() => changeModalStatus(false,'')}
       >
           <Grow in={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} timeout={350}>

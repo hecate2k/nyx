@@ -6,7 +6,7 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        width: '100%',
+        width: 'calc(100% + 1px)',
         backgroundColor: '#262626',
         marginTop: 'auto',
         // borderTop: '2px solid #262626',

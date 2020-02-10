@@ -3,15 +3,16 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
 import {xIcon,loginIllustration, userIcon, passwordIcon} from '../../Images'
-import {Box, TextField,InputAdornment,Button} from '@material-ui/core'
+import {Box, TextField,InputAdornment,Button,Grow} from '@material-ui/core'
 import {updateLoginValue, doLogin } from '../../Actions'
 import {selectLoginData} from '../../Selectors'
 
 function ContinutModalLogin(props){
     const classes = useClasses()
 
-    const {isLoading, updateLoginValue,doLogin } = props
-
+    const {emailError,passwordError,tempEmail,isLoading, updateLoginValue,doLogin } = props
+    console.log("tempEmail:",tempEmail);
+    
     return(
         // <Box className={classes.modalContainer}>
         <>
@@ -21,7 +22,17 @@ function ContinutModalLogin(props){
             </p>
             <TextField
                 className={classes.inputLogin}
-                label="Email"
+                label={
+                    <Box className={classes.labelBox}>
+                        Email
+                        {emailError && 
+                        <Grow in={emailError}>
+                            <Box className={classes.errorBullet}>
+                            </Box>
+                        </Grow>
+                        }
+                    </Box>
+                }
                 onChange={e => updateLoginValue({email:e.target.value})}
                 InputProps={{
                 startAdornment: (
@@ -33,7 +44,17 @@ function ContinutModalLogin(props){
             />
             <TextField
             className={classes.inputLogin}
-            label="Password"
+            label={
+                <Box className={classes.labelBox}>
+                    Password
+                    {passwordError && 
+                    <Grow in={passwordError}>
+                        <Box className={classes.errorBullet}>
+                        </Box>
+                    </Grow>
+                    }
+                </Box>
+            }
             type="password"
             onChange={e => updateLoginValue({password:e.target.value})}
             InputProps={{
@@ -58,7 +79,10 @@ function ContinutModalLogin(props){
 const mapStateToProps = (state) =>{
     const data = selectLoginData(state)
     return{
-        ...data
+        ...data,
+        tempEmail:state.temporary.email,
+        emailError: state.temporary.errors.email,
+        passwordError: state.temporary.errors.password,
     }
 }
 

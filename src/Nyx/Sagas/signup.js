@@ -1,6 +1,8 @@
 import { take, call, put, select} from 'redux-saga/effects'
 import { actionType } from '../Utils'
 import axios from 'axios'
+import {linkSpreFolderApi} from '../Utils/serverLinks'
+
 
 export function* signupSaga(){
     while(true){
@@ -19,7 +21,7 @@ function* signup(){
 		data.append('email', email)
         data.append('password', password)
         
-        const login = yield axios.post('http://localhost/nixx/signup.php',data)
+        const login = yield axios.post(linkSpreFolderApi + 'signup.php',data)
         
         const value = login.data.result
         console.log("RETURNED OBJ",login.data.result);

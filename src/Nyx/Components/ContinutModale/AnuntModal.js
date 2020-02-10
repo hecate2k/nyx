@@ -7,26 +7,26 @@ import {Box} from '@material-ui/core'
 import Scrollbar from "react-scrollbars-custom"
 import Badge from '@material-ui/core/Badge'
 import uuid from 'react-uuid'
-
+import {linkSprePozeAnunturi,linkSprePozeProfil} from '../../Utils/serverLinks'
 
 function AnuntModal(props){
     const classes = useClasses()
 
-    const {avatar,nume,prenume,brand,id_stare,id_categorie,titlu,descriere,telefon,pret,judet,oras,moneda,imagini} = props
+    const {avatar,nume,prenume,brand,categorie,stare,titlu,descriere,telefon,pret,judet,oras,moneda,imagini} = props
     const nrImagini = Object.keys(imagini||[]).length
     
     const renderListaImagini = (imagini)  =>  {
         if(!imagini.length)
             return <Box>Nu exista imagini</Box>
-        return imagini.map((date) => (
-            <img src={"http://localhost/nixx/pozeAnunturi/"+date.nume_poza} alt={date.alt} key={uuid()}/>
+        return imagini.map((date,index) => (
+            <img src={linkSprePozeAnunturi+date.nume_poza} alt={date.alt} key={index}/>
           ))
     }
     return(
         <>
         <div className={classes.modalHeader}>
             <div className={classes.modalAvatarInfo}>
-                <img alt="imagine testare" src={"http://localhost/nixx/pozeAnunturi/"+(avatar||[])} />
+                <img alt="imagine testare" src={linkSprePozeProfil+(avatar||[])} />
                 <Box className={classes.modalInfoText}>
                     <p className={classes.modalInfoNume}>
                         {prenume} {nume}
@@ -43,7 +43,7 @@ function AnuntModal(props){
                 {pret}{moneda}
             </div>
             <div className={classes.modalCategorie}>
-                {id_categorie}
+                {categorie}
             </div>
         </Box>
         <div className={classes.modalAttributes}>
@@ -60,7 +60,7 @@ function AnuntModal(props){
                     {brand}
                 </div>
                 <div className={classes.modalAttributeText}>
-                    {id_stare}
+                    {stare}
                 </div>
             </div>
         </div>

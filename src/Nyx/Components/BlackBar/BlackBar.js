@@ -7,14 +7,14 @@ import { searchIcon } from '../../Images'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { SelectList } from './blackBarComps'
 import Rodal from 'rodal'
-import {changeModalStatus,} from '../../Actions'
+import {changeModalStatus,enqueueSnackbar} from '../../Actions'
 import {selectModalStatus,selectIsLogged} from '../../Selectors'
 import 'rodal/lib/rodal.css'
 
 
 function BlackBar(props){
     const classes = useClasses()
-    const {changeModalStatus, modal} = props
+    const {changeModalStatus, logat,enqueueSnackbar} = props
     const [inputStatus, setInputStatus] = React.useState(false)
     const [modalStatus, setModalStatus] = React.useState(false)
     var x  = window.innerWidth - 30
@@ -26,7 +26,19 @@ function BlackBar(props){
         document.body.classList.remove('modal-open')
         setModalStatus(false)
       }
-
+      const openUploadModal = () => {
+        if(logat){
+            changeModalStatus(true,'upload')
+        }else{
+            enqueueSnackbar({
+                message:'Trebuie sa fii logat pentru a posta anunturi !',
+                key: new Date().getTime() + Math.random(),
+                options:{
+                    variant:"error"
+                }
+            })
+        }
+      }
     return(
         <>
         <Box className={classes.blackBar}>
@@ -41,7 +53,7 @@ function BlackBar(props){
                 <Box className={classes.selectItem}>Oras</Box>
             </Box>
             
-           <Button onClick={() => changeModalStatus(true,'upload')} className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
+           <Button onClick={() => openUploadModal()} className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
            
         </Box>
       
@@ -62,7 +74,8 @@ const mapStateToProps = (state) =>{
 
     return{
         isLogged: selectIsLogged(state),
-        ...dateModal
+        ...dateModal,
+        logat: state.login.isLogged
     }
 }
 
@@ -70,6 +83,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     changeModalStatus,
+    enqueueSnackbar
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(BlackBar)

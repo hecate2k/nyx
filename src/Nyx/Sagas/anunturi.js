@@ -1,6 +1,8 @@
 import { take, call, put} from 'redux-saga/effects'
 import { actionType } from '../Utils'
 import axios from 'axios'
+import {linkSpreFolderApi} from '../Utils/serverLinks'
+
 
 export function* anunturiSaga(){
     while(true){
@@ -21,7 +23,7 @@ function* getAnunturi(preluate,sarite){
 		data.append('preluate', preluate)
 		data.append('sarite', sarite)
 
-        const result = yield axios.post('http://localhost/nixx/anunturiBune.php',data)
+        const result = yield axios.post(linkSpreFolderApi+'anunturiBune.php',data)
         
         return result.data.result
 

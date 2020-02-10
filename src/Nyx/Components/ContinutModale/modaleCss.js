@@ -185,19 +185,24 @@ const useClasses = makeStyles(theme =>({
       modalImagesContainer:{
         marginTop: '15px',
         width: '100%',
+        height: '125px',
       },
       modalImages:{
           '& img':{
             height: '100%',
-            width: '170px',
+            width: '220px',
+            minWidth: '220px',
+            maxWidth: '220px',
             objectFit: 'cover',
             marginRight: '15px',
             borderRadius: '4px',
           },
+          height: '100%',
           display: 'flex',
           flexDirection: 'row',
           overflowX: 'auto',
-          width: '100%',
+          width: 'auto',
+          minWidth: '100%',
           minHeight: '100px',
           position: 'relative',
           scrollBehavior: 'smooth',
@@ -254,6 +259,8 @@ const useClasses = makeStyles(theme =>({
         //   height: '300px',
           fontSize: '9.5pt',
           width: '100%',
+          fontSize: '10.5pt',
+          fontWeight: 600,
       },
       modalDescriereTextUpload:{
         marginTop: '15px',
@@ -521,7 +528,13 @@ const useClasses = makeStyles(theme =>({
         padding: '10px 20px 10px 20px',
       },
       descriereP:{
-        paddingLeft: '15px'
+        padding: '10px',
+        fontSize: '11.5pt',
+        fontWeight: 700,
+        position: 'absolute',
+        width: 'calc(100% - 20px)',
+        height: '100%',
+        wordBreak: 'break-word'
       },
       adaugaAnuntFooter:{
         width: '100%',
@@ -590,6 +603,18 @@ const useClasses = makeStyles(theme =>({
           marginRight: '15px',
       }
   },
+  labelBox:{
+    display: 'flex',
+    alignItems: 'center',
+  },
+  errorBullet:{
+    width: '8px',
+    height: '8px',
+    borderRadius: '50%',
+    background: '#f35',
+    marginLeft: '5px',
+    marginTop: '-2px',
+  }
     }))
 
 export default useClasses

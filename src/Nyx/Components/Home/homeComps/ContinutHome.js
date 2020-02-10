@@ -24,7 +24,7 @@ function Login(props){
     var modalHeight  = window.innerHeight - 30
 
     useBeforeFirstRender(() => {
-        getAnunturi(10,0)
+        getAnunturi(20,0)
     })
 
 

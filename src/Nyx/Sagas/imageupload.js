@@ -2,6 +2,9 @@ import { take, call, put, select} from 'redux-saga/effects'
 import { actionType } from '../Utils'
 import axios from 'axios'
 import uuid from 'react-uuid'
+import {linkSpreFolderApi} from '../Utils/serverLinks'
+
+
 export function* imageuploadSaga(){
     while(true){
         yield take(actionType.TRY_IMAGE_UPLOAD)
@@ -21,7 +24,7 @@ function* imageupload(){
         data.append('imageType', imageType)
         data.append('id',id)
 
-        const uploadResult = yield axios.post('http://localhost/nixx/uploadImage.php',data,{
+        const uploadResult = yield axios.post(linkSpreFolderApi + 'uploadImage.php',data,{
             headers: {
                 'content-type': 'multipart/form-data'
             }

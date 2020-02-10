@@ -21,7 +21,7 @@ function Navigation(props){
         )
     
     return(
-        <SnackbarProvider autoHideDuration={2000} classes={{variantSuccess: classes.success,}} disableWindowBlurListener={true} dense anchorOrigin={{vertical: 'top', horizontal: 'center',}}>
+        <SnackbarProvider autoHideDuration={2000} classes={{variantSuccess: classes.success,variantError: classes.error}} disableWindowBlurListener={true} dense anchorOrigin={{vertical: 'top', horizontal: 'center',}}>
             <Router history={history}>
                 <Notifier/>
                 <Switch>

@@ -7,7 +7,9 @@ const useClasses = makeStyles(theme =>({
         width: '100%',
     },
     continutHome:{
-        minHeight: 'calc(100% - 200px)',
+        minHeight: 'calc(100% - 298px)',
+        display: 'flex',
+        flexDirection: 'column',
     },
     bannerHome: {
         marginLeft: 'auto',
@@ -16,10 +18,10 @@ const useClasses = makeStyles(theme =>({
         borderRadius: '8px',
         marginTop: '15px',
         width: 'calc(100% - 30px)',
-        height: '105px',
+        height: '120px',
         boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
         '& img':{
-            width: '114%',
+            width: '100%',
             height: '100%',
             /* display: none, */
             objectFit: 'cover',
@@ -142,6 +144,7 @@ const useClasses = makeStyles(theme =>({
     },
     homeStatsBox:{
         width:'100%',
+        margin: 'auto auto',
     },
     homeNrAnunturi:{
         fontWeight: 700,

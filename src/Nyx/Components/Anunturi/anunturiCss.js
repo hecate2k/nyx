@@ -73,7 +73,8 @@ const useClasses = makeStyles(theme =>({
             objectFit: 'cover',
             borderRadius: '8px',
             boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
-        }
+        },
+        height: '100%',
     },
     anuntInfos:{
         display: 'flex',

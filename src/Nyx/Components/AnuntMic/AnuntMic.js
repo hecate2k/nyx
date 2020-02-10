@@ -5,6 +5,8 @@ import useClasses from '../Home/homeCss'
 import {testImage , shareIcon, heartIcon} from '../../Images'
 import Zoom from '@material-ui/core/Zoom';
 import Grow from '@material-ui/core/Grow';
+import {linkSprePozeAnunturi} from '../../Utils/serverLinks'
+
 
 function AnuntMic(props){
     const classes = useClasses()
@@ -14,7 +16,7 @@ function AnuntMic(props){
     return(
         <Grow in={true} timeout={750} >
         <div onClick={props.onClick} className={classes.homeCard}>
-            <img src={"http://localhost/nixx/pozeAnunturi/"+imagini[0].nume_poza} alt="" />
+            <img src={linkSprePozeAnunturi+imagini[0].nume_poza} alt="" />
             <div className={classes.homeCardTitlu}>
                 {titlu}
             </div>

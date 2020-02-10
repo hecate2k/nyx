@@ -1,8 +1,8 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
-    modalStatus:true,
-    modal:'upload',
+    modalStatus:false,
+    modal:'',
     anuntId: -1,
     email: '',
     password: '',

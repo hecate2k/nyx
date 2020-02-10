@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import {Box, ClickAwayListener, Collapse, Button} from '@material-ui/core'
 import { selectLoginData } from '../../../Selectors'
 import { testImage, badgeMenuIcon, profileIcon, anunturiIcon} from '../../../Images'
-
+import {linkSprePozeProfil} from '../../../Utils/serverLinks'
 
 function ProfileBadge(props){
     const classes = useClasses()
@@ -15,15 +15,14 @@ function ProfileBadge(props){
 	const onClickAway = () => {
 		open && setOpen(false)
     }
-    
     const {loginData} = props
-    
+    let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
     return(
         <>
         <ClickAwayListener onClickAway={onClickAway}>
 				<Box style={{zIndex: '999',position: 'relative'}}>
 					<Box classes={{root:classes.profileBadge}} variant="contained" onClick={() => setOpen(open => !open)}>
-                        <img className={classes.profileBadgeAvatar} src={"http://localhost/nixx/pozeAnunturi/"+loginData.avatar} />
+                        <img className={classes.profileBadgeAvatar} src={avatar} />
                         <Box className={classes.profileBadgeNume}>
                             {loginData.prenume} <span>{loginData.nume}</span>
                         </Box>

@@ -58,3 +58,4 @@ export const setUploadData = value => ({type: actionType.SET_UPLOAD_DATA, value}
 export const openMeniu = meniu => ({type:actionType.OPEN_MENIU,meniu})
 export const closeMeniu = () => ({type:actionType.CLOSE_MENIU})
 export const resetUpload = () => ({type:actionType.RESET_UPLOAD_REDUCER})
+export const tryUpload = () => ({type:actionType.TRY_UPLOAD_ANUNT})

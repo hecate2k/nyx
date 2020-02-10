@@ -10,6 +10,7 @@ import history from '../../../Navigation/history'
 import {setUploadedFile,uploadImage} from '../../../Actions'
 import useForceUpdate from 'use-force-update';
 import LazyLoad from 'react-lazyload';
+import {linkSprePozeProfil,linkSprePozeAnunturi} from '../../../Utils/serverLinks'
 
 function ProfilHeader(props){
     const classes = useClasses()
@@ -21,6 +22,8 @@ function ProfilHeader(props){
     const inputCover = React.createRef()
     const [isBlob,setBlob] = React.useState(false)
     const [isBlobCover,setBlobCover] = React.useState(false)
+    let cover = loginData.cover === 'none' ? linkSprePozeProfil + 'defaultCover.jpg' : linkSprePozeProfil + loginData.cover
+    let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
     const onChangeAvatar = (e) => {
         setUploadedFile(e.target.files[0],'avatar')
         // loginData.avatar = URL.createObjectURL(e.target.files[0])
@@ -45,9 +48,7 @@ function ProfilHeader(props){
             <Box className={classes.ProfilHeader}>
                 <input  type="file" accept="image/*" onChange={onChangeCover} ref={inputCover} style={{display: 'none'}}/>
                 <LazyLoad>
-                <Zoom in={true} timeout={650}>
-                    <img alt="aa" className={classes.profileCoverImage} src={loginData.cover === 'none'? 'http://localhost/nixx/pozeAnunturi/defaultCover.jpg' :"http://localhost/nixx/pozeAnunturi/"+loginData.cover} />
-                </Zoom>
+                    <img alt="aa" className={classes.profileCoverImage} src={cover} />
                 </LazyLoad>
                 <Box className={classes.backIcon} onClick={() => history.goBack()}>
                     <img alt="aa" src={profileBackIcon}/>
@@ -60,9 +61,7 @@ function ProfilHeader(props){
                     <Box onClick={() => inputF.current.click()} className={classes.avatarBox}>
                         
                         <LazyLoad>
-                        <Grow in={true} timeout={1050}>
-                        <img alt="aa" className={classes.profilAvatar} src={loginData.avatar === 'none'? 'http://localhost/nixx/pozeAnunturi/defaultAvatar.png' :'http://localhost/nixx/pozeAnunturi/'+loginData.avatar} />
-                        </Grow>
+                        <img alt="aa" className={classes.profilAvatar} src={avatar} />
                         </LazyLoad>
                         
                         <div className={classes.cameraIcon}>

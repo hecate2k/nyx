@@ -10,7 +10,26 @@ const useClasses = makeStyles(theme =>({
         alignItems: 'center !important',
         padding: '10px !important',
         fontSize: '11pt !important',
-    }
+    },
+    error:{
+        background: '#fff !important',
+        color:'#ff1133 !important',
+        display: 'flex !important',
+        justifyContent: 'center !important',
+        alignItems: 'center !important',
+        padding: '10px !important',
+        fontSize: '11pt !important',
+    },
+    // error:{
+    //     background: '#ff1133 !important',
+    //     color:'white !important',
+    //     display: 'flex !important',
+    //     justifyContent: 'center !important',
+    //     alignItems: 'center !important',
+    //     padding: '10px !important',
+    //     fontSize: '11pt !important',
+    //     fontWeight: '800 !important',
+    // }
     
 }))
 
