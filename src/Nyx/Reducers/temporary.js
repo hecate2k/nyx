@@ -1,8 +1,8 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
-    modalStatus:false,
-    modal:'',
+    modalStatus:true,
+    modal:'login',
     anuntId: -1,
     email: '',
     password: '',

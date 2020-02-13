@@ -44,10 +44,10 @@ function* uploadFile(){
         })
         yield put({type:actionType.RESET_TEMPORARY_REDUCER})
         yield put({type:actionType.RESET_UPLOAD_REDUCER})
-        put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
             message: 'Ai publicat anuntul cu success !',
+            key: new Date().getTime() + Math.random(),
             options: {
-                key: new Date().getTime() + Math.random(),
                 variant: 'success'
             },
         }})

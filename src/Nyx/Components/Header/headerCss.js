@@ -47,6 +47,14 @@ const useClasses = makeStyles(theme =>({
         position: 'fixed',
         marginLeft: '15px',
       },
+      paperLogin:{
+        paddingBottom: '8px',
+        background: '#F7F7F7',
+        minHeight: 'auto',
+        height: 'auto',
+        top: '50%',
+        transform: 'translate(0,-50%) !important',
+      },
     headerLogoSection:{
         '& a':{
             display: 'flex',

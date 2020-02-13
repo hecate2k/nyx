@@ -40,29 +40,24 @@ const useClasses = makeStyles(theme =>({
         // backgroundColor: '#efefef',
     },
     modalTitle:{
-        '& span':{
-            color:'#f35',
-        },
-        // marginBottom:'15px',
-        marginTop: '15px',
         margin:'0 auto',
-        fontSize: '17pt',
+        fontSize: '11.5pt',
         fontWeight: 900,
     },
-    loginButton:{
-        '& root':{
-            backgroundColor: '#f35 !important',
+    activeLoginTab:{
+        '& span':{
+          color:'#f35',
         },
-        marginTop: '15px',
-        backgroundColor: '#f35 !important',
-        color:'white',
-        fontSize: '8.5pt',
-        fontWeight: 900,
-        width: 'calc(100% - 30px)',
-        padding: '5px',
-        height: '35px',
-        margin:'0 auto',
-        marginTop: '25px',
+        position: 'relative',
+    },
+    redUnderline:{
+        position: 'absolute',
+        bottom: '-4px',
+        height: '3px',
+        background: '#f35',
+        left: '-3px',
+        borderRadius: '220px',
+        width: 'calc(100% + 6px)',
     },
     bottomInfo:{
         margin: '0 auto',
@@ -603,18 +598,97 @@ const useClasses = makeStyles(theme =>({
           marginRight: '15px',
       }
   },
-  labelBox:{
-    display: 'flex',
-    alignItems: 'center',
-  },
   errorBullet:{
-    width: '8px',
-    height: '8px',
+    width: '5px',
+    height: '5px',
     borderRadius: '50%',
     background: '#f35',
     marginLeft: '5px',
     marginTop: '-2px',
-  }
-    }))
+  },
+  loginHeader:{
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  loginContent:{
+    padding: '15px 20px',
+    borderRadius: '8px',
+    background: '#262626',
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'calc(100% + 17px)',
+    marginTop: '15px',
+    marginLeft: '-9px',
+    '& > :first-child':{
+      marginBottom: '15px',
+    }
+  },
+  inputContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  inputIcon:{
+    height: '20px',
+    width: '20px',
+    marginRight: '13px',
+  },
+  labelBox:{
+    display: 'flex',
+    alignItems: 'center',
+    color: 'white',
+    fontWeight: 800,
+    fontSize: '7pt',
+  },
+  loginInput:{
+    color: 'white',
+    fontWeight: 900,
+    fontSize: '10pt',
+    fontStyle: 'italic',
+    display: 'flex',
+    '& input':{
+      padding: 0,
+      paddingTop: '1px',
+    }
+  },
+  inputBox:{
+    width: '100%',
+  },
+  loginFooter:{
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: '5px',
+    justifyContent: 'space-between',
+  },
+  loginButton:{
+    backgroundColor: '#f35 !important',
+    minHeight: '29px',
+    color:'white',
+    fontSize: '7.7pt',
+    marginRight: '-5px',
+    fontWeight: 900,
+    width: 'calc(50% + 3px)',
+    padding: '8px 10px',
+    borderRadius: '8px',
+    textTransform: 'unset',
+    boxShadow: '0px 3px 6px rgba(0,0,0,.16) !important',
+},
+cancelButton:{
+  backgroundColor: 'white !important',
+    color:'#262626',
+    minHeight: '29px',
+    marginLeft: '-5px',
+    fontSize: '7.7pt',
+    fontWeight: 900,
+    width: 'calc(50% + 3px)',
+    padding: '8px 10px',
+    borderRadius: '8px',
+    textTransform: 'unset',
+    boxShadow: '0px 3px 6px rgba(0,0,0,.16) !important',
+}
+}))
 
 export default useClasses

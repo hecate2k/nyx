@@ -2,8 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from './modaleCss'
-import {xIcon,loginIllustration, userIcon, passwordIcon} from '../../Images'
-import {Box, TextField,InputAdornment,Button,Grow} from '@material-ui/core'
+import {xIcon,loginIllustration, userIcon, passwordIcon, emailIcon} from '../../Images'
+import {Box, TextField,InputAdornment,Button,Grow, Input} from '@material-ui/core'
 import {updateLoginValue, doLogin } from '../../Actions'
 import {selectLoginData} from '../../Selectors'
 
@@ -16,13 +16,19 @@ function ContinutModalLogin(props){
     return(
         // <Box className={classes.modalContainer}>
         <>
-            <img className={classes.ilustratieLogin} src={loginIllustration}/>
-            <p className={classes.modalTitle}>
+        <Box className={classes.loginHeader}>
+            <p className={[classes.modalTitle,classes.activeLoginTab].join(' ')}>
                 LOG<span>IN</span>
+                <span className={classes.redUnderline}></span>
             </p>
-            <TextField
-                className={classes.inputLogin}
-                label={
+            <p className={classes.modalTitle}>
+                SIGNUP
+            </p>
+        </Box>
+        <Box className={classes.loginContent}>
+            <Box className={classes.inputContainer}>
+                <img className={classes.inputIcon} src={emailIcon}/>
+                <Box className={classes.inputBox}>
                     <Box className={classes.labelBox}>
                         Email
                         {emailError && 
@@ -32,45 +38,30 @@ function ContinutModalLogin(props){
                         </Grow>
                         }
                     </Box>
-                }
-                onChange={e => updateLoginValue({email:e.target.value})}
-                InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                        <img src={userIcon} />
-                    </InputAdornment>
-                ),
-                }}
-            />
-            <TextField
-            className={classes.inputLogin}
-            label={
-                <Box className={classes.labelBox}>
-                    Password
-                    {passwordError && 
-                    <Grow in={passwordError}>
-                        <Box className={classes.errorBullet}>
-                        </Box>
-                    </Grow>
-                    }
+                    <Input onChange={e => updateLoginValue({email:e.target.value})} placeholder="example.email@gmail.com" className={classes.loginInput} disableUnderline />
                 </Box>
-            }
-            type="password"
-            onChange={e => updateLoginValue({password:e.target.value})}
-            InputProps={{
-            startAdornment: (
-                <InputAdornment position="start">
-                    <img src={passwordIcon} />
-                </InputAdornment>
-                ),
-                }}
-            />
+            </Box>
+            <Box className={classes.inputContainer}>
+                <img className={classes.inputIcon} src={passwordIcon}/>
+                <Box className={classes.inputBox}>
+                    <Box className={classes.labelBox}>
+                        Parola
+                        {passwordError && 
+                        <Grow in={passwordError}>
+                            <Box className={classes.errorBullet}>
+                            </Box>
+                        </Grow>
+                        }
+                    </Box>
+                    <Input onChange={e => updateLoginValue({password:e.target.value})} type="password" placeholder="••••••••••••" className={classes.loginInput} autoFocus={true} disableUnderline />
+                </Box>
+            </Box>
+        </Box>
+        <Box className={classes.loginFooter}>
+            <Button onClick={props.handleClose} className={classes.cancelButton} variant="contained" disableElevation>Inchide</Button>
+            <Button onClick={() => !isLoading ? doLogin() : null} className={classes.loginButton} variant="contained" disableElevation >Log in</Button>           
+        </Box>
             
-            <Button onClick={() => !isLoading ? doLogin() : null} className={classes.loginButton} variant="contained" disableElevation >LOG IN</Button>
-            <div className={classes.bottomInfo}>
-                <p>Ai uitat parola ?</p>
-                <p>Nu ai cont? <span> SIGN UP </span></p>
-            </div>
         {/* </Box> */}
         </>
     )  

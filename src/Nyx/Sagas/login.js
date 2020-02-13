@@ -29,8 +29,8 @@ function* login(){
         yield put({type: actionType.CHANGE_MODAL_STATUS, modalStatus: false, modal: ''})
         yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
             message: 'Logarea a avut loc cu success !',
+            key: new Date().getTime() + Math.random(),
             options: {
-                key: new Date().getTime() + Math.random(),
                 variant: 'success'
             },
         }})
@@ -41,8 +41,8 @@ function* login(){
         console.log("A INTERVENIT O EROAREa", error.response.data.error)
         yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
             message: 'Email sau parola incorecta !',
+            key: new Date().getTime() + Math.random(),
             options: {
-                key: new Date().getTime() + Math.random(),
                 variant: 'error'
             },
         }})

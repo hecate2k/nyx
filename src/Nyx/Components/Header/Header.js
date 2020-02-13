@@ -114,7 +114,7 @@ function Header(props){
         onClose={() => changeModalStatus(false,'')}
       >
           <Grow in={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} timeout={350}>
-          <div className={classes.paper}>
+          <div className={[classes.paper,modal === 'login'? classes.paperLogin : null].join(' ')}>
             {
                 modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
                 : modal === 'signup' ? <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
