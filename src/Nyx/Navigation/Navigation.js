@@ -26,7 +26,8 @@ function Navigation(props){
                 <Notifier/>
                 <Switch>
                     <Route path="/" exact component={Home}/>
-                    <Route path="/anunturi" component={CategorieAnunturi}/>
+                    {/* <Route path="/anunturi" component={CategorieAnunturi}/> */}
+                    <Route path="/anunturi/:categorie" component={CategorieAnunturi}/>
                     <Route path="/Profil" component={Profil}/>
                     <Route path="/aboutus" component={About}/>
                     <Route component={Error404}/>

@@ -48,7 +48,7 @@ export const setBlobAvatar = () => ({type:actionType.SET_BLOB_AVATAR})
 export const setBlobCover = () => ({type:actionType.SET_BLOB_COVER})
 export const resetBlob = () => ({type:actionType.RESET_BLOB})
 export const resetLoginData = () => ({type:actionType.RESET_LOGIN_REDUCER})
-
+export const resetAnunturi = () => ({type:actionType.RESET_ANUNTURI})
 
 //UPLOAD REDUCER
 
@@ -59,3 +59,16 @@ export const openMeniu = meniu => ({type:actionType.OPEN_MENIU,meniu})
 export const closeMeniu = () => ({type:actionType.CLOSE_MENIU})
 export const resetUpload = () => ({type:actionType.RESET_UPLOAD_REDUCER})
 export const tryUpload = () => ({type:actionType.TRY_UPLOAD_ANUNT})
+
+
+//PAGINATION REDUCER
+
+export const setPaginationValue = (value) => ({type:actionType.SET_PAGINATION_DATA, value})
+export const resetPagination = () => ({type:actionType.RESET_PAGINATION_REDUCER})
+export const getNrAnunturi = (categorie) => ({type:actionType.GET_NR_ANUNTURI,categorie})
+export const setNrAds = (rezultat) => ({type:actionType.SET_NR_ADS,rezultat})
+export const resetPage = () => ({type:actionType.RESET_PAGE})
+//GET ANUNTURI CATEGORIE
+
+// export const getAnunturiCategorie = (preluate,sarite,categorie) => ({type:actionType.GET_ANUNTURI_CATEGORIE,preluate,sarite,categorie})
+export const getAnunturiCategorie = () => ({type:actionType.GET_ANUNTURI_CATEGORIE})

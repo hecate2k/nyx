@@ -165,6 +165,32 @@ const useClasses = makeStyles(theme =>({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: '-15px',
+    },
+    paginationRoot:{
+        // marginTop: 'auto !important',
+    },
+    selectedPage:{
+        background: '#f35 !important',
+        color:'white !important',
+        fontWeight: 900,
+    },
+    paginationBox:{
+        width: '100%',
+        background: 'white',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+        marginBottom: '15px',
+        padding: '3px',
+        borderRadius: '8px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 'auto'
+    },
+    smallSizePagination:{
+        width: '28px !important',
+        height: '28px !important',
+        fontSize: '9pt !important',
+        fontWeight: 700,
     }
 }))
 

@@ -15,7 +15,6 @@ export default function temporaryMiddleware({dispatch,getState}){
                             variant: 'success'
                         },
                     }})
-                    dispatch({type:actionType.RESET_TEMPORARY_REDUCER})
             }
                     
             }
@@ -36,7 +35,6 @@ export default function temporaryMiddleware({dispatch,getState}){
                             variant: 'error'
                         },
                     }})
-                    dispatch({type:actionType.RESET_TEMPORARY_REDUCER})
                     return
                 }
 

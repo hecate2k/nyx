@@ -23,7 +23,6 @@ export default function anunturiMiddleware({dispatch,getState}){
                             variant: 'error'
                         },
                     }})
-                    dispatch({type:actionType.RESET_TEMPORARY_REDUCER})
                     return
                 }
             }

@@ -5,7 +5,7 @@ import temporary from './temporary'
 import signup from './signup'
 import snackbar from './snackbar'
 import upload from './uploadanunt'
-
+import pagination from './pagination'
 const reducers = combineReducers({
     //lista reducere
     login,
@@ -13,7 +13,8 @@ const reducers = combineReducers({
     temporary,
     signup,
     snackbar,
-    upload
+    upload,
+    pagination,
 })
 
 export default reducers

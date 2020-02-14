@@ -17,7 +17,11 @@ const anunturiReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 anunturi: state.anunturi.filter(anunt => anunt.id !== anunt.id).concat(action.anunturi)
             }        
-
+            case actionType.RESET_ANUNTURI:
+                return{
+                    ...state,
+                    ...INITIAL_STATE,
+                }
         default: 
         return state
     }

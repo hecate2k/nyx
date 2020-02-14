@@ -181,6 +181,7 @@ const useClasses = makeStyles(theme =>({
         marginTop: '15px',
         width: '100%',
         height: '125px',
+        minHeight: '125px',
       },
       modalImages:{
           '& img':{

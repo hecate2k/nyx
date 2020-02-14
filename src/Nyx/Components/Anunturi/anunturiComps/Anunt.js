@@ -10,11 +10,10 @@ import {linkSprePozeAnunturi,linkSprePozeProfil} from '../../../Utils/serverLink
 
 function Anunt(props){
     const classes = useClasses()
-    const {promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
-
+    const {timeout,promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
     return(
         <>
-        <Grow in={true} timeout={650}>
+        <Grow in={true} timeout={props.timeout}>
             <Box onClick={props.onClick} className={classes.anuntContainer}>
                 <Box className={classes.anuntHeader}>
                     {promovat === 1 &&
@@ -28,7 +27,7 @@ function Anunt(props){
                 </Box>
                 <Box className={classes.anuntBody}>
                     <Box className={classes.anuntImagine}>
-                        <img src={linkSprePozeAnunturi+imagini[0].nume_poza}/>
+                        <img src={(linkSprePozeAnunturi+imagini[0].nume_poza) || ""}/>
                     </Box>
                     <Box className={classes.anuntInfos}>
                         <Box className={classes.sellerInfo}>

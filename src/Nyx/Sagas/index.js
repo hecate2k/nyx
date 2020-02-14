@@ -1,10 +1,12 @@
 import { all } from 'redux-saga/effects'
 import { loggerSaga } from './logger'
 import { loginSaga } from './login'
-import { anunturiSaga } from './anunturi'
+import { anunturiSaga, getNrAnunturi} from './anunturi'
 import {imageuploadSaga} from './imageupload'
 import {signupSaga} from './signup'
 import {uploadAnuntSaga} from './uploadAnunt'
+import {anunturiCategorieSaga} from './getAnunturiCategorie'
+
 export default function* sagas(){
     yield all([
         //lista sagauri ex saga1(),
@@ -14,5 +16,7 @@ export default function* sagas(){
         imageuploadSaga(),
         signupSaga(),
         uploadAnuntSaga(),
+        getNrAnunturi(),
+        anunturiCategorieSaga(),
     ])
 }

@@ -14,9 +14,12 @@ function AnuntModal(props){
 
     const {avatar,nume,prenume,brand,categorie,stare,titlu,descriere,telefon,pret,judet,oras,moneda,imagini} = props
     const nrImagini = Object.keys(imagini||[]).length
+    console.log("titlu:",titlu);
+    console.log("nrImagini",nrImagini);
+    console.log("imagini",imagini);
     
     const renderListaImagini = (imagini)  =>  {
-        if(!imagini.length)
+        if(!nrImagini)
             return <Box>Nu exista imagini</Box>
         return imagini.map((date,index) => (
             <img src={linkSprePozeAnunturi+date.nume_poza} alt={date.alt} key={index}/>
@@ -68,7 +71,7 @@ function AnuntModal(props){
             {titlu}
         </p>
         {
-            nrImagini > 1 &&
+            nrImagini > 1 ?
             <Badge classes={{
                 badge:classes.anuntModalBadges
             }} badgeContent={nrImagini} color="primary">
@@ -78,6 +81,11 @@ function AnuntModal(props){
                     </Box>
                 </Box>
             </Badge>
+            : <Box className={classes.modalImagesContainer}>
+            <Box className={classes.modalImages}>
+                {renderListaImagini(imagini||[])}
+            </Box>
+        </Box>
         }
         
         <p className={classes.modalTitluDescriere}>

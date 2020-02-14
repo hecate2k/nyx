@@ -1,7 +1,39 @@
-import { take, call, put} from 'redux-saga/effects'
+import { take, call, put,select} from 'redux-saga/effects'
 import { actionType } from '../Utils'
 import axios from 'axios'
 import {linkSpreFolderApi} from '../Utils/serverLinks'
+
+export function* getNrAnunturi(){
+    while(true){
+        const {currentPage} = yield select(state => state.pagination)
+        const {categorie} = yield take(actionType.GET_NR_ANUNTURI)
+        yield call(getTotalAnunturi,categorie)
+    }
+}
+
+function* getTotalAnunturi(categorie){
+    try{
+        
+        const data = new FormData()
+        data.append('categorie', categorie)
+        const uploadResult = yield axios.post(linkSpreFolderApi+'getNrAnunturi.php',data)
+        
+        const rezultat = uploadResult.data.result
+        yield put({type:actionType.SET_NR_ADS,rezultat})
+        console.log("total anunturi ", rezultat);
+        
+    }
+    catch(error){
+        console.log("ERROR",error.response.data);
+        
+    }
+    finally{
+    }
+}
+
+
+
+
 
 
 export function* anunturiSaga(){

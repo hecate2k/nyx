@@ -76,7 +76,11 @@ const useClasses = makeStyles(theme =>({
     },
     butoaneHeaderDreapta :{
         // marginRight: '15px',
+        width: '59px',
         display: 'flex',
+    },
+    logoLinkHome:{
+        width: '100%',
     },
     butonMeniu:{
         padding: '0px !important',

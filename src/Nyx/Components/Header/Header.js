@@ -23,12 +23,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {resetUpload} from '../../Actions'
+import {resetUpload,setPaginationValue} from '../../Actions'
 
 function Header(props){
     const classes = useClasses()
 
-    const {resetUpload,isLogged,modalStatus, modal, changeModalStatus} = props
+    const {setPaginationValue,resetUpload,isLogged,modalStatus, modal, changeModalStatus} = props
     const [dialogModalMare,setDialogModalMare] = React.useState(false)
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
@@ -53,8 +53,8 @@ function Header(props){
         >
           <List>
             {menuItems.map(({text,icon,path}, index) => (
-            <Link to="/anunturi" key={index}>
-              <ListItem button >
+            <Link to={"/anunturi/"+path} onClick={() => setPaginationValue({categorie:text})} key={index}>
+              <ListItem  button >
                 <ListItemIcon>
                     <img src={icon}/>
                 </ListItemIcon>
@@ -90,7 +90,7 @@ function Header(props){
                             <Button onClick={() => changeModalStatus(true,'login')} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
                             <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
-                        :<Link to="/"><img alt={"logo"} src={nixxLogo}/></Link>
+                        :<Link to="/"><img className={classes.logoLinkHome} alt={"logo"} src={nixxLogo}/></Link>
                     }
                     
                 </div>
@@ -162,7 +162,8 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     changeModalStatus,
-    resetUpload
+    resetUpload,
+    setPaginationValue,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Header)
