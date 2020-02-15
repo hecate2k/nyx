@@ -13,6 +13,7 @@ function CategorieAnunturi(props){
     return(
         <Box className={classes.anunturiWindow}>
             <Header />
+            <Box className={classes.fillerSpaceAnunturi}/>
             <FiltreBar />
             <BlackSearch />
             <ListaAnunturi />

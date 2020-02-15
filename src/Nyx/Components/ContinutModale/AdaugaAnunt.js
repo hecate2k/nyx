@@ -102,7 +102,7 @@ function ContinutModalAnunt(props){
             </Select>
         </Box>
         <div className={classes.modalAttributes}>
-            <div className={classes.modalAttribute}>
+            <div className={classes.attributeTitleBox}>
                 <div className={classes.modalAttributeTitle} style={{borderTopLeftRadius:'4px',color:'#f35'}}>
                     Brand
                 </div>

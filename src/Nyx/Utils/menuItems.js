@@ -19,7 +19,7 @@ const menuItems = [
     {
         text:   'Locuri de munca',
         icon:   icons.muncaIcon,
-        path:   'automoto',
+        path:   'locuridemunca',
     },
     {
         text:   'Servicii',

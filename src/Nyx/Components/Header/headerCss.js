@@ -8,13 +8,13 @@ const useClasses = makeStyles(theme =>({
         flexDirection: 'column',
         width:'calc(100% + 1px)',
         backgroundColor: '#f5f5f5',
-        height: '178px'
+        height: '164px'
     },
     header : {
         display: 'flex',
         width:'100%',
         height: '53px',
-        backgroundColor: '#f35',
+        backgroundImage: 'linear-gradient(to right top, #ff3355, #ff3655, #ff3855, #ff3b56, #ff3d56, #ff3d57, #ff3d57, #ff3d58, #ff3b5a, #ff385b, #ff365d, #ff335f)',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '0px 15px 0px 15px',
@@ -34,26 +34,27 @@ const useClasses = makeStyles(theme =>({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         minHeight: 'calc(100% - 30px)',  
-        width: 'calc(100% - 30px)',
-        height: 'calc(100% - 30px)',
-        backgroundColor: 'white',
-        border: '2px solid #000',
-        border:'0px',
-        borderRadius: '8px',
-        boxShadow: theme.shadows[5],
-        padding: '15px',
-        margin: 'auto',
-        marginTop: '15px',
-        position: 'fixed',
-        marginLeft: '15px',
+        width: 'calc(100% - 30px) !important',
+        height: 'calc(100% - 30px) !important',
+        marginTop: '15px !important',
       },
       paperLogin:{
         paddingBottom: '8px',
         background: '#F7F7F7',
-        minHeight: 'auto',
+        minHeight: '184px',
         height: 'auto',
+        // marginTop: '50%',
+        width: 'calc(100% - 30px)',
+        // top: '50%',
+        // transform: 'translate(0,-50%) !important',
+        padding: '15px',
+        position: 'fixed',
+        boxShadow: theme.shadows[5],
+        borderRadius: '8px',
+        // marginLeft: '15px',
         top: '50%',
-        transform: 'translate(0,-50%) !important',
+        left: '50%',
+        transform: 'translate(-50%,-50%) !important',
       },
     headerLogoSection:{
         '& a':{
@@ -76,8 +77,43 @@ const useClasses = makeStyles(theme =>({
     },
     butoaneHeaderDreapta :{
         // marginRight: '15px',
-        width: '59px',
+        width: '225px',
         display: 'flex',
+    },
+    butoaneHeaderBox:{
+        width: '221px',
+        display: 'flex',
+        padding: '5px',
+        background: 'white',
+        borderRadius: '13px',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)'
+    },
+    butoaneHeaderBoxRed:{
+        color: 'white',
+        height: '30px',
+        padding: '6px 15px',
+        fontSize: '7pt',
+        fontWeight: 900,
+        marginRight: '5px',
+        background: '#f35 !important',
+        backgroundImage: 'linear-gradient(to right top, #ff3355, #ff3655, #ff3855, #ff3b56, #ff3d56, #ff3d57, #ff3d57, #ff3d58, #ff3b5a, #ff385b, #ff365d, #ff335f) !important',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+        borderRadius: '8px',
+    },
+    butoaneHeaderBoxWhite:{
+        color: '#262626',
+        height: '30px',
+        padding: '6px 15px',
+        fontSize: '7pt',
+        fontWeight: 900,
+        background: 'white !important',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+        borderRadius: '8px',
+        border:'none !important',
+    },
+    headerLinkHome:{
+        marginLeft: 'auto',
+        width: '59px',
     },
     logoLinkHome:{
         width: '100%',
@@ -159,6 +195,9 @@ const useClasses = makeStyles(theme =>({
         marginLeft: '15px',
         '& span':{
             color:'#f35',
+            background: 'linear-gradient(to right top, #ff3355, #ff3655, #ff3855, #ff3b56, #ff3d56, #ff3d57, #ff3d57, #ff3d58, #ff3b5a, #ff385b, #ff365d, #ff335f)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
         },
     },
     profileBadgeContinut:{
@@ -213,6 +252,9 @@ const useClasses = makeStyles(theme =>({
         fontWeight: 800,
         padding: '10px 20px 10px 20px',
     },
+    headerLogoImage:{
+        marginTop: '15px',
+    }
     }))
 
 export default useClasses

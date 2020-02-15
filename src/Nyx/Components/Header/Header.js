@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import useClasses from './headerCss'
-import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade, Grow } from '@material-ui/core';
+import { Box, Drawer, Button, SwipeableDrawer, Modal, Fade, Grow, Zoom } from '@material-ui/core';
 import { selectModalStatus, selectIsLogged } from '../../Selectors'
 import { changeModalStatus } from '../../Actions'
 import { menuIcon, nixxRedLogo,nixxLogo, questionMark } from '../../Images'
@@ -83,14 +83,14 @@ function Header(props){
                     </Box>
                     {sideList('left')}
                 </Drawer>
-                <div className={classes.butoaneHeaderDreapta}>
+                <div className={isLogged ? classes.butoaneHeaderDreapta : classes.butoaneHeaderBox}>
                     {
                         !isLogged ?
                         <>
-                            <Button onClick={() => changeModalStatus(true,'login')} className={classes.butonFilledAlb} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
-                            <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butonBorderAlb}  variant="outlined" disableElevation>CREAZA CONT</Button>
+                            <Button onClick={() => changeModalStatus(true,'login')} className={classes.butoaneHeaderBoxRed} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
+                            <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butoaneHeaderBoxWhite}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
-                        :<Link to="/"><img className={classes.logoLinkHome} alt={"logo"} src={nixxLogo}/></Link>
+                        :<Link to="/" className={classes.headerLinkHome}><img className={classes.logoLinkHome} alt={"logo"} src={nixxLogo}/></Link>
                     }
                     
                 </div>
@@ -98,7 +98,7 @@ function Header(props){
             <Box className={classes.headerLogoSection}>
                 {
                     !isLogged ?
-                    <Link to="/"><img alt={"logo"} src={nixxRedLogo}/></Link>
+                    <Link className={classes.headerLogoImage} to="/"><img  alt={"logo"} src={nixxRedLogo}/></Link>
                     :<ProfileBadge/>
                 }
                 
@@ -110,39 +110,41 @@ function Header(props){
             
         </Box>
         
-        <Modal disableBackdropClick={modal === 'upload' ? true : false}  onBackdropClick={() => modal === 'upload' ? setDialogModalMare(true) : changeModalStatus(false,'')} open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload') ? true : false} 
-        onClose={() => changeModalStatus(false,'')}
+        <Dialog TransitionComponent={Grow} transitionDuration={350} disableBackdropClick={modal === 'upload' ? true : false}  
+        onBackdropClick={() => modal === 'upload' ? setDialogModalMare(true) : changeModalStatus(false,'')} 
+        open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload') ? true : false} 
+        onClose={() => changeModalStatus(false,modal)}
       >
-          <Grow in={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload')} timeout={350}>
-          <div className={[classes.paper,modal === 'login'? classes.paperLogin : null].join(' ')}>
+          <div className={[classes.paperLogin,modal === 'upload' && classes.paper].join(' ')}>
             {
                 modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
                 : modal === 'signup' ? <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
                 : modal === 'upload' && <AdaugaAnunt inchideModalul={() => setDialogModalMare(true)}/>
             }
         </div>
-        </Grow>
-      </Modal>
-                <Dialog open={dialogModalMare} onClose={() => setDialogModalMare(false)}>
-                    <Grow in={dialogModalMare}>
-                        <Box>
-                        <DialogTitle disableTypography className={classes.dialogModalMareTitle}><img alt="question mark image" src={questionMark}/>{"Esti sigur?"}</DialogTitle>
-                        <DialogContent>
-                        <DialogContentText>
-                            Daca inchizi fereastra, progresul facut va fi pierdut.
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button onClick={() => setDialogModalMare(false)}>
-                            Anuleaza
-                        </Button>
-                        <Button variant="contained" className={classes.iesiButon} onClick={() => inchideDialogMare()}>
-                            Inchide
-                        </Button>
-                        </DialogActions>
-                        </Box>
-                    </Grow>
-                </Dialog>
+      </Dialog>
+        <Dialog open={dialogModalMare} onClose={() => setDialogModalMare(false)}>
+            <Zoom in={dialogModalMare}>
+                <Box>
+                <DialogTitle disableTypography className={classes.dialogModalMareTitle}><img alt="question mark image" src={questionMark}/>{"Esti sigur?"}</DialogTitle>
+                <DialogContent>
+                <DialogContentText>
+                    Daca inchizi fereastra, progresul facut va fi pierdut.
+                </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={() => setDialogModalMare(false)}>
+                    Anuleaza
+                </Button>
+                <Button variant="contained" className={classes.iesiButon} onClick={() => inchideDialogMare()}>
+                    Inchide
+                </Button>
+                </DialogActions>
+                </Box>
+            </Zoom>
+        </Dialog>
+
+
         <HeaderFals/>
         
         </>

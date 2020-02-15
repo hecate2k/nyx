@@ -26,7 +26,7 @@ const useClasses = makeStyles(theme =>({
         width: '100%',
         borderRadius: '8px',
         background: 'white',
-        boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
         padding: '10px',
         marginBottom:'10px',
     },
@@ -173,6 +173,8 @@ const useClasses = makeStyles(theme =>({
         background: '#f35 !important',
         color:'white !important',
         fontWeight: 900,
+        pointerEvents: 'none',
+        touchAction: 'none',
     },
     paginationBox:{
         width: '100%',
@@ -191,6 +193,33 @@ const useClasses = makeStyles(theme =>({
         height: '28px !important',
         fontSize: '9pt !important',
         fontWeight: 700,
+    },
+    categorieNoData:{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 30px',
+    },
+    noDataImage:{
+        width: '100px',
+        height: 'auto',
+        marginBottom: '15px',
+    },
+    noDataText:{
+        textAlign: 'center',
+        fontSize: '10.5pt',
+        fontWeight: 800,
+    },
+    fillerSpaceAnunturi:{
+        backgroundColor: '#f7f7f7',
+        minHeight: '15px',
+        width: '100%',
+        zIndex: 1,
+        position: 'fixed',
+        top: '164px',
     }
 }))
 

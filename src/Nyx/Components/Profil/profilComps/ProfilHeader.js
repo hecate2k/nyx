@@ -20,15 +20,13 @@ function ProfilHeader(props){
     const forceUpdate = useForceUpdate();
     const inputF = React.createRef()
     const inputCover = React.createRef()
-    const [isBlob,setBlob] = React.useState(false)
-    const [isBlobCover,setBlobCover] = React.useState(false)
+    const [profileLoaded,setProfileLoaded] = React.useState(false)
+    const [coverLoaded,setCoverLoaded] = React.useState(false)
     let cover = loginData.cover === 'none' ? linkSprePozeProfil + 'defaultCover.jpg' : linkSprePozeProfil + loginData.cover
     let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
     const onChangeAvatar = (e) => {
         setUploadedFile(e.target.files[0],'avatar')
         // loginData.avatar = URL.createObjectURL(e.target.files[0])
-        
-        setBlob(true)
         uploadImage()
         forceUpdate()
         
@@ -36,20 +34,18 @@ function ProfilHeader(props){
       const onChangeCover = (e) => {
         setUploadedFile(e.target.files[0],'cover')
         // loginData.cover = URL.createObjectURL(e.target.files[0])
-        
-        setBlobCover(true)
         uploadImage()
         forceUpdate()
         
       }
-    
+    console.log(profileLoaded);
+    console.log(coverLoaded);
     return(
         <>
             <Box className={classes.ProfilHeader}>
                 <input  type="file" accept="image/*" onChange={onChangeCover} ref={inputCover} style={{display: 'none'}}/>
-                <LazyLoad>
-                    <img alt="aa" className={classes.profileCoverImage} src={cover} />
-                </LazyLoad>
+                    {!coverLoaded && <Box className={classes.profileCoverImage}>LOAD</Box>} 
+                    <img alt="aa" className={classes.profileCoverImage} src={cover} onLoad={() => setCoverLoaded(true)}/>
                 <Box className={classes.backIcon} onClick={() => history.goBack()}>
                     <img alt="aa" src={profileBackIcon}/>
                 </Box>
@@ -60,9 +56,8 @@ function ProfilHeader(props){
                     <input type="file" accept="image/*" onChange={onChangeAvatar} ref={inputF} style={{display: 'none'}}/>
                     <Box onClick={() => inputF.current.click()} className={classes.avatarBox}>
                         
-                        <LazyLoad>
-                        <img alt="aa" className={classes.profilAvatar} src={avatar} />
-                        </LazyLoad>
+                        {!profileLoaded && <Box className={classes.profilAvatar}>LOAD</Box>} 
+                        <img alt="aa" className={classes.profilAvatar} src={avatar} onLoad={() => setProfileLoaded(true)}/>
                         
                         <div className={classes.cameraIcon}>
                             <img alt="aa"  src={cameraIcon}/>

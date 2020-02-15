@@ -15,12 +15,17 @@ import Pagination from '@material-ui/lab/Pagination'
 import {useParams} from 'react-router-dom'
 import PaginationItem from '@material-ui/lab/PaginationItem'
 import {Link } from 'react-router-dom'
-
+import {menuItems} from '../../../Utils'
+import navigate from '../../../Navigation/navigate'
+import { noData } from '../../../Images'
 
 function ListaAnunturi(props){
     const classes = useClasses()
     const {offset,resetAnunturi,resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
     const {categorie} = useParams()
+    const menuItem = menuItems.filter(item => item.path === categorie)
+    // console.log("MENU ITEM: ",menuItem[0].text);
+    
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30;
     
@@ -28,7 +33,10 @@ function ListaAnunturi(props){
     let decreaseTimeoutBy = 0
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
-            return <Box>Nu exista anunturi</Box>
+            return <Box className={classes.categorieNoData}>
+                <img className={classes.noDataImage} src={noData}/>
+                <p className={classes.noDataText}>Momentan nu sunt publicate anunturi in aceasta categorie.</p>
+            </Box>
         return anunturi.map((date) => {
                 timeout += 500 - decreaseTimeoutBy;
                 decreaseTimeoutBy +=50;
@@ -45,16 +53,23 @@ function ListaAnunturi(props){
         
     }
     React.useEffect((event) => {
-        resetAnunturi()
+        if(menuItem.length === 0)
+            return navigate('/error404')
+        // resetAnunturi()
         resetPagination()
+        setPaginationValue({categorie:menuItem[0].text})
         getNrAnunturi(numeCategorie)
         getAnunturiCategorie()
-    },[numeCategorie])
-    const nrPagini = Math.ceil(nrAds / adsPerPage)
-    // useBeforeFirstRender(() => {
         
-    // })
-    
+    },[numeCategorie])
+    let test = 0
+    useBeforeFirstRender(() => {
+        // setPaginationValue({categorie:menuItem[0].text})
+        test = getNrAnunturi(menuItem[0].text)
+        // console.log(nrAds);
+            
+    })
+    const nrPagini = Math.ceil(nrAds / adsPerPage)
     
     return(
         <>
@@ -66,7 +81,9 @@ function ListaAnunturi(props){
                 <>
                     
                     {renderListaAnunturi(anunturi||[])}
-                    <Box className={classes.paginationBox}>
+                    {
+                        nrPagini > 1 &&
+                        <Box className={classes.paginationBox}>
                         <Pagination shape="rounded"
                         classes={{
                             root:classes.paginationRoot
@@ -79,7 +96,6 @@ function ListaAnunturi(props){
                                     selected: classes.selectedPage,
                                     sizeSmall: classes.smallSizePagination
                                 }}
-                                
                             component={Link}
                             to={`/anunturi/${item.page === 1 ? categorie+'' : categorie+`/page=${item.page}`}`}
                             {...item}
@@ -87,6 +103,7 @@ function ListaAnunturi(props){
                         )}
                         count={nrPagini} page={currentPage} onChange={changePage}/>
                     </Box>
+                    }
                 </>
             }
             <Rodal width={modalWidth}  height={modalHeight} visible={anuntId>0} onClose={() => setAnuntId(-1)}>

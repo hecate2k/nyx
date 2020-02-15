@@ -30,7 +30,7 @@ function Navigation(props){
                     <Route path="/anunturi/:categorie" component={CategorieAnunturi}/>
                     <Route path="/Profil" component={Profil}/>
                     <Route path="/aboutus" component={About}/>
-                    <Route component={Error404}/>
+                    <Route path="/error404" component={Error404}/>
                 </Switch>
             </Router>
         </SnackbarProvider>

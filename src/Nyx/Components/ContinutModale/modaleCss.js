@@ -108,8 +108,10 @@ const useClasses = makeStyles(theme =>({
           display: 'flex',
           flexDirection: 'row',
           marginTop: '15px',
-          borderRadius: '4px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+          borderRadius: '8px',
+          boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+          height: '160px',
+          overflow: 'hidden',
       },
       modalPret:{
         display: 'flex',
@@ -139,9 +141,11 @@ const useClasses = makeStyles(theme =>({
       modalAttributes:{
           display: 'flex',
           marginTop: '15px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-          borderRadius: '4px',
+          boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+          borderRadius: '8px',
           width: '100%',
+          height: '285px',
+          overflow: 'hidden',
       },
       modalAttributeTitle:{
           '& :first-of-type':{
@@ -149,7 +153,7 @@ const useClasses = makeStyles(theme =>({
           },
         display: 'flex',
         alignItems: 'center',
-        backgroundColor: '#efefef',
+        backgroundColor: 'white',
         padding: '8px 10px 8px 10px',
         fontSize: '11pt',
         fontWeight: 900,
@@ -159,7 +163,11 @@ const useClasses = makeStyles(theme =>({
         border: '0 !important'
       },
       borderBottom:{
-        borderBottom: '1px solid rgba(42,42,43,.2)',
+        borderBottom: '1px solid rgba(42,42,43,.06)',
+      },
+      attributeTitleBox:{
+        zIndex: 1,
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
       },
       modalAttributeText:{
         '& :first-of-type':{
@@ -257,6 +265,7 @@ const useClasses = makeStyles(theme =>({
           width: '100%',
           fontSize: '10.5pt',
           fontWeight: 600,
+          
       },
       modalDescriereTextUpload:{
         marginTop: '15px',
@@ -264,6 +273,7 @@ const useClasses = makeStyles(theme =>({
         //   height: '300px',
           fontSize: '9.5pt',
           width: '100%',
+          boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
           // boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
           borderRadius: '4px',
           // padding: '10px !important'
@@ -308,6 +318,9 @@ const useClasses = makeStyles(theme =>({
           color:'#262626',
           paddingLeft: '15px',
           marginBottom: '15px',
+          boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+          borderRadius: '8px',
+          backgroundColor: 'white',
           '& input':{
             color:'#262626',
             textAlign: 'left',
@@ -381,7 +394,9 @@ const useClasses = makeStyles(theme =>({
         position: 'relative',
         padding: '5px',
         borderRadius: '4px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
+        backgroundColor: 'white',
+        // boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
       },
       noAnunturi:{
         display: 'flex',
@@ -571,14 +586,16 @@ const useClasses = makeStyles(theme =>({
         color: '#f35',
       },
       modalTelefonAnunt:{
-        background: '#f35',
-        borderRadius: '4px',
+        background: 'white',
+        borderRadius: '8px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
+        boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
         '& input':{
           textAlign: 'center',
-          color: 'white',
+          color: '#f35',
           width: '150px',
           fontSize: '10.5pt',
           paddingTop: '6px',

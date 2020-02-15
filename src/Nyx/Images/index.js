@@ -39,6 +39,7 @@ export const noImage = require('./Icons/noImage.svg')
 export const description = require('./Icons/description.svg')
 export const addAnunt = require('./Icons/addAnunt.svg')
 export const questionMark = require('./Icons/question.svg')
+export const noData = require('./Icons/noData.png')
 
 //illustrations
 export const loginIllustration = require('./Illustrations/login.svg')
