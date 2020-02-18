@@ -24,40 +24,53 @@ function ProfilHeader(props){
     const [coverLoaded,setCoverLoaded] = React.useState(false)
     let cover = loginData.cover === 'none' ? linkSprePozeProfil + 'defaultCover.jpg' : linkSprePozeProfil + loginData.cover
     let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
-    const onChangeAvatar = (e) => {
+    const onChangeAvatar = () => e => {
         setUploadedFile(e.target.files[0],'avatar')
         // loginData.avatar = URL.createObjectURL(e.target.files[0])
         uploadImage()
         forceUpdate()
         
       }
-      const onChangeCover = (e) => {
+      const onChangeCover = () => e => {
         setUploadedFile(e.target.files[0],'cover')
         // loginData.cover = URL.createObjectURL(e.target.files[0])
         uploadImage()
         forceUpdate()
         
       }
-    console.log(profileLoaded);
-    console.log(coverLoaded);
+      const goBack = () => () => {
+        history.goBack()
+      }
+      const setCoverLoading = value => () => {
+        setCoverLoaded(value)
+      }
+      const setProfileLoading = value => () => {
+        setProfileLoaded(value)
+      }
+      const clickUploadProfile = () => () => {
+        inputF.current.click()
+      }
+      const clickUploadCover = () => () => {
+        inputCover.current.click()
+      }
     return(
         <>
             <Box className={classes.ProfilHeader}>
-                <input  type="file" accept="image/*" onChange={onChangeCover} ref={inputCover} style={{display: 'none'}}/>
+                <input  type="file" accept="image/*" onChange={onChangeCover()} ref={inputCover} className={classes.displayNone}/>
                     {!coverLoaded && <Box className={classes.profileCoverImage}>LOAD</Box>} 
-                    <img alt="aa" className={classes.profileCoverImage} src={cover} onLoad={() => setCoverLoaded(true)}/>
-                <Box className={classes.backIcon} onClick={() => history.goBack()}>
+                    <img alt="aa" className={classes.profileCoverImage} src={cover} onLoad={setCoverLoading(true)}/>
+                <Box className={classes.backIcon} onClick={goBack()}>
                     <img alt="aa" src={profileBackIcon}/>
                 </Box>
-                <Button onClick={() => inputCover.current.click()}  disableElevation variant="contained" className={classes.changeCoverButton}>
+                <Button onClick={clickUploadCover()}  disableElevation variant="contained" className={classes.changeCoverButton}>
                     Schimba
                 </Button>
                 <div className={classes.modalAvatarInfo}>
-                    <input type="file" accept="image/*" onChange={onChangeAvatar} ref={inputF} style={{display: 'none'}}/>
-                    <Box onClick={() => inputF.current.click()} className={classes.avatarBox}>
+                    <input type="file" accept="image/*" onChange={onChangeAvatar()} ref={inputF} className={classes.displayNone}/>
+                    <Box onClick={clickUploadProfile()} className={classes.avatarBox}>
                         
                         {!profileLoaded && <Box className={classes.profilAvatar}>LOAD</Box>} 
-                        <img alt="aa" className={classes.profilAvatar} src={avatar} onLoad={() => setProfileLoaded(true)}/>
+                        <img alt="aa" className={classes.profilAvatar} src={avatar} onLoad={setProfileLoading(true)}/>
                         
                         <div className={classes.cameraIcon}>
                             <img alt="aa"  src={cameraIcon}/>

@@ -205,6 +205,9 @@ const useClasses = makeStyles(theme =>({
         marginBottom: '15px',
         marginLeft: 'auto',
         marginRight: 'auto',
+    },
+    displayNone:{
+        display: 'none !important'
     }
 }))
 

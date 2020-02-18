@@ -9,6 +9,13 @@ import {doSignupClean,updateSignupValue,doSignup} from '../../Actions'
 function ContinutModalLogin(props){
     const classes = useClasses()
     const {doSignupClean,updateSignupValue,doSignup} = props
+
+    const seteazaSignupValue = tip => e => {
+        updateSignupValue({[tip]:e.target.value})
+    }
+    const incearcaSignup = () => () => {
+        doSignup()
+    }
     return(
         // <Box className={classes.modalContainer}>
         <>
@@ -23,21 +30,21 @@ function ContinutModalLogin(props){
                         <img src={userIcon} />
                     </InputAdornment>
                 ),}} />
-            <TextField onChange={e => updateSignupValue({password:e.target.value})} className={classes.inputLogin} label="Password" type="password" InputProps={{
+            <TextField onChange={seteazaSignupValue('password')} className={classes.inputLogin} label="Password" type="password" InputProps={{
             startAdornment: (
                 <InputAdornment position="start">
                     <img src={passwordIcon} />
                 </InputAdornment>
                 ),
                 }} />
-            <TextField onChange={e => updateSignupValue({repeatPassword:e.target.value})} className={classes.inputLogin} label="Repeat password" type="password" InputProps={{
+            <TextField onChange={seteazaSignupValue('repeatPassword')} className={classes.inputLogin} label="Repeat password" type="password" InputProps={{
             startAdornment: (
                 <InputAdornment position="start">
                     <img src={passwordIcon} />
                 </InputAdornment>
                 ),
                 }} />
-            <Button onClick={() => doSignup()} className={classes.loginButton} variant="contained" disableElevation>CREAZA CONT</Button>
+            <Button onClick={incearcaSignup()} className={classes.loginButton} variant="contained" disableElevation>CREAZA CONT</Button>
             <div className={classes.bottomInfo}>
                 <p>Ai deja cont? <span> LOG IN </span></p>
             </div>

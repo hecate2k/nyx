@@ -12,6 +12,25 @@ function FiltreBar(props){
     const [open, setOpen] = React.useState(false);
     const [adNr, setAdNr] = React.useState('10');
     const [openAdNr, setOpenAdNr] = React.useState(false);
+    const openSortBy = () => () => {
+        setOpen(true)
+    }
+    const inchideSortBy = () => () => {
+        setOpen(false)
+    }
+    const seteazaSortBy = () => e => {
+        setAge(e.target.value)
+    }
+
+    const openShowNrItems = () => () => {
+        setOpenAdNr(true)
+    }
+    const inchideShowNrItems = () => () => {
+        setOpenAdNr(false)
+    }
+    const seteazaShowNrItems = () => e => {
+        setAdNr(e.target.value)
+    }
     return(
         <>
         <Box className={classes.filtreBarFals}>
@@ -22,14 +41,14 @@ function FiltreBar(props){
                 {"123 anunturi"}
             </Box>
             <Box className={classes.sortBy}>
-                Sort by <Select className={classes.filtreBarSelect} open={open} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} value={age} onChange={e => setAge(e.target.value)} >
+                Sort by <Select className={classes.filtreBarSelect} open={open} onClose={inchideSortBy()} onOpen={openSortBy()} value={age} onChange={seteazaSortBy()} >
                             <MenuItem value={"Noi"}>Noi</MenuItem>
                             <MenuItem value={"Ieftine"}>Ieftine</MenuItem>
                             <MenuItem value={"Scumpe"}>Scumpe</MenuItem>
                         </Select>
             </Box>
             <Box className={classes.showNumber}>
-            Show <Select className={classes.filtreBarSelectShowNr}  open={openAdNr} onClose={() => setOpenAdNr(false)} onOpen={() => setOpenAdNr(true)} value={adNr} onChange={e => setAdNr(e.target.value)} >
+            Show <Select className={classes.filtreBarSelectShowNr}  open={openAdNr} onClose={inchideShowNrItems()} onOpen={openShowNrItems()} value={adNr} onChange={seteazaShowNrItems()} >
                             <MenuItem value={10}>10</MenuItem>
                             <MenuItem value={12}>12</MenuItem>
                             <MenuItem value={13}>13</MenuItem>

@@ -14,9 +14,6 @@ function AnuntModal(props){
 
     const {avatar,nume,prenume,brand,categorie,stare,titlu,descriere,telefon,pret,judet,oras,moneda,imagini} = props
     const nrImagini = Object.keys(imagini||[]).length
-    console.log("titlu:",titlu);
-    console.log("nrImagini",nrImagini);
-    console.log("imagini",imagini);
     
     const renderListaImagini = (imagini)  =>  {
         if(!nrImagini)
@@ -50,16 +47,16 @@ function AnuntModal(props){
             </div>
         </Box>
         <div className={classes.modalAttributes}>
-            <div className={classes.modalAttribute}>
-                <div className={classes.modalAttributeTitle} style={{borderTopLeftRadius:'4px',color:'#f35'}}>
+            <div className={classes.attributeTitleBox}>
+                <div className={classes.modalAttributeTitle}>
                     Brand
                 </div>
-                <div className={classes.modalAttributeTitle} style={{borderBottomLeftRadius:'4px'}}>
+                <div className={classes.modalAttributeTitle}>
                     Stare
                 </div>
             </div>
-            <div className={classes.modalAttribute} style={{width: '100%'}}>
-                <div className={classes.modalAttributeText} style={{borderBottom:'1px solid rgba(42,42,42,.15)',color:'#f35'}}>
+            <div className={classes.attributeTitleBox}>
+                <div className={classes.modalAttributeText}>
                     {brand}
                 </div>
                 <div className={classes.modalAttributeText}>

@@ -24,18 +24,19 @@ function ContinutModalAnunt(props){
     const {tryUpload,telefon,telefonLogat,temporary,descriere,enqueueSnackbar,categorie,setUploadData,openMeniu,closeMeniu,meniu,brand,stare,imagini,addImage,removeImage} = props
     const [dialog,setDialog] = React.useState(false)
     // 
-    const onChangeNumar = (e) => {
+    const onChangeNumar = () => (e) => {
         const re = /^[0-9\s]*$/;
         if (re.test(e.target.value) && e.target.value.length <= 10) {
             setUploadData({telefon:e.target.value})
         }
      }
-    const doSetRenderOnce = () => {
+    const doSetRenderOnce = () => { //maybe no double arrow function
         (telefonLogat !='' && telefon == '') && setUploadData({telefon:telefonLogat})
         setRenderedOnce(true)
       }
     const inF = React.createRef()
-    const stergeImagine = (index) => {
+
+    const stergeImagine = (index) => () => {
         removeImage(index)
         enqueueSnackbar({
             message:'Imaginea a fost stearsa !',
@@ -45,16 +46,16 @@ function ContinutModalAnunt(props){
             }
         })
     }
-    const onChangeImage = (e) => {
+    const onChangeImage = () => e => {
         console.log(e.target.files[0],' IMAGINE')
         addImage(e.target.files[0])
       }
-      const inchideDescriere = () => {
+      const inchideDescriere = () => () => {
         setUploadData({temporary:''})
         setModalStatus(false)
         setDialog(false)
       }
-      const setDescriere = () => {
+      const setDescriere = () => () => {
         (descriere === '' || descriere !='') && temporary !='' &&
         enqueueSnackbar({
             message: descriere === '' ? 'Ai adaugat o descriere !': 'Ai modificat descrierea produsului !',
@@ -67,7 +68,27 @@ function ContinutModalAnunt(props){
         setModalStatus(false)
         setUploadData({temporary:''})
       }
-      
+      const clickInf = () => () => {
+          inF.current.click()
+      }
+      const deschideDescriere = () => () => {
+        setModalStatus(true)
+      }
+    const  seteazaUploadData = tip => e => {
+        setUploadData({[tip]:e.target.value})
+      }
+      const deschideMeniu = tipMeniu => () => {
+        openMeniu(tipMeniu)
+      }
+    const inchideMeniu = () => () => {
+        closeMeniu()
+    }
+    const openDialog = value => () => {
+        setDialog(value)
+    }
+    const incearcaUpload = () => () => {
+        tryUpload()
+    }
     const listaImagini = (imagini)  =>  {
         if(!imagini.length)
             return <Box className={classes.noAnunturi}>
@@ -77,7 +98,7 @@ function ContinutModalAnunt(props){
             <Grow in={true} key={index}>
                 <Box className={classes.uploadAnuntImagine} >
                     <img className={classes.imagineUploadAnunt} src={imagini[index] && URL.createObjectURL(imagini[index])|| null}/>
-                    <Button className={classes.uploadAnuntIcon} onClick={() => stergeImagine(index)} variant="contained">x</Button>
+                    <Button className={classes.uploadAnuntIcon} onClick={stergeImagine(index)} variant="contained">x</Button>
                 </Box>
             </Grow>
           ))
@@ -92,10 +113,10 @@ function ContinutModalAnunt(props){
         </div>
         <Box className={classes.priceCategory}>
             <div className={classes.modalPret}>
-                <Input onChange={(e) => setUploadData({pret:e.target.value})} disableUnderline className={classes.pretInput} placeholder="Pret"/>
+                <Input onChange={seteazaUploadData('pret')} disableUnderline className={classes.pretInput} placeholder="Pret"/>
             </div>
-            <Select displayEmpty className={classes.modalCategorie} open={meniu === 'categorie'} onClose={() => closeMeniu()} onOpen={() => openMeniu('categorie')} value={categorie} onChange={e => setUploadData({categorie:e.target.value})} >
-            <MenuItem style={{display: 'none'}} value="">Alege categoria</MenuItem>
+            <Select displayEmpty className={classes.modalCategorie} open={meniu === 'categorie'} onClose={inchideMeniu()} onOpen={deschideMeniu('categorie')} value={categorie} onChange={seteazaUploadData('categorie')} >
+            <MenuItem className={classes.displayNone} value="">Alege categoria</MenuItem>
                 <MenuItem value={"Auto Moto"}>Auto Moto</MenuItem>
                 <MenuItem value={"Matrimoniale"}>Matrimoniale</MenuItem>
                 <MenuItem value={"Timp liber si sport"}>Timp liber si sport</MenuItem>
@@ -103,22 +124,22 @@ function ContinutModalAnunt(props){
         </Box>
         <div className={classes.modalAttributes}>
             <div className={classes.attributeTitleBox}>
-                <div className={classes.modalAttributeTitle} style={{borderTopLeftRadius:'4px',color:'#f35'}}>
+                <div className={classes.modalAttributeTitle}>
                     Brand
                 </div>
-                <div className={classes.modalAttributeTitle} style={{borderBottomLeftRadius:'4px'}}>
+                <div className={classes.modalAttributeTitle}>
                     Stare
                 </div>
             </div>
-            <div className={classes.modalAttribute} style={{width: '100%'}}>
-                <Select displayEmpty disableUnderline className={[classes.modalAttributeText,classes.borderBottom].join(' ')} open={meniu === 'brand'} onClose={() => closeMeniu()} onOpen={() => openMeniu('brand')} value={brand} onChange={e => setUploadData({brand:e.target.value})} >
-                    <MenuItem style={{display: 'none'}} value="">Alege brandul</MenuItem>
+            <div className={classes.modalAttribute}>
+                <Select displayEmpty disableUnderline className={[classes.modalAttributeText,classes.borderBottom].join(' ')} open={meniu === 'brand'} onClose={inchideMeniu()} onOpen={deschideMeniu('brand')} value={brand} onChange={seteazaUploadData('brand')} >
+                    <MenuItem className={classes.displayNone} value="">Alege brandul</MenuItem>
                     <MenuItem value={"Audi"}>Audi</MenuItem>
                     <MenuItem value={"Dacia"}>Dacia</MenuItem>
                     <MenuItem value={"Opel"}>Opel</MenuItem>
                 </Select>
-                <Select displayEmpty disableUnderline className={classes.modalAttributeText} open={meniu === 'stare'} onClose={() => closeMeniu()} onOpen={() => openMeniu('stare')} value={stare} onChange={e => setUploadData({stare:e.target.value})} >
-                <MenuItem style={{display: 'none'}} value="">Alege starea produsului</MenuItem>
+                <Select displayEmpty disableUnderline className={classes.modalAttributeText} open={meniu === 'stare'} onClose={inchideMeniu()} onOpen={deschideMeniu('stare')} value={stare} onChange={seteazaUploadData('stare')} >
+                <MenuItem className={classes.displayNone} value="">Alege starea produsului</MenuItem>
                     <MenuItem value={"Nou"}>Nou</MenuItem>
                     <MenuItem value={"Folosit"}>Folosit</MenuItem>
                 </Select>
@@ -133,18 +154,18 @@ function ContinutModalAnunt(props){
                                 
                             
                         }
-                        <Input value={telefon} onChange={(e) => onChangeNumar(e)} disableUnderline className={classes.modalTelefonAnunt} placeholder="Ex: 0760537253"/>
+                        <Input value={telefon} onChange={onChangeNumar()} disableUnderline className={classes.modalTelefonAnunt} placeholder="Ex: 0760537253"/>
                     </Box>
         </Box>
         <Box className={classes.modalTitluAnuntAdaugare}>
-            <Input onChange={(e) => setUploadData({titlu:e.target.value})} disableUnderline className={classes.titluInput} placeholder="Scrie aici titlul anuntului"/>
+            <Input onChange={seteazaUploadData('titlu')} disableUnderline className={classes.titluInput} placeholder="Scrie aici titlul anuntului"/>
         </Box>
-        <input  type="file" accept="image/*" onChange={onChangeImage} ref={inF} style={{display: 'none'}}/>
+        <input  type="file" accept="image/*" onChange={onChangeImage()} ref={inF} className={classes.displayNone}/>
         <Box className={classes.uploadAnunturiContainer}>
             <Box className={classes.adaugaImaginiBox}>
                 {listaImagini(imagini||[])}
             </Box>
-            <Button className={classes.adaugaImagineButton} onClick={() => inF.current.click()} variant="contained">+</Button>
+            <Button className={classes.adaugaImagineButton} onClick={clickInf()} variant="contained">+</Button>
         </Box>
         <p className={classes.modalTitluDescriere}>
             Descriere produs
@@ -155,22 +176,22 @@ function ContinutModalAnunt(props){
                 descriere === '' ? <Box className={classes.noDescriere}>
                                         <Box className={classes.firstLineTitle}>Deocamdata nu este nicio descriere pentru produs.</Box> 
                                         <Box className={classes.secondLineText}>apasa pe butonul de mai jos pentru a adauga una.</Box>
-                                        <Button onClick={() => setModalStatus(true)} variant="contained" className={classes.noDescriereButton}>
+                                        <Button onClick={deschideDescriere(true)} variant="contained" className={classes.noDescriereButton}>
                                             Adauga descriere
                                         </Button>
                                     </Box>
-                : <p onClick={() => setModalStatus(true)} className={classes.descriereP}>{descriere}</p>
+                : <p onClick={deschideDescriere()} className={classes.descriereP}>{descriere}</p>
             }
             
-                <Modal disableBackdropClick onBackdropClick={() => setDialog(true)} open={modalStatus} onClose={() => setModalStatus(false)}>
+                <Modal disableBackdropClick onBackdropClick={openDialog(true)} open={modalStatus} onClose={inchideDescriere()}>
                 <Grow in={modalStatus}>
                     <div className={classes.descriereContainer}>
                         <Box className={classes.h3Title}><img src={description}/>Descriere produs: </Box>
                             {/* {descriere != '' && setUploadData({temporary:descriere})} */}
-                            <Input defaultValue={descriere} onChange={e => setUploadData({temporary:e.target.value})} autoFocus className={classes.descriereInput} multiline fullWidth disableUnderline placeholder="Scrie aici descrierea produsului..."/>
+                            <Input defaultValue={descriere} onChange={seteazaUploadData('temporary')} autoFocus className={classes.descriereInput} multiline fullWidth disableUnderline placeholder="Scrie aici descrierea produsului..."/>
                             <Box className={classes.uploadDescriereButoane}>
-                                <Button className={classes.uploadDescriereButonCancel} onClick={() => setDialog(true)}> Inchide </Button>
-                                <Button onClick={() => setDescriere()} className={classes.uploadDescriereButonOk} variant="contained">
+                                <Button className={classes.uploadDescriereButonCancel} onClick={openDialog(true)}> Inchide </Button>
+                                <Button onClick={setDescriere()} className={classes.uploadDescriereButonOk} variant="contained">
                                         {descriere === '' ? "Adauga" : "Modifica"}
                                 </Button>
                         </Box>
@@ -182,9 +203,9 @@ function ContinutModalAnunt(props){
         </Scrollbar>
         <Box className={classes.adaugaAnuntFooter}>
             <Button onClick={props.inchideModalul} className={classes.anuleazaButton}>ANULEAZA</Button>
-            <Button onClick={() => tryUpload()} className={classes.posteazaButton} variant="contained">POSTEAZA</Button>
+            <Button onClick={incearcaUpload()} className={classes.posteazaButton} variant="contained">POSTEAZA</Button>
         </Box>
-        <Dialog open={dialog} onClose={() => setDialog(false)}>
+        <Dialog open={dialog} onClose={openDialog(false)}>
             <Grow in={true}>
             <Box>
             <DialogTitle disableTypography className={classes.dialogModalMareTitle}><img alt="question mark image" src={questionMark}/>{"Esti sigur?"}</DialogTitle>
@@ -194,10 +215,10 @@ function ContinutModalAnunt(props){
             </DialogContentText>
             </DialogContent>
             <DialogActions>
-            <Button onClick={() => setDialog(false)}>
+            <Button onClick={openDialog(false)}>
                 Anuleaza
             </Button>
-            <Button variant="contained" className={classes.iesiButon} onClick={() => inchideDescriere()}>
+            <Button variant="contained" className={classes.iesiButon} onClick={inchideDescriere()}>
                 Inchide
             </Button>
             </DialogActions>

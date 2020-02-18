@@ -13,8 +13,8 @@ function Login(props){
     const { errors,updateLoginValue,doLogin } = props
 
     return(
-        <Box style={{display:'flex',flexDirection:'column'}}>
-            {
+        <Box>
+            {/* {
                 isLoading && <span>mesaj loading</span>
             }
             {
@@ -26,7 +26,7 @@ function Login(props){
             }
             <input className={classes.inputType} type="text" onChange={e => updateLoginValue({email:e.target.value})} disabled={isLoading}/>
             <input type="password" onChange={e => updateLoginValue({password:e.target.value})} disabled={isLoading}/>
-            <input type="button" value="LOGIN" onClick={() => !isLoading ? doLogin() : null} />
+            <input type="button" value="LOGIN" onClick={() => !isLoading ? doLogin() : null} /> */}
         </Box>
     )  
 }

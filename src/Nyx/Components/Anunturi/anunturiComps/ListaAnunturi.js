@@ -21,16 +21,20 @@ import { noData } from '../../../Images'
 
 function ListaAnunturi(props){
     const classes = useClasses()
-    const {offset,resetAnunturi,resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
+    const {resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
     const {categorie} = useParams()
     const menuItem = menuItems.filter(item => item.path === categorie)
-    // console.log("MENU ITEM: ",menuItem[0].text);
     
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30;
     
     let timeout=0
     let decreaseTimeoutBy = 0
+
+    const seteazaIdAnunt = id => () => {
+        setAnuntId(id)
+    }
+
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
             return <Box className={classes.categorieNoData}>
@@ -41,7 +45,7 @@ function ListaAnunturi(props){
                 timeout += 500 - decreaseTimeoutBy;
                 decreaseTimeoutBy +=50;
                 return(
-                    <Anunt onClick={() => setAnuntId(date.id)} timeout={timeout} {...date} key={date.id}/>
+                    <Anunt onClick={seteazaIdAnunt(date.id)} timeout={timeout} {...date} key={date.id}/>
                 )
             })
     }
@@ -52,6 +56,9 @@ function ListaAnunturi(props){
         getAnunturiCategorie(adsPerPage,(value - 1)*adsPerPage,numeCategorie)
         
     }
+
+    
+
     React.useEffect((event) => {
         if(menuItem.length === 0)
             return navigate('/error404')
@@ -65,7 +72,7 @@ function ListaAnunturi(props){
     let test = 0
     useBeforeFirstRender(() => {
         // setPaginationValue({categorie:menuItem[0].text})
-        test = getNrAnunturi(menuItem[0].text)
+        // test = getNrAnunturi(menuItem[0].text)
         // console.log(nrAds);
             
     })
@@ -106,7 +113,7 @@ function ListaAnunturi(props){
                     }
                 </>
             }
-            <Rodal width={modalWidth}  height={modalHeight} visible={anuntId>0} onClose={() => setAnuntId(-1)}>
+            <Rodal width={modalWidth}  height={modalHeight} visible={anuntId>0} onClose={seteazaIdAnunt(-1)}>
                     <AnuntModal {...anunt}/>
                 </Rodal>
         </Box>

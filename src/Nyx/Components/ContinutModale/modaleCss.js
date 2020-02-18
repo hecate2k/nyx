@@ -139,11 +139,14 @@ const useClasses = makeStyles(theme =>({
           border: '0 !important'
       },
       modalAttributes:{
+        '& :last-child':{
+          width: '100%',
+        },
           display: 'flex',
           marginTop: '15px',
           boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
           borderRadius: '8px',
-          width: '100%',
+          width: '100%', // !important?
           height: '285px',
           overflow: 'hidden',
       },
@@ -166,13 +169,20 @@ const useClasses = makeStyles(theme =>({
         borderBottom: '1px solid rgba(42,42,43,.06)',
       },
       attributeTitleBox:{
+        '& :first-child':{
+          borderTopLeftRadius:'4px',
+          color:'#f35'
+        },
+        '& :last-child':{
+          borderBottomLeftRadius:'4px'
+        },
         zIndex: 1,
         boxShadow: '0px 3px 6px rgba(0,0,0,.16)',
       },
       modalAttributeText:{
         '& :first-of-type':{
           
-          background: 'white !important',
+          // background: 'white !important',
         },
         background: 'white !important',
         display: 'flex',
@@ -706,6 +716,15 @@ cancelButton:{
     borderRadius: '8px',
     textTransform: 'unset',
     boxShadow: '0px 3px 6px rgba(0,0,0,.16) !important',
+},
+displayNone:{
+  display: 'none !important',
+},
+modalAttribute:{
+  '& :first-of-type':{
+    width: '100%',
+    color : '#f35',
+  }
 }
 }))
 

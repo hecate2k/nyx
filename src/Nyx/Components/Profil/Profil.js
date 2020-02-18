@@ -14,7 +14,7 @@ function Profil(props){
     const classes = useClasses()
     const {resetLoginData,enqueueSnackbar} = props
 
-    const onDoLogout = () => {
+    const onDoLogout = () => () => {
         resetLoginData()
         enqueueSnackbar({
             message:'Te-ai delogat cu succes !',
@@ -32,7 +32,7 @@ function Profil(props){
             <ProfilTitle title={"Profil si date personale"} />
             <ProfilList />
             <Link className={classes.logOutButtonContainer} to="/">
-            <Button onClick={onDoLogout} variant="contained" className={classes.logOutButton}  disableElevation>LOG OUT</Button>
+            <Button onClick={onDoLogout()} variant="contained" className={classes.logOutButton}  disableElevation>LOG OUT</Button>
             </Link>
         </Box>
     )  

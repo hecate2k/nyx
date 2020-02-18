@@ -30,11 +30,10 @@ function Header(props){
 
     const {setPaginationValue,resetUpload,isLogged,modalStatus, modal, changeModalStatus} = props
     const [dialogModalMare,setDialogModalMare] = React.useState(false)
-    var modalWidth  = window.innerWidth - 30
-    var modalHeight  = window.innerHeight - 30
-    const inchideDialogMare = () =>{
+
+    const inchideDialogMare = () => () =>{
         setDialogModalMare(false)
-        changeModalStatus(false,'')
+        changeModalStatus(false,modal)
         resetUpload()
     }
     const toggleDrawer = (side, open) => event => {
@@ -43,7 +42,22 @@ function Header(props){
         }
         setState({ ...state, [side]: open });   
     }
-    
+    const doOnBackdropCLick = () => () => {
+        modal === 'upload' && setDialogModalMare(true)
+    }
+    const inchideModal = (numeModal) => event => {
+        changeModalStatus(false,numeModal)
+    }
+    const openModal = (numeModal) => event => {
+        changeModalStatus(true,numeModal)
+    }
+    const inchideDialogMareSimplu = () => () => {
+        setDialogModalMare(false)
+    }
+    const setPagina = (textCategorie) => () => {
+        setPaginationValue({categorie:textCategorie})
+    }
+    const shouldIOpenModal = modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload') ? true : false
     const sideList = side => (
         <div
             className={classes.drawerLeft}
@@ -53,7 +67,7 @@ function Header(props){
         >
           <List>
             {menuItems.map(({text,icon,path}, index) => (
-            <Link to={"/anunturi/"+path} onClick={() => setPaginationValue({categorie:text})} key={index}>
+            <Link to={"/anunturi/"+path} onClick={setPagina()} key={index}>
               <ListItem  button >
                 <ListItemIcon>
                     <img src={icon}/>
@@ -67,7 +81,6 @@ function Header(props){
           <Divider />
         </div>
       )
-
 
     const [state, setState] = React.useState({
         left: false,
@@ -87,8 +100,8 @@ function Header(props){
                     {
                         !isLogged ?
                         <>
-                            <Button onClick={() => changeModalStatus(true,'login')} className={classes.butoaneHeaderBoxRed} style={{color:'#f35 !important'}} variant="contained" disableElevation>INTRA IN CONT</Button>
-                            <Button onClick={() => changeModalStatus(true,'signup')} className={classes.butoaneHeaderBoxWhite}  variant="outlined" disableElevation>CREAZA CONT</Button>
+                            <Button onClick={openModal('login')} className={classes.butoaneHeaderBoxRed} variant="contained" disableElevation>INTRA IN CONT</Button>
+                            <Button onClick={openModal('signup')} className={classes.butoaneHeaderBoxWhite}  variant="outlined" disableElevation>CREAZA CONT</Button>
                         </>
                         :<Link to="/" className={classes.headerLinkHome}><img className={classes.logoLinkHome} alt={"logo"} src={nixxLogo}/></Link>
                     }
@@ -106,25 +119,29 @@ function Header(props){
                     <img className={classes.headerLogoImg} src={nixxRedLogo}/>
                 </Link> */}
             </Box>
-            <BlackBar style={{marginTop: '0px'}}/>
+            {/* <BlackBar/> */}
             
         </Box>
-        
-        <Dialog TransitionComponent={Grow} transitionDuration={350} disableBackdropClick={modal === 'upload' ? true : false}  
-        onBackdropClick={() => modal === 'upload' ? setDialogModalMare(true) : changeModalStatus(false,'')} 
-        open={modalStatus && (modal === 'login' || modal === 'signup' || modal === 'upload') ? true : false} 
-        onClose={() => changeModalStatus(false,modal)}
-      >
-          <div className={[classes.paperLogin,modal === 'upload' && classes.paper].join(' ')}>
-            {
-                modal === 'login' ? <ContinutModalLogin handleClose={() => changeModalStatus(false,'')}/>
-                : modal === 'signup' ? <SignupModal  handleClose={() => changeModalStatus(false,'')}/>
-                : modal === 'upload' && <AdaugaAnunt inchideModalul={() => setDialogModalMare(true)}/>
-            }
-        </div>
-      </Dialog>
-        <Dialog open={dialogModalMare} onClose={() => setDialogModalMare(false)}>
-            <Zoom in={dialogModalMare}>
+
+        {
+            shouldIOpenModal && 
+            <Dialog TransitionComponent={Grow} transitionDuration={350} disableBackdropClick={modal === 'upload' ? true : false}  
+                onBackdropClick={doOnBackdropCLick()}
+                open={shouldIOpenModal} 
+                onClose={inchideModal('login')}
+            >
+                <div className={[classes.paperLogin,modal === 'upload' && classes.paper].join(' ')}>
+                    {
+                        modal === 'login' ? <ContinutModalLogin handleClose={inchideModal('login')}/>
+                        : modal === 'signup' ? <SignupModal  handleClose={inchideModal('signup')}/>
+                        : modal === 'upload' && <AdaugaAnunt inchideModalul={inchideModal('upload')}/>
+                    }
+                </div>
+            </Dialog>
+        }
+        {
+            dialogModalMare &&
+            <Dialog TransitionComponent={Grow} transitionDuration={350} open={dialogModalMare} onClose={inchideDialogMare()}>
                 <Box>
                 <DialogTitle disableTypography className={classes.dialogModalMareTitle}><img alt="question mark image" src={questionMark}/>{"Esti sigur?"}</DialogTitle>
                 <DialogContent>
@@ -133,16 +150,17 @@ function Header(props){
                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={() => setDialogModalMare(false)}>
+                <Button onClick={inchideDialogMareSimplu()}>
                     Anuleaza
                 </Button>
-                <Button variant="contained" className={classes.iesiButon} onClick={() => inchideDialogMare()}>
+                <Button variant="contained" className={classes.iesiButon} onClick={inchideDialogMare()}>
                     Inchide
                 </Button>
                 </DialogActions>
                 </Box>
-            </Zoom>
-        </Dialog>
+            </Dialog>
+        }
+        
 
 
         <HeaderFals/>

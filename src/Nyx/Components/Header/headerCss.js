@@ -254,6 +254,13 @@ const useClasses = makeStyles(theme =>({
     },
     headerLogoImage:{
         marginTop: '15px',
+    },
+    profileBadgeBox:{
+        zIndex: '999',
+        position: 'relative'
+    },
+    mTop:{
+        marginTop: '0px',
     }
     }))
 

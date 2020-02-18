@@ -26,7 +26,7 @@ function BlackBar(props){
         document.body.classList.remove('modal-open')
         setModalStatus(false)
       }
-      const openUploadModal = () => {
+      const openUploadModal = () => () => {
         if(logat){
             changeModalStatus(true,'upload')
         }else{
@@ -39,11 +39,14 @@ function BlackBar(props){
             })
         }
       }
+      const seteazaInputStatus = value => () => {
+        setInputStatus(value)
+      }
     return(
         <>
         <Box className={classes.blackBar}>
-            <ClickAwayListener onClickAway={() => setInputStatus(false)}>
-                <Box onClick={() => setInputStatus(true)} className={[classes.inputContainer,inputStatus?classes.expandedInputContainer:''].join(' ')}>
+            <ClickAwayListener onClickAway={seteazaInputStatus(false)}>
+                <Box onClick={seteazaInputStatus(true)} className={[classes.inputContainer,inputStatus?classes.expandedInputContainer:''].join(' ')}>
                     <input placeholder="Scrie aici pentru a cauta ..." className={[classes.inputBar,inputStatus?classes.expandedInput:''].join(' ')} />
                     <img  className={classes.searchIcon} src={searchIcon}/>
                 </Box>
@@ -53,7 +56,7 @@ function BlackBar(props){
                 <Box className={classes.selectItem}>Oras</Box>
             </Box>
             
-           <Button onClick={() => openUploadModal()} className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
+           <Button onClick={openUploadModal()} className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
            
         </Box>
       

@@ -19,9 +19,6 @@ function* getAnunturiCategorie(){
 		data.append('sarite', offset)
         data.append('categorie', categorie)
         const result = yield axios.post(linkSpreFolderApi+'getAnunturiCategorie.php',data)
-        yield console.log("Anunturi:",result.data.result);
-        yield console.log("sarite",offset);
-        yield console.log("preluate",adsPerPage);
         yield put({type:actionType.SET_ANUNTURI,anunturi: result.data.result})
 
     }

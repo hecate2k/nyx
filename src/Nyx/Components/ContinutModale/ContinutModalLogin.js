@@ -10,9 +10,13 @@ import {selectLoginData} from '../../Selectors'
 function ContinutModalLogin(props){
     const classes = useClasses()
 
-    const {emailError,passwordError,tempEmail,isLoading, updateLoginValue,doLogin } = props
-    console.log("tempEmail:",tempEmail);
-    
+    const {emailError,passwordError,tempEmail, updateLoginValue,doLogin } = props
+    const seteazaUploadValue = tip => e => {
+        updateLoginValue({[tip]:e.target.value})
+    }
+    const incearcaLogin = () => () => {
+        doLogin()
+    }
     return(
         // <Box className={classes.modalContainer}>
         <>
@@ -38,7 +42,7 @@ function ContinutModalLogin(props){
                         </Grow>
                         }
                     </Box>
-                    <Input onChange={e => updateLoginValue({email:e.target.value})} placeholder="example.email@gmail.com" className={classes.loginInput} disableUnderline />
+                    <Input onChange={seteazaUploadValue('email')} placeholder="example.email@gmail.com" className={classes.loginInput} disableUnderline />
                 </Box>
             </Box>
             <Box className={classes.inputContainer}>
@@ -53,13 +57,13 @@ function ContinutModalLogin(props){
                         </Grow>
                         }
                     </Box>
-                    <Input onChange={e => updateLoginValue({password:e.target.value})} type="password" placeholder="••••••••••••" className={classes.loginInput} autoFocus={true} disableUnderline />
+                    <Input onChange={seteazaUploadValue('password')} type="password" placeholder="••••••••••••" className={classes.loginInput} autoFocus={true} disableUnderline />
                 </Box>
             </Box>
         </Box>
         <Box className={classes.loginFooter}>
             <Button onClick={props.handleClose} className={classes.cancelButton} variant="contained" disableElevation>Inchide</Button>
-            <Button onClick={() => !isLoading ? doLogin() : null} className={classes.loginButton} variant="contained" disableElevation >Log in</Button>           
+            <Button onClick={incearcaLogin()} className={classes.loginButton} variant="contained" disableElevation >Log in</Button>           
         </Box>
             
         {/* </Box> */}

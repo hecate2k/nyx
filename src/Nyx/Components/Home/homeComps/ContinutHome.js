@@ -19,7 +19,7 @@ import {Select, MenuItem} from '@material-ui/core'
 function Login(props){
     const classes = useClasses()
 
-    const {getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,len,addImage,removeImage} = props
+    const {getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,len} = props
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30
 
@@ -27,12 +27,14 @@ function Login(props){
         getAnunturi(20,0)
     })
 
-
+    const seteazaIdAnunt = id => () => {
+        setAnuntId(id)
+    }
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
             return <Box className={classes.noAnunturi}>Nu exista anunturi</Box>
         return anunturi.map((date) => (
-                <AnuntMic onClick={() => setAnuntId(date.id)} {...date}  key={date.id}/>
+                <AnuntMic onClick={seteazaIdAnunt(date.id)} {...date}  key={date.id}/>
           ))
     }
 
@@ -69,7 +71,7 @@ function Login(props){
                     <Box className={classes.homeStatsBox}>
                         <p className={classes.homeNrAnunturi}><span>{len}</span> anunturi postate in total</p>
                     </Box>
-                    <Rodal width={modalWidth}  height={modalHeight} visible={anuntId>0} onClose={() => setAnuntId(-1)}>
+                    <Rodal width={modalWidth}  height={modalHeight} visible={anuntId>0} onClose={seteazaIdAnunt(-1)}>
                         <AnuntModal {...anunt}/>
                     </Rodal>
             </Box>

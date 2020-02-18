@@ -15,13 +15,16 @@ function ProfileBadge(props){
 	const onClickAway = () => {
 		open && setOpen(false)
     }
+    const toggleOpen = () => () => {
+        setOpen(open => !open)
+    }
     const {loginData} = props
     let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
     return(
         <>
         <ClickAwayListener onClickAway={onClickAway}>
-				<Box style={{zIndex: '999',position: 'relative'}}>
-					<Box classes={{root:classes.profileBadge}} variant="contained" onClick={() => setOpen(open => !open)}>
+				<Box className={classes.profileBadgeBox}>
+					<Box classes={{root:classes.profileBadge}} variant="contained" onClick={toggleOpen()}>
                         <img className={classes.profileBadgeAvatar} src={avatar} />
                         <Box className={classes.profileBadgeNume}>
                             {loginData.prenume} <span>{loginData.nume}</span>

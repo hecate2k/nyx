@@ -21,6 +21,8 @@ function CategorieAnunturi(props){
     )  
 }
 
+CategorieAnunturi.whyDidYouRender = true
+
 const mapStateToProps = (state) =>{
 
     return{

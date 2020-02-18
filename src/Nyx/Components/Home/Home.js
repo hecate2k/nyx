@@ -14,13 +14,16 @@ function Login(props){
     const classes = useClasses()
     const {logat,changeModalStatus} = props
     const banner = logat ? bannerLogat : bannerNelogat
-    const modal = logat ? 'upload' : 'signup'     
+    const modal = logat ? 'upload' : 'signup'
+    const openModal = (numeModal) => event => {
+        changeModalStatus(true,numeModal)
+    }  
     return(
         <Box className={classes.homeWindow}>
             <Header />
 
             <div  className={classes.bannerHome}>
-                <img onClick={() => changeModalStatus(true,modal)} src={banner} alt="" />
+                <img onClick={openModal(modal)} src={banner} alt="" />
             </div>
             <ContinutHome />
             
