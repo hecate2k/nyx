@@ -8,15 +8,16 @@ import Scrollbar from "react-scrollbars-custom";
 
 function ProfilListElement(props){
     const classes = useClasses()
-    const {text, label, icon} = props
+    const {text, label, icon,selected,nume} = props
     return(
         <>
-            <Box className={classes.profilListElement}>
+            <Box onClick={props.onClick} className={classes.profilListElement}>
                 <Box className={classes.listElementIcon}>
                     <img src={icon} />
                 </Box>
                 <Box className={classes.listElementTextSpace}>
                     <p className={classes.listElementLabel}>{label}</p>
+                    {/* <input defaultValue={text} disabled={!(label === selected)} autoFocus/> */}
                     <p className={classes.listElementText}>{text}</p>
                 </Box>
                 <Box className={classes.listElementEditIcon}>
@@ -30,6 +31,8 @@ function ProfilListElement(props){
 const mapStateToProps = (state) =>{
 
     return{
+        selected: state.temporary.profileSelected,
+        nume: state.login.nume
     }
 }
 

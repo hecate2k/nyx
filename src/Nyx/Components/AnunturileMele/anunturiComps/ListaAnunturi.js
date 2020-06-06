@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import useClasses from '../anunturiCss'
-import {Box, Button} from '@material-ui/core'
+import useClasses from '../../Anunturi/anunturiCss'
+import {Box} from '@material-ui/core'
 import Anunt from './Anunt'
 import useBeforeFirstRender from '../../../Utils/useBeforeFirstRender'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import {getAnunturi,setAnuntId,setPaginationValue,getNrAnunturi, getAnunturiCategorie,resetPagination, resetAnunturi} from '../../../Actions'
+import {setClickedId,getAnunturi,setAnuntId,setPaginationValue,getNrAnunturi, getAnunturiCategorie,resetPagination, resetAnunturi} from '../../../Actions'
 import {selectAnuntId,selectAnuntData } from '../../../Selectors'
 import {AnuntModal} from '../../ContinutModale'
 import Rodal from 'rodal'
@@ -21,9 +21,7 @@ import { noData } from '../../../Images'
 
 function ListaAnunturi(props){
     const classes = useClasses()
-    const {search,resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
-    const {categorie} = useParams()
-    const menuItem = menuItems.filter(item => item.path === categorie)
+    const {setClickedId,resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
     
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30;
@@ -33,8 +31,14 @@ function ListaAnunturi(props){
 
     const seteazaIdAnunt = id => () => {
         setAnuntId(id)
+        
     }
 
+    const seteazaIdAnuntulMeu = id => () =>{
+        setClickedId(id)
+        console.log(id);
+        
+    }
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
             return <Box className={classes.categorieNoData}>
@@ -45,7 +49,7 @@ function ListaAnunturi(props){
                 timeout += 500 - decreaseTimeoutBy;
                 decreaseTimeoutBy +=50;
                 return(
-                    <Anunt onClick={seteazaIdAnunt(date.id)} timeout={timeout} {...date} key={date.id}/>
+                    <Anunt setId={seteazaIdAnuntulMeu(date.id)} onClick={seteazaIdAnunt(date.id)} timeout={timeout} {...date} key={date.id}/>
                 )
             })
     }
@@ -59,28 +63,19 @@ function ListaAnunturi(props){
 
     
 
-    React.useEffect(() => {
-        
-        if(menuItem.length === 0)
-            return navigate('/error404')
+    React.useEffect((event) => {
         // resetAnunturi()
-        if(search == ''){
-             resetPagination()
-            console.log("AIC",menuItem);
-            
-            setPaginationValue({categorie:menuItem[0].text})
-            getNrAnunturi(menuItem[0].text)
-            getAnunturiCategorie()
-        }
-       
+        resetPagination()
+        setPaginationValue({categorie:'anunturilemele'})
+        getNrAnunturi('anunturilemele')
+        getAnunturiCategorie()
         
-    },[numeCategorie,search])
+    },[numeCategorie])
     let test = 0
     useBeforeFirstRender(() => {
-        setPaginationValue({categorie:menuItem[0].text})
-        test = getNrAnunturi(menuItem[0].text)
+        setPaginationValue({categorie:'anunturilemele'})
+        test = getNrAnunturi('anunturilemele')
         // console.log(nrAds);
-            
     })
     const nrPagini = Math.ceil(nrAds / adsPerPage)
     
@@ -110,7 +105,7 @@ function ListaAnunturi(props){
                                     sizeSmall: classes.smallSizePagination
                                 }}
                             component={Link}
-                            to={`/anunturi/${item.page === 1 ? categorie+'' : categorie+`/page=${item.page}`}`}
+                            to={`/anunturi/anunturilemele${item.page === 1 ? '' : `/page=${item.page}`}`}
                             {...item}
                             />
                         )}
@@ -139,8 +134,7 @@ const mapStateToProps = (state) =>{
         numeCategorie: state.pagination.categorie,
         nrAds: state.pagination.nrAds,
         adsPerPage: state.pagination.adsPerPage,
-        offset: state.pagination.offset,
-        search: state.temporary.search
+        offset: state.pagination.offset
     }
 }
 
@@ -154,6 +148,7 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
     getAnunturiCategorie,
     resetPagination,
     resetAnunturi,
+    setClickedId,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(ListaAnunturi)

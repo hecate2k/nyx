@@ -40,6 +40,11 @@ export const description = require('./Icons/description.svg')
 export const addAnunt = require('./Icons/addAnunt.svg')
 export const questionMark = require('./Icons/question.svg')
 export const noData = require('./Icons/noData.png')
+export const whiteEdit = require('./Icons/whiteEdit.png')
+export const whiteArchive = require('./Icons/whiteArchive.png')
+export const whiteDelete = require('./Icons/whiteDelete.png')
+
+
 
 //illustrations
 export const loginIllustration = require('./Illustrations/login.svg')

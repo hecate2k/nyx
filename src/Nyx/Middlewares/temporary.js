@@ -3,7 +3,9 @@ import {actionType} from '../Utils'
 export default function temporaryMiddleware({dispatch,getState}){
     return function(next){
         return function(action){
-            //verificari care se fac inainte sa ajunga comanda la store
+            //verificari care se fac inainte sa ajunga comanda la store\\
+            // console.log(action);
+           
             if(action.type === actionType.ADD_IMAGE){
                 if(action.imagine === undefined){
                     return
@@ -42,6 +44,15 @@ export default function temporaryMiddleware({dispatch,getState}){
             
             next(action)
             //verificari dupa ce sa trimis la store
+            if(action.type === actionType.UPDATE_TEMP_DATA)
+            {
+                console.log(action);
+                
+                if(action.data && action.data.search){
+                    dispatch({type:actionType.GET_ANUNTURI_CATEGORIE})
+                    dispatch({type:actionType.RESET_PAGINATION_REDUCER})
+                }
+            }
         }
     }
 }

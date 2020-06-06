@@ -14,7 +14,7 @@ function BlackSearch(props){
             dd
         </Box>
         <Box className={classes.blackSearch}>
-            <TextField className={classes.blackSearchBar} placeholder="Scrie aici pentru a cauta un anunt"/>
+            <TextField className={classes.blackSearchBar} placeholder="Scriei aici pentru a cauta un anunt"/>
             <Box className={classes.filtreBaricons}>
                 <SearchIcon className={classes.blackSearchIcon}/>
             </Box>

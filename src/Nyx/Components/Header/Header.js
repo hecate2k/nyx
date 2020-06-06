@@ -119,7 +119,7 @@ function Header(props){
                     <img className={classes.headerLogoImg} src={nixxRedLogo}/>
                 </Link> */}
             </Box>
-            {/* <BlackBar/> */}
+            <BlackBar/>
             
         </Box>
 

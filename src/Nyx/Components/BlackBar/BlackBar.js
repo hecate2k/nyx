@@ -7,14 +7,14 @@ import { searchIcon } from '../../Images'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { SelectList } from './blackBarComps'
 import Rodal from 'rodal'
-import {changeModalStatus,enqueueSnackbar} from '../../Actions'
+import {changeModalStatus,enqueueSnackbar,updateTemp} from '../../Actions'
 import {selectModalStatus,selectIsLogged} from '../../Selectors'
 import 'rodal/lib/rodal.css'
 
 
 function BlackBar(props){
     const classes = useClasses()
-    const {changeModalStatus, logat,enqueueSnackbar} = props
+    const {changeModalStatus, logat,enqueueSnackbar,updateTemp,search} = props
     const [inputStatus, setInputStatus] = React.useState(false)
     const [modalStatus, setModalStatus] = React.useState(false)
     var x  = window.innerWidth - 30
@@ -42,12 +42,15 @@ function BlackBar(props){
       const seteazaInputStatus = value => () => {
         setInputStatus(value)
       }
+      const changeSearch = e =>{
+        updateTemp({search:e.target.value})
+      }
     return(
         <>
         <Box className={classes.blackBar}>
             <ClickAwayListener onClickAway={seteazaInputStatus(false)}>
                 <Box onClick={seteazaInputStatus(true)} className={[classes.inputContainer,inputStatus?classes.expandedInputContainer:''].join(' ')}>
-                    <input placeholder="Scrie aici pentru a cauta ..." className={[classes.inputBar,inputStatus?classes.expandedInput:''].join(' ')} />
+                    <input onChange={changeSearch} value={search} placeholder="Scrieu aici pentru a cauta ..." className={[classes.inputBar,inputStatus?classes.expandedInput:''].join(' ')} />
                     <img  className={classes.searchIcon} src={searchIcon}/>
                 </Box>
             </ClickAwayListener>
@@ -78,7 +81,8 @@ const mapStateToProps = (state) =>{
     return{
         isLogged: selectIsLogged(state),
         ...dateModal,
-        logat: state.login.isLogged
+        logat: state.login.isLogged,
+        search:state.temporary.search,
     }
 }
 
@@ -86,6 +90,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     changeModalStatus,
+    updateTemp,
     enqueueSnackbar
 },dispatch))
 

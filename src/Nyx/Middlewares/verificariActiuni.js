@@ -4,14 +4,17 @@ export default function verificariActiuniMiddleware({dispatch,getState}){
     return function(next){
         return function(action){
             //verificari care se fac inainte sa ajunga comanda la store
-            if(action.type === actionType.CHANGE_MODAL_STATUS){
-                const {modal,modalStatus} = getState().temporary
-                if(action.modal === modal && action.modalStatus === modalStatus)
-                    return
-                else if(action.modal === modal && actionType.modalStatus !== modalStatus)
-                    dispatch({type:actionType.CHANGE_MODAL_STATUS,modal:modal,modalStatus:action.modalStatus})
-                else if(action.modal !== modal && actionType.modalStatus === modalStatus)
-                    dispatch({type:actionType.CHANGE_MODAL_STATUS,modal:action.modal,modalStatus:modalStatus})
+            // if(action.type === actionType.CHANGE_MODAL_STATUS){
+            //     const {modal,modalStatus} = getState().temporary
+            //     if(action.modal === modal && action.modalStatus === modalStatus)
+            //         return
+            //     else if(action.modal === modal && actionType.modalStatus !== modalStatus)
+            //         dispatch({type:actionType.CHANGE_MODAL_STATUS,modal:modal,modalStatus:action.modalStatus})
+            //     else if(action.modal !== modal && actionType.modalStatus === modalStatus)
+            //         dispatch({type:actionType.CHANGE_MODAL_STATUS,modal:action.modal,modalStatus:modalStatus})
+            // }
+            if(action.type === actionType.SET_PAGINATION_DATA){
+                dispatch({type:actionType.UPDATE_TEMP_DATA,data:{search:''}})
             }
             if(action.type === actionType.TRY_UPLOAD_ANUNT){
                 

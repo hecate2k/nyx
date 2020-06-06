@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 function FiltreBar(props){
     const classes = useClasses()
+    const {nrAds} = props
     const [age, setAge] = React.useState('Noi');
     const [open, setOpen] = React.useState(false);
     const [adNr, setAdNr] = React.useState('10');
@@ -38,7 +39,7 @@ function FiltreBar(props){
         </Box>
         <Box className={classes.filtreBar}>
             <Box className={classes.itemNumber}>
-                {"123 anunturi"}
+                {nrAds + " anunturi"}
             </Box>
             <Box className={classes.sortBy}>
                 Sort by <Select className={classes.filtreBarSelect} open={open} onClose={inchideSortBy()} onOpen={openSortBy()} value={age} onChange={seteazaSortBy()} >
@@ -65,6 +66,7 @@ function FiltreBar(props){
 const mapStateToProps = (state) =>{
 
     return{
+        nrAds: state.pagination.nrAds
     }
 }
 

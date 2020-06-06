@@ -7,6 +7,8 @@ import BlackBar from './BlackBar'
 import Footer from './Footer'
 import Error404 from './Error404'
 import About from './About'
+import AnunturileMele from './AnunturileMele'
+
 
 export {
     Login,
@@ -18,4 +20,5 @@ export {
     Footer,
     Error404,
     About,
+    AnunturileMele,
 }

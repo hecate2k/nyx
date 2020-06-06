@@ -16,14 +16,24 @@ const INITIAL_STATE = {
     imageLoading: false,
     blobAvatar:false,
     blobCover:false,
+    clickedId:-1,
+    profileSelected:'Nume',
+    profileTemp:'gigel',
+    profileLoading:false,
+    search:'',
 }
 
 const temporaryReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
-        case actionType.SET_BLOB_AVATAR:
+        case actionType.SET_CLICKED_ID:
             return{
                 ...state,
-                blobAvatar:true
+                clickedId:action.clickedId
+            }
+        case actionType.SET_PROFILE_SELECTED:
+            return{
+                ...state,
+                profileSelected:action.selected
             }
         case actionType.SET_BLOB_COVER:
             return{
@@ -40,6 +50,11 @@ const temporaryReducer = (state = INITIAL_STATE, action) => {
             return{
                 ...state,
                 imageLoading:action.status
+            }
+        case actionType.SET_UPDATE_PROFILE_LOADING:
+            return{
+                ...state,
+                profileLoading:action.status
             }
         case actionType.SET_SELECTED_FILE:{
             return{
@@ -59,11 +74,16 @@ const temporaryReducer = (state = INITIAL_STATE, action) => {
                 modalStatus:action.status,
                 modal:action.modal
             }
-        case actionType.UPDATE_LOGIN_DATA:
+        case actionType.UPDATE_TEMP_DATA:
             return{
                 ...state,
                 ...action.data
             }
+            case actionType.UPDATE_LOGIN_DATA:
+                return{
+                    ...state,
+                    ...action.data
+                }
         case actionType.RESET_LOGIN_ERRORS:
             return{
                 ...state,

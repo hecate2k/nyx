@@ -43,7 +43,7 @@ function ProfileBadge(props){
                                     </Box>
                                 </Box>
                             </Link>
-                            <Link to="/anunturi">
+                            <Link to="/anunturi/anunturilemele">
                                 <Box className={classes.profileBadgeListElement}>
                                     <img src={anunturiIcon}/>
                                     <Box className={classes.profileBadgeLinkTo}>

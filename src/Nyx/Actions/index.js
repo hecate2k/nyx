@@ -49,6 +49,11 @@ export const setBlobCover = () => ({type:actionType.SET_BLOB_COVER})
 export const resetBlob = () => ({type:actionType.RESET_BLOB})
 export const resetLoginData = () => ({type:actionType.RESET_LOGIN_REDUCER})
 export const resetAnunturi = () => ({type:actionType.RESET_ANUNTURI})
+export const setClickedId = (clickedId) => ({type:actionType.SET_CLICKED_ID,clickedId})
+export const setProfileSelected = selected => ({type:actionType.SET_PROFILE_SELECTED,selected})
+export const tryProfileUpdate = () => ({type:actionType.TRY_PROFILE_UPDATE})
+export const updateTemp = data => ({type:actionType.UPDATE_TEMP_DATA, data})
+
 
 //UPLOAD REDUCER
 

@@ -13,14 +13,15 @@ export function* getNrAnunturi(){
 
 function* getTotalAnunturi(categorie){
     try{
-        
+        const {id} = yield select(state => state.login)
         const data = new FormData()
         data.append('categorie', categorie)
+        data.append('id',id)
         const uploadResult = yield axios.post(linkSpreFolderApi+'getNrAnunturi.php',data)
         
         const rezultat = uploadResult.data.result
         yield put({type:actionType.SET_NR_ADS,rezultat})
-        console.log("total anunturi ", rezultat);
+        console.log("total anunturi ", categorie);
         
     }
     catch(error){

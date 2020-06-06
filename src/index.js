@@ -8,7 +8,7 @@ import { store, persistor} from './Nyx/Store'
 // import theme from './Nyx/Themes'
 if (process.env.NODE_ENV === 'development') {
     const whyDidYouRender = require('@welldone-software/why-did-you-render')
-    whyDidYouRender(React, { include: [/^ConnectFunction$/] })
+    whyDidYouRender(React)
   }
 
 const App = () =>(

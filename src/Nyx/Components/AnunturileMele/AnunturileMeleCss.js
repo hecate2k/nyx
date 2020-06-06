@@ -146,7 +146,7 @@ const useClasses = makeStyles(theme =>({
     },
     anuntNumarTelefon:{
         width: '100%',
-        height: '30px',
+        height: '25px',
         fontWeight: 800,
         fontSize: '9pt',
         display: 'flex',
@@ -157,21 +157,6 @@ const useClasses = makeStyles(theme =>({
         marginTop: '10px',
         boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
         color:'white',
-    },
-    optionBox:{
-        width: '100%',
-        height: '30px',
-        fontWeight: 800,
-        fontSize: '9pt',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#262626',
-        borderRadius: '4px',
-        marginTop: '10px',
-        boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
-        color:'white',
-        padding: '0px 20px'
     },
     loadingCircleBox:{
         width: '100%',
@@ -235,8 +220,7 @@ const useClasses = makeStyles(theme =>({
         zIndex: 1,
         position: 'fixed',
         top: '164px',
-    },
-    
+    }
 }))
 
 export default useClasses
