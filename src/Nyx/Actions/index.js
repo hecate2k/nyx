@@ -77,3 +77,4 @@ export const resetPage = () => ({type:actionType.RESET_PAGE})
 
 // export const getAnunturiCategorie = (preluate,sarite,categorie) => ({type:actionType.GET_ANUNTURI_CATEGORIE,preluate,sarite,categorie})
 export const getAnunturiCategorie = () => ({type:actionType.GET_ANUNTURI_CATEGORIE})
+export const setAD = (upType,upValue,idAnunt) => ({type:actionType.SET_DELETED_ARCHIVED, upType, upValue,idAnunt})

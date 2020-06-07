@@ -21,6 +21,7 @@ const INITIAL_STATE = {
     profileTemp:'gigel',
     profileLoading:false,
     search:'',
+    didUpdate: false,
 }
 
 const temporaryReducer = (state = INITIAL_STATE, action) => {

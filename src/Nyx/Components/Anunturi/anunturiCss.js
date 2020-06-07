@@ -118,7 +118,8 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         flexDirection: 'row',
         marginTop: '15px',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         alignItems: 'center',
     },
     heartPrice:{
@@ -143,6 +144,7 @@ const useClasses = makeStyles(theme =>({
         color: 'white',
         fontWeight: 800,
         paddingTop: '4px',
+        minWidth: '55px',
     },
     anuntNumarTelefon:{
         width: '100%',
@@ -236,7 +238,29 @@ const useClasses = makeStyles(theme =>({
         position: 'fixed',
         top: '164px',
     },
-    
+    buttonBox:{
+        width: 'calc(100% - 30px)',
+        margin:'0 auto',
+        marginBottom: '15px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    buttonBoxButtonA:{
+        background: '#f35 !important',
+        color:'white !important',
+        fontWeight: '600 !important',
+        transitionProperty: 'color,background',
+        transitionDuration: '.2s',
+        transitionTimingFunction: 'ease-in-out',
+    },
+    option:{
+        display: 'flex',
+        alignItems: 'center',
+        '& img':{
+            marginRight: '5px',
+        }
+    }
 }))
 
 export default useClasses

@@ -64,11 +64,11 @@ const useClasses = makeStyles(theme =>({
     },
     anunturiCards:{
         width: '100%',
-        height: '195px',
+        // height: '195px',
         marginTop: '13px',
         display: 'flex',
         flexGrow: 'unset',
-        flexDirection: 'row',
+        flexDirection: 'column',
         overflowX: 'scroll',
         width: '100%',
     },

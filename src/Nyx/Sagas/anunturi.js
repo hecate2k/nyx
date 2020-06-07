@@ -5,7 +5,8 @@ import {linkSpreFolderApi} from '../Utils/serverLinks'
 
 export function* getNrAnunturi(){
     while(true){
-        const {currentPage} = yield select(state => state.pagination)
+        yield take(actionType.GET_NR_ANUNTURI)
+        // const {currentPage} = yield select(state => state.pagination)
         const {categorie} = yield take(actionType.GET_NR_ANUNTURI)
         yield call(getTotalAnunturi,categorie)
     }
@@ -32,40 +33,53 @@ function* getTotalAnunturi(categorie){
     }
 }
 
-
-
-
-
-
 export function* anunturiSaga(){
     while(true){
-        // const {modalStatus, modal} = yield take(actionType)
-        const { preluate,sarite } = yield take(actionType.GET_ANUNTURI)
-        const anunturi = yield  call(getAnunturi,preluate,sarite)
-        yield put({type:actionType.SET_ANUNTURI,anunturi})
-        console.log('afasdfa');
-        
-       
+        const action = yield take(actionType.SET_DELETED_ARCHIVED)
+        yield call(updateAnunt,action.upType,action.upValue,action.idAnunt)
     }
 }
 
-function* getAnunturi(preluate,sarite){
-    yield put({type:actionType.SET_ANUNTURI_LOADING,status:true})
+function* updateAnunt(upType,upValue,idAnunt){
     try{
+        const {id} = yield select(state => state.login)
+        const {clickedId,updateType,updateValue} = yield select(state => state.temporary)
         const data = new FormData()
-		data.append('preluate', preluate)
-		data.append('sarite', sarite)
-
-        const result = yield axios.post(linkSpreFolderApi+'anunturiBune.php',data)
+        console.log("VALORI: ",upType,upValue,idAnunt,id);
+        console.log("AM INTRAT AICI");
         
-        return result.data.result
-
+        data.append('tip', upType)
+        data.append('value',upValue)
+        data.append('id_anunt',idAnunt)
+        data.append('id_publicant',id)
+        const uploadResult = yield axios.post(linkSpreFolderApi+'getNrAnunturi.php',data)
+        const rezultat = uploadResult.data.result
+        console.log("Returned: ",rezultat);
+        const {didUpdate} = yield select(state => state.temporary)
+        
+        yield put({type: actionType.UPDATE_TEMP_DATA, data: {
+            didUpdate : !didUpdate
+        }})
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+            message: upType === 'arhivat' ? (upValue === 1 ? 'Anuntul a fost arhivat cu success !' : 'Anuntul a fost dezarhivat cu success !') : 'Anuntul a fost sters cu success !',
+            key: new Date().getTime() + Math.random(),
+            options: {
+                variant: 'success'
+            },
+        }})
+        
     }
     catch(error){
-        console.log(error)
-        return []
+        console.log("Eroare: ",error.response.data.message);
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+            message: 'A avout loc o eroare de server. Va rugam sa reincercati !',
+            key: new Date().getTime() + Math.random(),
+            options: {
+                variant: 'error'
+            },
+        }})
+        
     }
     finally{
-        yield put({type:actionType.SET_ANUNTURI_LOADING,status:false})
     }
 }

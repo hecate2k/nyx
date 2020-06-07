@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import useClasses from '../../Anunturi/anunturiCss'
-import {Box} from '@material-ui/core'
+import {Box, Button} from '@material-ui/core'
 import Anunt from './Anunt'
 import useBeforeFirstRender from '../../../Utils/useBeforeFirstRender'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -21,23 +21,23 @@ import { noData } from '../../../Images'
 
 function ListaAnunturi(props){
     const classes = useClasses()
-    const {setClickedId,resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
-    
+    const {didUpdate,setClickedId,resetPagination,adsPerPage,nrAds,getAnunturiCategorie,numeCategorie, getNrAnunturi,currentPage,setPaginationValue,getAnunturi, anunturi, isLoading, setAnuntId, anuntId, anunt,nrAnunturi} = props
+    const [archived, setArchived] = React.useState(false);
+    const handleArchived = value => () =>{
+        resetPagination()
+        setArchived(value)
+    }
     var modalWidth  = window.innerWidth - 30
     var modalHeight  = window.innerHeight - 30;
     
     let timeout=0
     let decreaseTimeoutBy = 0
-
     const seteazaIdAnunt = id => () => {
         setAnuntId(id)
-        
     }
 
     const seteazaIdAnuntulMeu = id => () =>{
         setClickedId(id)
-        console.log(id);
-        
     }
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
@@ -49,10 +49,12 @@ function ListaAnunturi(props){
                 timeout += 500 - decreaseTimeoutBy;
                 decreaseTimeoutBy +=50;
                 return(
-                    <Anunt setId={seteazaIdAnuntulMeu(date.id)} onClick={seteazaIdAnunt(date.id)} timeout={timeout} {...date} key={date.id}/>
+                    <Anunt archived={archived} setId={seteazaIdAnuntulMeu(date.id)} onClick={seteazaIdAnunt(date.id)} anuntID={date.id} timeout={timeout} {...date} key={date.id}/>
                 )
             })
     }
+
+
 
     const changePage = (event,value) => {
         setPaginationValue({currentPage:value})
@@ -66,16 +68,20 @@ function ListaAnunturi(props){
     React.useEffect((event) => {
         // resetAnunturi()
         resetPagination()
-        setPaginationValue({categorie:'anunturilemele'})
-        getNrAnunturi('anunturilemele')
+        if(archived){
+            setPaginationValue({categorie:'anunturilemelearhivate'})
+            getNrAnunturi('anunturilemelearhivate')
+        } 
+        else{
+            setPaginationValue({categorie:'anunturilemele'})
+            getNrAnunturi('anunturilemele')
+        }
         getAnunturiCategorie()
-        
-    },[numeCategorie])
+    },[numeCategorie,archived,didUpdate])
     let test = 0
     useBeforeFirstRender(() => {
         setPaginationValue({categorie:'anunturilemele'})
         test = getNrAnunturi('anunturilemele')
-        // console.log(nrAds);
     })
     const nrPagini = Math.ceil(nrAds / adsPerPage)
     
@@ -87,7 +93,10 @@ function ListaAnunturi(props){
                 <Box className={classes.loadingCircleBox}><CircularProgress color="secondary" /></Box>
                 :
                 <>
-                    
+                    <Box className={classes.buttonBox}>
+                        <Button className={!archived ? classes.buttonBoxButtonA : ''} onClick={handleArchived(false)} variant="contained">NE ARHIVATE</Button>
+                        <Button className={archived ? classes.buttonBoxButtonA : ''} onClick={handleArchived(true)} variant="contained"> Arhivate</Button>
+                    </Box>
                     {renderListaAnunturi(anunturi||[])}
                     {
                         nrPagini > 1 &&
@@ -134,7 +143,8 @@ const mapStateToProps = (state) =>{
         numeCategorie: state.pagination.categorie,
         nrAds: state.pagination.nrAds,
         adsPerPage: state.pagination.adsPerPage,
-        offset: state.pagination.offset
+        offset: state.pagination.offset,
+        didUpdate: state.temporary.didUpdate
     }
 }
 

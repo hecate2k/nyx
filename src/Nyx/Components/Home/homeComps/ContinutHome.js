@@ -14,7 +14,8 @@ import Rodal from 'rodal'
 import 'rodal/lib/rodal.css'
 import useBeforeFirstRender from '../../../Utils/useBeforeFirstRender'
 import {Select, MenuItem} from '@material-ui/core'
-
+import { noData } from '../../../Images'
+import Anunt from '../../Anunturi/anunturiComps/Anunt'
 
 function Login(props){
     const classes = useClasses()
@@ -24,20 +25,30 @@ function Login(props){
     var modalHeight  = window.innerHeight - 30
 
     useBeforeFirstRender(() => {
-        getAnunturi(20,0)
+        getAnunturi(10,0)
     })
 
     const seteazaIdAnunt = id => () => {
         setAnuntId(id)
     }
+
+    let timeout=0
+    let decreaseTimeoutBy = 0
+
     const renderListaAnunturi = (anunturi)  =>  {
         if(!anunturi.length)
-            return <Box className={classes.noAnunturi}>Nu exista anunturi</Box>
-        return anunturi.map((date) => (
-                <AnuntMic onClick={seteazaIdAnunt(date.id)} {...date}  key={date.id}/>
-          ))
+            return <Box className={classes.categorieNoData}>
+                <img className={classes.noDataImage} src={noData}/>
+                <p className={classes.noDataText}>Momentan nu sunt publicate anunturi in aceasta categorie.</p>
+            </Box>
+        return anunturi.map((date) => {
+                timeout += 500 - decreaseTimeoutBy;
+                decreaseTimeoutBy +=50;
+                return(
+                    <Anunt onClick={seteazaIdAnunt(date.id)} timeout={timeout} {...date} key={date.id}/>
+                )
+            })
     }
-
     return(
         <Box className={classes.continutHome}>
                     <div className={classes.homeAnunturi}>

@@ -6,13 +6,14 @@ import {heartIcon, whiteEdit, whiteArchive, whiteDelete} from '../../../Images'
 import {Box, Grow} from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
 import {linkSprePozeAnunturi,linkSprePozeProfil} from '../../../Utils/serverLinks'
-import {setClickedId} from '../../../Actions'
+import {setClickedId,setAD} from '../../../Actions'
 
 function Anunt(props){
     const classes = useClasses()
-    const {setClickedId,timeout,promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
-    
-    
+    const {archived,setAD,setClickedId,timeout,id,promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
+    const doUpdate = (tip,valoare,id) => () => {
+        setAD(tip,valoare,id)
+    }
     return(
         <>
         <Grow in={true} timeout={props.timeout}>
@@ -41,11 +42,11 @@ function Anunt(props){
                             </Box>
                         </Box>
                         <Box className={classes.anuntInfoFooter}>
-                            <p className={classes.anuntVizualizari}>
+                            {/* <p className={classes.anuntVizualizari}>
                                 {vizualizari} vizualizari
-                            </p>
+                            </p> */}
                             <Box className={classes.heartPrice}>
-                                <img className={classes.heartIcon} src={heartIcon}/>
+                                {/* <img className={classes.heartIcon} src={heartIcon}/> */}
                                 <Box className={classes.anuntPret}>
                                     {pret}
                                 </Box>
@@ -54,9 +55,15 @@ function Anunt(props){
                     </Box>
                 </Box>
                 <Box onClick={props.setId} className={classes.optionBox}>
-                    <img src={whiteEdit} alt="edit icon"/>
-                    <img src={whiteArchive} alt="archive icon"/>
-                    <img src={whiteDelete} alt="delete icon"/>
+                    <Box onClick={!archived ? doUpdate("arhivat",1,props.anuntID) : doUpdate("arhivat",0,props.anuntID) } className={classes.option}>
+                        <img src={whiteArchive} alt="archive icon"/>
+                        {archived ? "Dezarhiveaza" : "Arhiveaza"}
+                    </Box>
+                    <Box onClick={doUpdate("deleted",1,props.anuntID)} className={classes.option}>
+                        <img src={whiteDelete} alt="delete icon"/>
+                        Sterge
+                    </Box>
+                    
                 </Box>
             </Box>
             </Grow>
@@ -66,7 +73,6 @@ function Anunt(props){
 
 const mapStateToProps = (state) =>{
     return{
-        
     }
 }
 
@@ -74,6 +80,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = dispatch => (bindActionCreators({
     //actions
     setClickedId,
+    setAD,
 },dispatch))
 
 export default connect(mapStateToProps,mapDispatchToProps)(Anunt)

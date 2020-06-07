@@ -39,11 +39,11 @@ function Anunt(props){
                             </Box>
                         </Box>
                         <Box className={classes.anuntInfoFooter}>
-                            <p className={classes.anuntVizualizari}>
+                            {/* <p className={classes.anuntVizualizari}>
                                 {vizualizari} vizualizari
-                            </p>
+                            </p> */}
                             <Box className={classes.heartPrice}>
-                                <img className={classes.heartIcon} src={heartIcon}/>
+                                {/* <img className={classes.heartIcon} src={heartIcon}/> */}
                                 <Box className={classes.anuntPret}>
                                     {pret}
                                 </Box>
