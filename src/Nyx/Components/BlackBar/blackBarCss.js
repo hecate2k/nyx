@@ -23,7 +23,8 @@ const useClasses = makeStyles(theme =>({
         border: '2px solid #f35',
         color: 'white',
         fontWeight: 700,
-        fontSize: '7pt'
+        fontSize: '7pt',
+        marginLeft: 'auto'
     },
     selectOras:{
             backgroundColor: 'white',
@@ -68,7 +69,7 @@ const useClasses = makeStyles(theme =>({
         borderRadius: '4px',
         marginRight: '5px',
         minWidth: '30px',
-        width: '30px',
+        width: 'calc(100% - 130px)',
         justifyContent: 'space-between',
         alignItems: 'center',
         transition: 'width .5s',
@@ -77,7 +78,7 @@ const useClasses = makeStyles(theme =>({
         zIndex: '10',
     },
     inputBar:{
-        width: '0px',
+        width: '100%',
         height: '100%',
         backgroundColor: 'white',
         transition: 'width .5s',

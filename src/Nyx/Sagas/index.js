@@ -5,7 +5,7 @@ import { anunturiSaga, getNrAnunturi} from './anunturi'
 import {imageuploadSaga} from './imageupload'
 import {signupSaga} from './signup'
 import {uploadAnuntSaga} from './uploadAnunt'
-import {anunturiCategorieSaga} from './getAnunturiCategorie'
+import {anunturiCategorieSaga,anunturiHomeSaga} from './getAnunturiCategorie'
 
 export default function* sagas(){
     yield all([
@@ -18,5 +18,6 @@ export default function* sagas(){
         uploadAnuntSaga(),
         getNrAnunturi(),
         anunturiCategorieSaga(),
+        anunturiHomeSaga(),
     ])
 }

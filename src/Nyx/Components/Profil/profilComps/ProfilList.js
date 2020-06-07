@@ -19,9 +19,12 @@ function ProfilList(props){
     const handleClickOpen = () => {
         setOpen(true);
       };
-    
+      const resetTempProfile = () =>{
+        updateTemp({profileTemp:''})
+    }
       const handleClose = () => {
-        setOpen(false);
+        setOpen(false)
+        resetTempProfile()
       };
 
     const renderListaProfil = ()  =>  (
@@ -39,6 +42,7 @@ function ProfilList(props){
     const doUpdate = () => {
         tryProfileUpdate()
         console.log("i was clicked");
+        handleClose()
     }
 
     const updateTempValue = () => e =>{
@@ -57,16 +61,20 @@ function ProfilList(props){
             {/* {
                 renderListaProfil()
             } */}
-            <Dialog open={open && selected!=''} onClose={handleClose} TransitionComponent={Zoom} className={classes.profileModal}>
-                <Box>
+           
+            <Dialog fullWidth={true} maxWidth={false} open={open && selected!=''}  onClose={handleClose} TransitionComponent={Zoom} className={classes.profileModal}>
+                <Box className={classes.profileModalBox}>
                     {selected === 'Nume' || selected === 'Prenume' || selected === 'Email' || selected === 'Oras'  || selected === 'Judet'
                     ? 
-                    "Noul " + selected.toLowerCase()
+                    "Va rugam sa introduceti noul " + selected.toLowerCase()
                     : selected === 'Telefon' ? "Noul numar de " + selected.toLowerCase() : "Noua " + selected.toLowerCase()
                     }
-                    <input onChange={updateTempValue()} defaultValue={nume} autoFocus/>
-                    <Button onClick={handleClose} variant="contained">Cancel</Button>
-                    <Button onClick={doUpdate} variant="contained">Salveaza</Button>
+                    <input onChange={updateTempValue()} value={nume} autoFocus/>
+                    <Box className={classes.profileModalButtons}>
+                        <Button onClick={handleClose} variant="contained">Cancel</Button>
+                        <Button onClick={doUpdate} variant="contained">Salveaza</Button>
+                    </Box>
+                    
 
                 </Box>
             </Dialog>
@@ -79,7 +87,7 @@ const mapStateToProps = (state) =>{
     return{
         loginData: selectLoginData(state),
         selected: state.temporary.profileSelected ,
-        nume: state.login.nume
+        nume: state.temporary.profileTemp
     }
 }
 

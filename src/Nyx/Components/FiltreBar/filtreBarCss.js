@@ -2,11 +2,13 @@ import {makeStyles} from '@material-ui/core/styles'
 
 const useClasses = makeStyles(theme =>({
     filtreBar:{
+        minHeight: '36px',
         position: 'fixed',
         top: '178px',
         zIndex: '11',
         width: '100%',
         display: 'flex',
+        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
         background: 'white',
@@ -21,10 +23,16 @@ const useClasses = makeStyles(theme =>({
     }
     ,
     itemNumber:{
-        fontSize: '8pt',
+        fontSize: '10pt',
+        display: 'flex',
         fontWeight: 900,
-        color:'#f35',
+        color:'#262626',
         textAlign: 'center',
+        '& p':{
+            color:'#f35',
+            marginLeft: '5px',
+            marginRight: '5px'
+        }
     },
     sortBy:{
         maxWidth: '115px',

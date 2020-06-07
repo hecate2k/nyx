@@ -54,7 +54,6 @@ function Login(props){
                     <div className={classes.homeAnunturi}>
                         <div className={classes.anunturiHeader}>
                             Anunturi recente
-                            <div className={classes.butonFilledRosu}>ARATALE PE TOATE</div>
                         </div>
                         <div className={classes.anunturiCards}>
                         {
@@ -95,7 +94,7 @@ const mapStateToProps = (state) =>{
         anuntId: selectAnuntId(state),
         isLoading : state.anunturi.isLoading,
         anunturi: state.anunturi.anunturi,
-        len: state.anunturi.anunturi.length,
+        len: state.anunturi.nrTotal,
         // nrImagini: state.uploadanunt.imagini.length || 0
     }
 }

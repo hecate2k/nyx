@@ -193,8 +193,20 @@ const useClasses = makeStyles(theme =>({
         fontWeight: 900,
         fontSize: '12pt',
         marginLeft: '15px',
+        display: 'flex',
+        '& p':{
+            maxWidth: '120px',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',  
+            marginRight: '5px',        
+        },
         '& span':{
             color:'#f35',
+            maxWidth: '120px',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
             background: 'linear-gradient(to right top, #ff3355, #ff3655, #ff3855, #ff3b56, #ff3d56, #ff3d57, #ff3d57, #ff3d58, #ff3b5a, #ff385b, #ff365d, #ff335f)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -257,7 +269,8 @@ const useClasses = makeStyles(theme =>({
     },
     profileBadgeBox:{
         zIndex: '999',
-        position: 'relative'
+        position: 'relative',
+        maxWidth: 'calc(100% - 30px)'
     },
     mTop:{
         marginTop: '0px',

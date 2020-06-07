@@ -208,7 +208,42 @@ const useClasses = makeStyles(theme =>({
     },
     displayNone:{
         display: 'none !important'
-    }
+    },
+    profileModalBox:{
+        width: '100%',
+        padding: '10px',
+        display: 'flex',
+        borderRadius: '10px',
+        flexDirection: 'column',
+        '& input':{
+            width: '100%',
+            background: '#262626',
+            borderRadius: '5px',
+            margin: '5px 0px 10px 0px',
+            color:'white',
+            padding: '5px'
+        },
+        '& button':{
+            width: 'calc(50% - 5px)',
+            padding: '8px 10px',
+            fontSize: '7.7pt',
+            boxShadow: '0px 3px 6px rgba(0,0,0,.16) !important',
+            minHeight: '29px',
+            fontWeight: '900',
+            borderRadius: '8px',
+            textTransform: 'unset'
+        },
+        '& button:last-of-type':{
+            background: '#f35 !important',
+            color:'white',
+            
+        }
+
+    },
+    profileModalButtons:{
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
 }))
 
 export default useClasses

@@ -41,3 +41,32 @@ function* getAnunturiCategorie(){
         yield put({type:actionType.SET_ANUNTURI_LOADING,status:false})
     }
 }
+
+
+export function* anunturiHomeSaga(){
+    while(true){
+        yield take(actionType.GET_ANUNTURI)
+            yield  call(getAnunturiHome)
+    }
+}
+
+function* getAnunturiHome(){
+
+    yield put({type:actionType.SET_ANUNTURI_LOADING,status:true})
+    try{
+        const res = yield axios.post(linkSpreFolderApi+'getAnunturiHome.php')
+        console.log("acusuu",res.data.result.anunturi);
+        yield put({type:actionType.SET_ANUNTURI,anunturi: res.data.result.anunturi})
+        yield put({type: actionType.SET_ANUNTURI_DATA, data: {
+            nrTotal : res.data.result.nrTotal
+        }})
+
+    }
+    catch(error){
+        console.log(error.response)
+        yield put({type:actionType.SET_ANUNTURI,anunturi:  []})
+    }
+    finally{
+        yield put({type:actionType.SET_ANUNTURI_LOADING,status:false})
+    }
+}

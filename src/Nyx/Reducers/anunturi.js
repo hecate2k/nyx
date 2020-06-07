@@ -3,6 +3,7 @@ import { actionType } from '../Utils'
 const INITIAL_STATE = {
     anunturi:[],
     isLoading: false,
+    nrTotal:0,
 }
 
 const anunturiReducer = (state = INITIAL_STATE, action) => {
@@ -11,6 +12,11 @@ const anunturiReducer = (state = INITIAL_STATE, action) => {
             return{
                 ...state,
                 isLoading: action.status
+            }
+        case actionType.SET_ANUNTURI_DATA:
+            return{
+                ...state,
+                ...action.data
             }
         case actionType.SET_ANUNTURI:
             return{

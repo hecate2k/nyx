@@ -15,7 +15,7 @@ function CategorieAnunturi(props){
             <Header />
             <Box className={classes.fillerSpaceAnunturi}/>
             <FiltreBar />
-            <BlackSearch />
+            {/* <BlackSearch /> */}
             <ListaAnunturi />
         </Box>
     )  

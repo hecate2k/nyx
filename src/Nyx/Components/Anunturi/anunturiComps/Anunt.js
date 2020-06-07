@@ -15,27 +15,28 @@ function Anunt(props){
         <>
         <Grow in={true} timeout={props.timeout}>
             <Box onClick={props.onClick} className={classes.anuntContainer}>
-                <Box className={classes.anuntHeader}>
-                    {promovat === 1 &&
+                {/* <Box className={classes.anuntHeader}> */}
+                    {/* {promovat === 1 &&
                         <Box className={classes.anuntPromovat}>
                             promovat
                         </Box> 
-                    }
-                    <Box className={classes.anuntTitle}>
-                        {titlu}
-                    </Box>
-                </Box>
+                    } */}
+                    
+                {/* </Box> */}
                 <Box className={classes.anuntBody}>
                     <Box className={classes.anuntImagine}>
                         <img src={(linkSprePozeAnunturi+imagini[0].nume_poza) || ""}/>
                     </Box>
                     <Box className={classes.anuntInfos}>
+                    <Box className={classes.anuntTitle}>
+                        {titlu}
+                    </Box>
                         <Box className={classes.sellerInfo}>
                             <img className={classes.sellerAvatar} src={linkSprePozeProfil+avatar} />
                             <Box className={classes.sellerBio}>
                                 <p className={classes.anuntNumePrenume}>{prenume} {nume}</p>
                                 <p className={classes.judetOras}>{judet}, {oras}</p>
-                                <Rating className={classes.sellerRating} name="read-only" value={rating} readOnly />
+                                {/* <Rating className={classes.sellerRating} name="read-only" value={rating} readOnly /> */}
                             </Box>
                         </Box>
                         <Box className={classes.anuntInfoFooter}>
@@ -45,7 +46,7 @@ function Anunt(props){
                             <Box className={classes.heartPrice}>
                                 {/* <img className={classes.heartIcon} src={heartIcon}/> */}
                                 <Box className={classes.anuntPret}>
-                                    {pret}
+                                    {pret} lei
                                 </Box>
                             </Box>
                         </Box>

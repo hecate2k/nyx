@@ -84,12 +84,25 @@ function* update(){
             yield put({type: actionType.SET_LOGIN_DATA, value: {
                 [profileSelected.toLowerCase()] : profileTemp
             }})
-       
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+            message: 'Profilul a fost actualizat cu success !',
+            key: new Date().getTime() + Math.random(),
+            options: {
+                variant: 'success'
+            },
+        }})
 
         // return login.data.login
     }
     catch(error){
         console.log("Eroare: ",error.response.data.message);
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+            message: 'A avut loc o eroare la actualizarea profilului. Va rugam sa incercati din nou !',
+            key: new Date().getTime() + Math.random(),
+            options: {
+                variant: 'error'
+            },
+        }})
     }
     finally{
         yield put({type:actionType.SET_UPDATE_PROFILE_LOADING,status:false})

@@ -27,7 +27,8 @@ function ProfileBadge(props){
 					<Box classes={{root:classes.profileBadge}} variant="contained" onClick={toggleOpen()}>
                         <img className={classes.profileBadgeAvatar} src={avatar} />
                         <Box className={classes.profileBadgeNume}>
-                            {loginData.prenume} <span>{loginData.nume}</span>
+                            <p>{loginData.prenume}</p>
+                            <span>{loginData.nume}</span>
                         </Box>
                         <img className={classes.profileBadgeMenuIcon} src={badgeMenuIcon}/>
                     </Box>

@@ -85,9 +85,9 @@ function ProfilHeader(props){
                             {loginData.oras},{loginData.judet}
                         </p>
                     </Box>
-                    <Box className={classes.profilRating}>
+                    {/* <Box className={classes.profilRating}>
                         <Rating name="read-only" defaultValue={loginData.rating}  size="small" readOnly />
-                    </Box>
+                    </Box> */}
                 </div>
                 
             </Box>

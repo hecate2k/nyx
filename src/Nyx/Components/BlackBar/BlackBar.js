@@ -54,10 +54,10 @@ function BlackBar(props){
                     <img  className={classes.searchIcon} src={searchIcon}/>
                 </Box>
             </ClickAwayListener>
-            <Box className={classes.selectContainer}>
+            {/* <Box className={classes.selectContainer}>
                 <Box onClick={openModal} className={classes.selectItem}>Judet</Box>
                 <Box className={classes.selectItem}>Oras</Box>
-            </Box>
+            </Box> */}
             
            <Button onClick={openUploadModal()} className={classes.adaugaAnunt} variant="outlined">adauga anunt</Button>
            

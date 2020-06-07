@@ -58,20 +58,21 @@ const useClasses = makeStyles(theme =>({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
+        marginTop: '0px',
     },
     anuntBody:{
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        height: '80px',
+        height: '100px',
     },
     anuntImagine:{
         '& img':{
             height: '100%',
-            width: '140px',
+            width: '160px',
             objectFit: 'cover',
-            borderRadius: '8px',
+            borderRadius: '5px',
             boxShadow: '0px 1px 3px rgba(0,0,0,0.05), 0px 1px 2px rgba(0,0,0,0.1)',
         },
         height: '100%',
@@ -79,7 +80,7 @@ const useClasses = makeStyles(theme =>({
     anuntInfos:{
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
+        width: 'calc(100% - 170px)',
         marginLeft: '10px',
     },
     sellerInfo:{
@@ -87,6 +88,7 @@ const useClasses = makeStyles(theme =>({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: '10px'
     },
     sellerAvatar:{
         minWidth: '40px',
@@ -99,12 +101,15 @@ const useClasses = makeStyles(theme =>({
         border: '2px solid #efefef',
     },
     sellerBio:{
-        width: '100%',
+        width: 'calc(100% - 50px)',
         marginLeft: '10px',
     },
     anuntNumePrenume:{
         fontWeight: 900,
         fontSize: '11pt',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
     },
     judetOras:{
         fontSize: '8pt',
@@ -121,6 +126,7 @@ const useClasses = makeStyles(theme =>({
         // justifyContent: 'space-between',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        marginTop: '8px',
     },
     heartPrice:{
         display: 'flex',
