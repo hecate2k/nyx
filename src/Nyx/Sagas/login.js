@@ -21,7 +21,7 @@ function* login(){
 		data.append('email', email)
         data.append('password', password)
         
-        const login = yield axios.post(linkSpreFolderApi + 'login1.php',data)
+        const login = yield axios.post(linkSpreFolderApi + 'login.php',data)
         
         const value = login.data.result
         console.log("RETURNED OBJ",login.data.result);
@@ -38,7 +38,7 @@ function* login(){
         // return login.data.login
     }
     catch(error){
-        console.log("A INTERVENIT O EROAREa", error.response.data.error)
+        console.log("Eroare: ",error.response.data.message);
         yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
             message: 'Email sau parola incorecta !',
             key: new Date().getTime() + Math.random(),

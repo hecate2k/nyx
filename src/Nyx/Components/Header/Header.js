@@ -133,7 +133,7 @@ function Header(props){
                 <div className={[classes.paperLogin,modal === 'upload' && classes.paper].join(' ')}>
                     {
                         modal === 'login' ? <ContinutModalLogin handleClose={inchideModal('login')}/>
-                        : modal === 'signup' ? <SignupModal  handleClose={inchideModal('signup')}/>
+                        : modal === 'signup' ? <ContinutModalLogin  handleClose={inchideModal('signup')}/>
                         : modal === 'upload' && <AdaugaAnunt inchideModalul={inchideModal('upload')}/>
                     }
                 </div>

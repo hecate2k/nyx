@@ -55,7 +55,8 @@ function* getAnunturiHome(){
     yield put({type:actionType.SET_ANUNTURI_LOADING,status:true})
     try{
         const res = yield axios.post(linkSpreFolderApi+'getAnunturiHome.php')
-        console.log("acusuu",res.data.result.anunturi);
+        const rezultat = res.data.result
+        console.log("Returned: ",rezultat);
         yield put({type:actionType.SET_ANUNTURI,anunturi: res.data.result.anunturi})
         yield put({type: actionType.SET_ANUNTURI_DATA, data: {
             nrTotal : res.data.result.nrTotal
@@ -63,7 +64,7 @@ function* getAnunturiHome(){
 
     }
     catch(error){
-        console.log(error.response)
+        console.log("Eroare: ",error.response.data.message);
         yield put({type:actionType.SET_ANUNTURI,anunturi:  []})
     }
     finally{

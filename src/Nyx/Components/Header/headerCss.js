@@ -52,7 +52,7 @@ const useClasses = makeStyles(theme =>({
         boxShadow: theme.shadows[5],
         borderRadius: '8px',
         // marginLeft: '15px',
-        top: '50%',
+        top: 'calc(50% - 14px)',
         left: '50%',
         transform: 'translate(-50%,-50%) !important',
       },

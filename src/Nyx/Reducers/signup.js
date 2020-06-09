@@ -1,6 +1,8 @@
 import { actionType } from '../Utils'
 
 const INITIAL_STATE = {
+    nume:'',
+    prenume:'',
     email: '',
     password: '',
     repeatPassword:'',

@@ -16,8 +16,10 @@ export function* signupSaga(){
 function* signup(){
     yield put({type:actionType.SET_SIGNUP_STATUS_LOADING,status:true})
     try{
-        const {email, password} = yield select(state => state.signup)
+        const {nume,prenume,email, password} = yield select(state => state.signup)
         const data = new FormData()
+        data.append('nume',nume)
+        data.append('prenume',prenume)
 		data.append('email', email)
         data.append('password', password)
         
@@ -26,12 +28,23 @@ function* signup(){
         const value = login.data.result
         console.log("RETURNED OBJ",login.data.result);
         yield put({type: actionType.SET_LOGIN_DATA, value})
-       
-
-        // return login.data.login
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+            message: 'Contul a fost creat cu succes si a-ti fost logat automat in cont !',
+            key: new Date().getTime() + Math.random(),
+            options: {
+                variant: 'success'
+            },
+        }})
     }
     catch(error){
-        console.log("ERROR",error.response);
+        console.log("Eroare: ",error.response.data.message);
+        yield put({type:actionType.ENQUEUE_SNACKBAR,notification:{
+            message: 'Datele introduse nu sunt corecte sau este o eroare de server !',
+            key: new Date().getTime() + Math.random(),
+            options: {
+                variant: 'error'
+            },
+        }})
     }
     finally{
         yield put({type:actionType.SET_SIGNUP_STATUS_LOADING,status:false})

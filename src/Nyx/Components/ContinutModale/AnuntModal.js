@@ -14,7 +14,7 @@ function AnuntModal(props){
 
     const {avatar,nume,prenume,brand,categorie,stare,titlu,descriere,telefon,pret,judet,oras,moneda,imagini} = props
     const nrImagini = Object.keys(imagini||[]).length
-    
+    const myAvatar = avatar === 'none' ? "defaultAvatar.png" : avatar
     const renderListaImagini = (imagini)  =>  {
         if(!nrImagini)
             return <Box>Nu exista imagini</Box>
@@ -26,7 +26,7 @@ function AnuntModal(props){
         <>
         <div className={classes.modalHeader}>
             <div className={classes.modalAvatarInfo}>
-                <img alt="imagine testare" src={linkSprePozeProfil+(avatar||[])} />
+                <img alt="imagine testare" src={linkSprePozeProfil+(myAvatar)} />
                 <Box className={classes.modalInfoText}>
                     <p className={classes.modalInfoNume}>
                         {prenume} {nume}

@@ -23,7 +23,9 @@ function ProfilHeader(props){
     const [profileLoaded,setProfileLoaded] = React.useState(false)
     const [coverLoaded,setCoverLoaded] = React.useState(false)
     let cover = loginData.cover === 'none' ? linkSprePozeProfil + 'defaultCover.jpg' : linkSprePozeProfil + loginData.cover
-    let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
+    // let avatar = loginData.avatar === 'none' ? linkSprePozeProfil + 'defaultAvatar.png' : linkSprePozeProfil + loginData.avatar
+    const avatar = loginData.avatar
+    const myAvatar = avatar === 'none' ? "defaultAvatar.png" : avatar
     const onChangeAvatar = () => e => {
         setUploadedFile(e.target.files[0],'avatar')
         // loginData.avatar = URL.createObjectURL(e.target.files[0])
@@ -70,7 +72,7 @@ function ProfilHeader(props){
                     <Box onClick={clickUploadProfile()} className={classes.avatarBox}>
                         
                         {!profileLoaded && <Box className={classes.profilAvatar}>LOAD</Box>} 
-                        <img alt="aa" className={classes.profilAvatar} src={avatar} onLoad={setProfileLoading(true)}/>
+                        <img alt="aa" className={classes.profilAvatar} src={linkSprePozeProfil+myAvatar} onLoad={setProfileLoading(true)}/>
                         
                         <div className={classes.cameraIcon}>
                             <img alt="aa"  src={cameraIcon}/>

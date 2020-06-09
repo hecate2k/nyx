@@ -11,6 +11,7 @@ import {linkSprePozeAnunturi,linkSprePozeProfil} from '../../../Utils/serverLink
 function Anunt(props){
     const classes = useClasses()
     const {timeout,promovat, titlu, avatar,nume,prenume, judet, oras, pret, telefon, vizualizari, rating,imagini} = props
+    const myAvatar = avatar === 'none' ? "defaultAvatar.png" : avatar
     return(
         <>
         <Grow in={true} timeout={props.timeout}>
@@ -32,7 +33,7 @@ function Anunt(props){
                         {titlu}
                     </Box>
                         <Box className={classes.sellerInfo}>
-                            <img className={classes.sellerAvatar} src={linkSprePozeProfil+avatar} />
+                            <img className={classes.sellerAvatar} src={linkSprePozeProfil+myAvatar} />
                             <Box className={classes.sellerBio}>
                                 <p className={classes.anuntNumePrenume}>{prenume} {nume}</p>
                                 <p className={classes.judetOras}>{judet}, {oras}</p>

@@ -14,6 +14,7 @@ function Anunt(props){
     const doUpdate = (tip,valoare,id) => () => {
         setAD(tip,valoare,id)
     }
+    const myAvatar = avatar === 'none' ? "defaultAvatar.png" : avatar
     return(
         <>
         <Grow in={true} timeout={props.timeout}>
@@ -35,7 +36,7 @@ function Anunt(props){
                         {titlu}
                     </Box>
                         <Box className={classes.sellerInfo}>
-                            <img className={classes.sellerAvatar} src={linkSprePozeProfil+avatar} />
+                            <img className={classes.sellerAvatar} src={linkSprePozeProfil+myAvatar} />
                             <Box className={classes.sellerBio}>
                                 <p className={classes.anuntNumePrenume}>{prenume} {nume}</p>
                                 <p className={classes.judetOras}>{judet}, {oras}</p>

@@ -648,14 +648,18 @@ const useClasses = makeStyles(theme =>({
     width: 'calc(100% + 17px)',
     marginTop: '15px',
     marginLeft: '-9px',
-    '& > :first-child':{
-      marginBottom: '15px',
-    }
+    // '& > :last-child':{
+    //   marginBottom: '15px',
+    // }
   },
   inputContainer:{
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: '15px',
+    '&:last-of-type':{
+      marginBottom: '0px',
+    }
   },
   inputIcon:{
     height: '20px',
